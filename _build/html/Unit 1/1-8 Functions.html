@@ -1,0 +1,1465 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Functions &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 1/1-8 Functions';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with Strings" href="1-9%20Working%20with%20Strings.html" />
+    <link rel="prev" title="Collections: Lists, Dictionaries, and Tuples" href="1-7%20Collections.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <script>document.write(`<img src="../_static/Book logo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: Introduction to Python and Programming</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-1%20Intro%20to%20Programming.html">Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2%20Control%20Flow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-3%20Variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-4%20Data%20Types.html">Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-5%20Operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-6%20The%20Print%20Function.html">The Print Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-7%20Collections.html">Collections: Lists, Dictionaries, and Tuples</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-9%20Working%20with%20Strings.html">Working with Strings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Data Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-01%20Intro%20to%20Visualization.html">Introduction to Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-02%20Intro%20to%20Python%27s%20Bokeh%20library.html">Creating Visualizations with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-03%20Intro%20to%20Tableau.html">Creating Visualizations with Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-04%20Bar%20charts.html">Bar Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-05%20Histograms.html">Histograms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-06%20Box%20plots.html">Box Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-07%20Scatter%20plots.html">Scatter Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-08%20Line%20charts.html">Line Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-09%20Pie%20charts.html">Pie Charts (yum!)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-10%20Heat%20maps.html">Heat Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-11%20Location-based%20maps.html">Location-based Maps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: Working with Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-01%20Overview%20of%20Working%20with%20Data.html">Overview of Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-02%20Working%20with%20files%20and%20folders%20on%20your%20computer.html">Working with Files and Folders on Your Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-03%20CSV%20files.html">CSV Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-04%20Overview%20of%20Pandas.html">Overview of Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-05%20Viewing%20a%20DataFrame.html">Viewing a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-06%20Anatomy%20of%20a%20DataFrame.html">Anatomy of a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-07%20Loading%20Data%20Into%20Pandas.html">Loading Data Into Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-08%20Selecting%20and%20Filtering%20Data.html">Selecting and Filtering Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-09%20Creating%20New%20Columns.html">Creating New Columns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-10%20Sorting%20Data.html">Sorting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-11%20Modifying%20Data.html">Modifying Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 4: Analyzing Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-01%20Overview%20of%20Data%20Anaysis.html">Overview of Analyzing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-02%20Descriptive%20Statistics.html">Descriptive Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-03%20Pivot%20Tables%20in%20Pandas.html">Pivot Tables in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-04%20Regression.html">Regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 1/1-8 Functions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 1/1-8 Functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-functions">Overview of Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-as-black-boxes">Functions as Black Boxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-function">A Simple Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-for-defining-functions">Syntax for Defining Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-for-naming-functions">Rules for Naming Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments-are-local-variables">Arguments are Local Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-user-defined-functions">SUMMARY OF USER-DEFINED FUNCTIONS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-functions-that-other-people-wrote">Using Functions that Other People Wrote</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modules-and-import-statements">Modules and Import Statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-import-the-functions-directly">Option 1: Import the functions directly</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-define-an-alias-for-the-module">Option 2: Define an alias for the module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">Calling Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-arguments">Keyword Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-arguments-and-default-values">Optional Arguments and Default Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-function-documentation">Reading function documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-which-functions-to-look-up">Determining which functions to look up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#official-python-documentation">Official Python Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#library-reference">Library Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-functions">Built-in Functions</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#other-useful-pages">Other useful pages</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help-inside-a-jupyter-notebook">Getting help inside a Jupyter notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<div style="border: 1px solid black; padding: 10px; background-color: #EDEDED;">
+    <b>Overview of Functions</b>
+    <ul>
+        <li>Define a function (in programming) and explain why functions are useful.</li>
+        <li>Explain why a function can be thought of as a black box, and define the terms <i>argument</i> and <i>return value</i>.</li>
+    </ul>
+    <b>Writing Functions</b>
+    <ul>
+        <li>Given some input and output specifications, write a simple function that takes an arbitrary number of arguments.</li>
+        <li>Identify valid and invalid function names.</li>
+    </ul>
+    <b>Variable Scope and Functions</b>
+    <ul>
+        <li>Explain the concept of masking when it comes to variables inside functions.</li>
+        <li>Given sample code, identify the values of variables at different points in the code execution.</li>
+    </ul>
+    <b>Using Predefined Functions</b>
+    <ul>
+        <li>Write <i>import</i> statements, with and without aliases.</li>
+        <li>Write <i>from</i> statements to import specific functions from a module.</li>
+    </ul>
+    <b></b>
+    <ul>
+        <li>Define the terms <i>positional argument</i> and <i>keyword argument</i>.</li>
+        <li>Call an imported function using positional arguments.</li>
+        <li>Call an imported function using keyword arguments.</li>
+    </ul>
+    <b>Reading Function Documentation</b>
+    <ul>
+        <li>Read and interpret simple function signatures from the Python documentation.</li>
+        <li>Retrieve the help for a function inside a Jupyter notebook.</li>
+    </ul>
+</div></section>
+<section id="overview-of-functions">
+<h2>Overview of Functions<a class="headerlink" href="#overview-of-functions" title="Link to this heading">#</a></h2>
+<p>Functions are reusable blocks of code.</p>
+<p>Let’s think about that statement for a minute. Why might you want a reusable block of code? Well, when doing data analytics, you will typically use your computer to perform the same task more than once. Your life will be much easier if you do not have to rewrite the same code again and again.</p>
+<p>Imagine auditing a list of a million transactions. One of your aims will be to find transactions that meet certain criteria. In the old days, this was done by hand and therefore auditors developed sampling procedures. Nowadays, computers can analyze all transactions very quickly and flag suspicious ones. How will you tell a computer to find transactions that meet your criteria? You will call a function! Without a function, you would have to write a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to iterate over all the transactions. Within each iteration, you would check your criteria and, if they are met, copy the transaction to a list of suspicious transactions. That’s a lot of code to write and you are likely to make errors. A better way is to use pre-built functions for searching that have been thoroughly tested. Later in the course, we will show you the <em>Pandas</em> library which has built-in functions for this purpose.</p>
+<p>Functions are one of the most important concepts in programming. In this section, you will learn how functions work and write your own simple functions. You will also learn to read function “signatures” so that you will better understand the documentation for pre-built functions.</p>
+</section>
+<section id="functions-as-black-boxes">
+<h2>Functions as Black Boxes<a class="headerlink" href="#functions-as-black-boxes" title="Link to this heading">#</a></h2>
+<p><img alt="Function as a black box" src="../_images/Function_as_black_box.png" /></p>
+<p>A “black box” is a system that takes inputs, does something with them, and provides some output. You can think of mathematical functions and programming functions in this way. The inputs are called <em>arguments</em> and the output is called the <em>return value</em>.</p>
+<p>When you use a function that someone else has written, you are treating it as a black box. You often will not know what is inside the black box and how it works. You will simply know what arguments to give your function and what output to expect. The documentation for a given function will usually describe the arguments, the return value, and the relationship between the return value and the arguments. The documentation will describe implementation details only when necessary.</p>
+<p>To understand why you often do not need to know what’s inside the black box, let’s consider a built-in Python function called <code class="docutils literal notranslate"><span class="pre">max</span></code>. If we go to the <a class="reference external" href="https://docs.python.org/3/library/functions.html?highlight=max#max">official Python documentation for this function</a>, we learn that the function takes two (or more) arguments and returns the largest of them. It does not tell us <em>how</em> it calculates this.</p>
+<p>There are multiple ways to compute the maximum of two numbers, x and y. One is to use an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement to check which number is larger.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>Another way to compute the maximum is to use the formula <span class="math notranslate nohighlight">\(\frac{x + y + |x - y|}{2}\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>There may be other ways to compute the maximum of two numbers. The point is that you do not need to care how this function works. As long as you are confident that the function does what it claims to do, you don’t need to worry about its implementation details. You can treat the function as a black box.</p>
+</section>
+<section id="writing-your-own-functions">
+<h2>Writing your own functions<a class="headerlink" href="#writing-your-own-functions" title="Link to this heading">#</a></h2>
+<p>In this section, we will show you how to write your own functions. This will help you understand how functions work and how to use functions that other people wrote.</p>
+<section id="a-simple-function">
+<h3>A Simple Function<a class="headerlink" href="#a-simple-function" title="Link to this heading">#</a></h3>
+<p>Let’s write a very simple function that returns the average of two numbers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MyAverage</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>The above code defines a function named <code class="docutils literal notranslate"><span class="pre">MyAverage</span></code>. A function definition begins with the keyword <code class="docutils literal notranslate"><span class="pre">def</span></code>, which stands for <em>define</em>. Following the <code class="docutils literal notranslate"><span class="pre">def</span></code> keyword is a name for the function. Following the function name is an <em>argument list</em>, and this list must be in parentheses and separated by commas. Our <code class="docutils literal notranslate"><span class="pre">MyAverage</span></code> function takes two arguments, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. These arguments will be variables, but they will only live inside our function. The first line of the definition ends with a colon. The next lines are the body of the function and <em>they must be indented</em>. Python uses the indentation to determine when the function ends. Python will execute the body of the function, line by line, until it reaches a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. It will evaluate whatever is given to the return statement and “return” it to whatever line of code called the function.</p>
+<p>Let’s work through an example before explaining the subtleties.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">revenue_2017</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">revenue_2018</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">avgRevenue</span> <span class="o">=</span> <span class="n">MyAverage</span><span class="p">(</span><span class="n">revenue_2017</span><span class="p">,</span> <span class="n">revenue_2018</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The average revenue over the last two years was </span><span class="si">{</span><span class="n">avgRevenue</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The above code snippet does the following. It creates two variables, <code class="docutils literal notranslate"><span class="pre">revenue_2017</span></code> and <code class="docutils literal notranslate"><span class="pre">revenue_2018</span></code> and assigns them values. It then creates a new variable called <code class="docutils literal notranslate"><span class="pre">avgRevenue</span></code>. However, when Python sees the line to create avgRevenue, it does not immediately know the value of right-hand-side of the equation. It has to <em>call</em> the function <code class="docutils literal notranslate"><span class="pre">MyAverage</span></code>. When it does, it passes as arguments the variables <code class="docutils literal notranslate"><span class="pre">revenue_2017</span></code> and <code class="docutils literal notranslate"><span class="pre">revenue_2018</span></code>. When the function is called, Python executes the code that follows the line <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">MyAverage(x,</span> <span class="pre">y)</span></code>. Before it runs <code class="docutils literal notranslate"><span class="pre">MyAverage</span></code>, it assigns the value of <code class="docutils literal notranslate"><span class="pre">revenue_2017</span></code> to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">revenue_2018</span></code> to <code class="docutils literal notranslate"><span class="pre">y</span></code>. It does this because <code class="docutils literal notranslate"><span class="pre">MyAverage</span></code> is expecting two arguments, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. We gave it two arguments. It therefore assigned the first argument to <code class="docutils literal notranslate"><span class="pre">x</span></code> and the second to <code class="docutils literal notranslate"><span class="pre">y</span></code>. Python then evaluates the statement <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">/</span> <span class="pre">2</span></code>. It first does the arithmetic and computes the value 150. It then returns this to the calling statement, <code class="docutils literal notranslate"><span class="pre">avgRevenue</span> <span class="pre">=</span> <span class="pre">MyAverage(revenue_2017,</span> <span class="pre">revenue_2018)</span></code>, and the value 150 is assigned to <code class="docutils literal notranslate"><span class="pre">avgRevenue</span></code>. The final statement prints “The average revenue over the last two years was 150.0”.</p>
+</section>
+<section id="syntax-for-defining-functions">
+<h3>Syntax for Defining Functions<a class="headerlink" href="#syntax-for-defining-functions" title="Link to this heading">#</a></h3>
+<p>To define a function, use the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FunctionName</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="n">do_stuff_here</span>
+    <span class="k">return</span> <span class="n">return_value</span>
+</pre></div>
+</div>
+<p>Notes:</p>
+<ul class="simple">
+<li><p>You may define a function with zero arguments.</p></li>
+<li><p>When you call a function with zero arguments, you must use empty parentheses.</p></li>
+<li><p>A function does not have to return anything. If your function returns nothing, you may use a return statement with no return value, or you may omit the return statement altogether.</p></li>
+</ul>
+<p>Here’s an example of a function that takes no arguments and returns nothing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MakeAnimalNoises</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cluck&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Moo&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Woof&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Notice I omitted the <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. To call this function, you would type <code class="docutils literal notranslate"><span class="pre">MakeAnimalNoises()</span></code>.</p>
+</section>
+<section id="rules-for-naming-functions">
+<h3>Rules for Naming Functions<a class="headerlink" href="#rules-for-naming-functions" title="Link to this heading">#</a></h3>
+<p>The rules for naming functions are the same as the rules for naming variables. Do you remember the rules? :) If not, here’s a refresher. The rules are:</p>
+<ul class="simple">
+<li><p>Function names can contain:</p>
+<ul>
+<li><p>Uppercase letters (A-Z)</p></li>
+<li><p>Lowercase letters (a-z)</p></li>
+<li><p>Digits (0-9)</p></li>
+<li><p>The underscore character ( _ ). Note: this is different than the hyphen, or dash (-).</p></li>
+</ul>
+</li>
+<li><p>Function names <em>cannot</em> contain spaces.</p></li>
+<li><p>A function name cannot begin with a digit.</p></li>
+</ul>
+</section>
+<section id="arguments-are-local-variables">
+<h3>Arguments are Local Variables<a class="headerlink" href="#arguments-are-local-variables" title="Link to this heading">#</a></h3>
+<p>Earlier in these notes, we talked about environments and state. When you call a function, Python creates a new environment. The new environment inherits everything from its calling environment and creates some new variables on top of that. This concept, and the associated rules, can quickly become confusing so let’s work through some simple examples to learn about this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="k">def</span> <span class="nf">SampleFunction</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="n">SampleFunction</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is 15
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above code did the following:</p>
+<ol class="arabic simple">
+<li><p>Created a variable called <code class="docutils literal notranslate"><span class="pre">x</span></code> and set its value to 15.</p></li>
+<li><p>Created a function <code class="docutils literal notranslate"><span class="pre">SampleFunction</span></code> that takes no arguments and prints <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+<li><p>Called <code class="docutils literal notranslate"><span class="pre">SampleFunction</span></code>.</p></li>
+</ol>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">SampleFunction</span></code> can see <code class="docutils literal notranslate"><span class="pre">x</span></code>. That’s because the environment for <code class="docutils literal notranslate"><span class="pre">SampleFunction</span></code> inherits its calling environment. However, within <code class="docutils literal notranslate"><span class="pre">SampleFunction</span></code>, x is considered a “global variable”. It’s global because it was created outside the function. Variables created inside the function are called “local variables”.</p>
+<p>What happens if we try to change <code class="docutils literal notranslate"><span class="pre">x</span></code> inside the function?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="k">def</span> <span class="nf">SampleFunction2</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Inside SampleFunction2, x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="n">SampleFunction2</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Outside SampleFunction2, x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inside SampleFunction2, x is 0
+Outside SampleFunction2, x is 15
+</pre></div>
+</div>
+</div>
+</div>
+<p>Confused? When we called <code class="docutils literal notranslate"><span class="pre">SampleFunction2</span></code>, Python created a new environment that inherited <code class="docutils literal notranslate"><span class="pre">x</span></code> and its value, 15. However, Python does not want you to accidentally change a global variable inside a function; that might screw up other parts of your program that rely on the global variable. To prevent this, when we set <code class="docutils literal notranslate"><span class="pre">x</span></code> to 0 inside <code class="docutils literal notranslate"><span class="pre">SampleFunction2</span></code>, Python created a new <em>local</em> variable called <code class="docutils literal notranslate"><span class="pre">x</span></code> that masked the global variable with the same name. When the function finished, its environment was destroyed and local variable <code class="docutils literal notranslate"><span class="pre">x</span></code> was destroyed.</p>
+<p>The exact same thing happens if a function argument has the same name as a variable in the calling environment. The argument will create a local variable that masks the global variable in the calling environment. When the function terminates, its local variable will be destroyed. See the following example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+
+<span class="k">def</span> <span class="nf">SampleFunction3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Inside SampleFunction3, x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1"> and y is </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    
+<span class="n">SampleFunction3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Outside SampleFunction3, x is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1"> and y is </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inside SampleFunction3, x is 0 and y is 1
+Outside SampleFunction3, x is 3 and y is -4
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are created and initialized to 3 and -4, respectively. The function <code class="docutils literal notranslate"><span class="pre">SampleFunction3</span></code> is defined and then called with arguments 0 and 1. When the function is called, a new environment is created. Local variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are created and assigned values 0 and 1, respectively, because those were the arguments given in the function call. When the function terminates, the local variables are destroyed.</p>
+</section>
+<section id="summary-of-user-defined-functions">
+<h3>SUMMARY OF USER-DEFINED FUNCTIONS<a class="headerlink" href="#summary-of-user-defined-functions" title="Link to this heading">#</a></h3>
+<p>A function is a reusable block of code. Its inputs are called arguments and its output is called a return value.</p>
+<p>To define a function, use the following syntax:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">FunctionName</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+    <span class="n">do_stuff_here</span>
+    <span class="k">return</span> <span class="n">return_value</span>
+</pre></div>
+</div>
+<p>Finally, note that a function does not require arguments and that it does not have to return anything.</p>
+</section>
+</section>
+<section id="using-functions-that-other-people-wrote">
+<h2>Using Functions that Other People Wrote<a class="headerlink" href="#using-functions-that-other-people-wrote" title="Link to this heading">#</a></h2>
+<p>When doing data analytics, you will mostly work with functions that other people wrote. In this section, we will show you how to work with such functions. We will show you:</p>
+<ul class="simple">
+<li><p>How functions are organized into <em>modules</em>.</p></li>
+<li><p>How to use a function from a module.</p></li>
+<li><p>How to call a function using:</p>
+<ul>
+<li><p>Positional arguments</p></li>
+<li><p>Keyword arguments</p></li>
+<li><p>Optional arguments</p></li>
+</ul>
+</li>
+<li><p>How to read documentation for a function.</p></li>
+</ul>
+<section id="modules-and-import-statements">
+<h3>Modules and Import Statements<a class="headerlink" href="#modules-and-import-statements" title="Link to this heading">#</a></h3>
+<p>Since Python is so popular, people have written thousands of Python functions that you can download and use in your work. Without organizing those functions, many problems would result. For example, say I want to write a function to filter some data. A natural name for my function is <code class="docutils literal notranslate"><span class="pre">filter</span></code>. But chances are that somebody else has already written a function named <code class="docutils literal notranslate"><span class="pre">filter</span></code>. How do I tell Python that I want to use my <code class="docutils literal notranslate"><span class="pre">filter</span></code> function and not another one? Also, what if I write a set of related functions and I want to store them in the same place? The solution to these problems is to package related functions into a <em>module</em> (sometimes called a <em>package</em> or a <em>library</em>). A <em>module</em> is simply a group of functions, variables, and classes (we will define these later in the course) that reside in the same file.</p>
+<p>When you open Python, it loads some “built-in” functions into your environment. You can find these <a class="reference external" href="https://docs.python.org/3/library/functions.html">here</a>. Python also provides a “standard library” that contains many modules with useful functions. If you want to use one of those modules, you have to tell Python by using an <code class="docutils literal notranslate"><span class="pre">import</span></code> statement. Say we want to use Python’s math library. We would type:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+<p>That statement tells Python to load all of the math functions from its <a class="reference external" href="https://docs.python.org/3.7/library/math.html">math module</a> into your environment. After you execute this <code class="docutils literal notranslate"><span class="pre">import</span></code> statement, you can use any of the functions. Here’s some sample code that computes the factorial of a number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">fact_x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">! = </span><span class="si">{</span><span class="n">fact_x</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5! = 120
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s examine this code, line-by-line. The first line tells Python to import its math module. All that does is to add the names of everything from the math module to your current environment. <a class="reference external" href="https://docs.python.org/3.7/library/math.html">This documentation page</a> lists everything that’s in the math module.</p>
+<p>The second line, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">5</span></code> creates a variable <code class="docutils literal notranslate"><span class="pre">x</span></code> and initializes it to 5. The third line calls the function <code class="docutils literal notranslate"><span class="pre">math.factorial</span></code> and computes the factorial of <code class="docutils literal notranslate"><span class="pre">x</span></code>. <em>Note that the function’s name is math.factorial, <strong>not</strong> factorial</em>. The fourth line prints some output.</p>
+<p>You might be wondering why Python requires you to type <code class="docutils literal notranslate"><span class="pre">math.</span></code> to use something from the math module. That’s because it does not want to hide a function that you may have written with the same name. Also, you may have imported another library with a function named factorial, and Python needs a way to distinguish between the two functions.</p>
+<p>If you think it’s a pain in the ass to have to type <code class="docutils literal notranslate"><span class="pre">math.</span></code> before every function, you have two options:</p>
+<ol class="arabic simple">
+<li><p>Import the functions you want from a module directly into your environment.</p></li>
+<li><p>Define an alias for the module.</p></li>
+</ol>
+<section id="option-1-import-the-functions-directly">
+<h4>Option 1: Import the functions directly<a class="headerlink" href="#option-1-import-the-functions-directly" title="Link to this heading">#</a></h4>
+<p>If you do not want to type <code class="docutils literal notranslate"><span class="pre">math.</span></code> before every function name, you can use something like the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">factorial</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">sin</span>
+</pre></div>
+</div>
+<p>That code imports specific functions from the math library, and <em>you will not have to prefix your functions with “math.”</em>. If you want to import <em>everything</em> from the math library this way, you can type:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>We do not recommend importing everything from a module because it is very likely you will hide some other function in your environment.</p>
+</section>
+<section id="option-2-define-an-alias-for-the-module">
+<h4>Option 2: Define an alias for the module<a class="headerlink" href="#option-2-define-an-alias-for-the-module" title="Link to this heading">#</a></h4>
+<p>Say you want to use a library with a long name, like the <code class="docutils literal notranslate"><span class="pre">statistics</span></code> module from the standard library. Say that you want to use the full names of the statistics functions, like <code class="docutils literal notranslate"><span class="pre">statistics.median</span></code>, but do not want to have to type out <code class="docutils literal notranslate"><span class="pre">statistics.</span></code> before every function call. Python allows you to create an “alias” for the library name. Here’s how:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statistics</span> <span class="k">as</span> <span class="nn">st</span>
+
+<span class="n">mydata</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+<span class="n">my_median</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">mydata</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The median of my data is </span><span class="si">{</span><span class="n">my_median</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The median of my data is 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code, we tell Python that we want to use “st” as a shortcut for the statistics module. We can choose any valid variable name for our alias.</p>
+</section>
+</section>
+</section>
+<section id="calling-functions">
+<h2>Calling Functions<a class="headerlink" href="#calling-functions" title="Link to this heading">#</a></h2>
+<p>In the previous section, we showed you how to call simple functions. Soon, you will work with more complicated functions for data analysis. In order to call those functions, you need to learn a little more about passing arguments to functions in Python. We will teach you those details in this subsection.</p>
+<p>In the remainder of this section, we will work with a function, <code class="docutils literal notranslate"><span class="pre">square</span></code>, from the popular plotting library Bokeh. We will  (probably) teach you more about this library later in the course so do not worry if some of the details are confusing at this point. In the following examples, simply focus on the arguments to the function <code class="docutils literal notranslate"><span class="pre">square</span></code>.</p>
+<p>Let’s begin by creating a simple scatter plot. Do that by executing the code cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_notebook</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span>
+<span class="n">output_notebook</span><span class="p">()</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Simple Plot Example&quot;</span><span class="p">,</span> <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="n">x_coords</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">y_coords</span> <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_coords</span><span class="p">,</span> <span class="n">y_coords</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">    <style>
+        .bk-notebook-logo {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAOkSURBVDiNjZRtaJVlGMd/1/08zzln5zjP1LWcU9N0NkN8m2CYjpgQYQXqSs0I84OLIC0hkEKoPtiH3gmKoiJDU7QpLgoLjLIQCpEsNJ1vqUOdO7ppbuec5+V+rj4ctwzd8IIbbi6u+8f1539dt3A78eXC7QizUF7gyV1fD1Yqg4JWz84yffhm0qkFqBogB9rM8tZdtwVsPUhWhGcFJngGeWrPzHm5oaMmkfEg1usvLFyc8jLRqDOMru7AyC8saQr7GG7f5fvDeH7Ej8CM66nIF+8yngt6HWaKh7k49Soy9nXurCi1o3qUbS3zWfrYeQDTB/Qj6kX6Ybhw4B+bOYoLKCC9H3Nu/leUTZ1JdRWkkn2ldcCamzrcf47KKXdAJllSlxAOkRgyHsGC/zRday5Qld9DyoM4/q/rUoy/CXh3jzOu3bHUVZeU+DEn8FInkPBFlu3+nW3Nw0mk6vCDiWg8CeJaxEwuHS3+z5RgY+YBR6V1Z1nxSOfoaPa4LASWxxdNp+VWTk7+4vzaou8v8PN+xo+KY2xsw6une2frhw05CTYOmQvsEhjhWjn0bmXPjpE1+kplmmkP3suftwTubK9Vq22qKmrBhpY4jvd5afdRA3wGjFAgcnTK2s4hY0/GPNIb0nErGMCRxWOOX64Z8RAC4oCXdklmEvcL8o0BfkNK4lUg9HTl+oPlQxdNo3Mg4Nv175e/1LDGzZen30MEjRUtmXSfiTVu1kK8W4txyV6BMKlbgk3lMwYCiusNy9fVfvvwMxv8Ynl6vxoByANLTWplvuj/nF9m2+PDtt1eiHPBr1oIfhCChQMBw6Aw0UulqTKZdfVvfG7VcfIqLG9bcldL/+pdWTLxLUy8Qq38heUIjh4XlzZxzQm19lLFlr8vdQ97rjZVOLf8nclzckbcD4wxXMidpX30sFd37Fv/GtwwhzhxGVAprjbg0gCAEeIgwCZyTV2Z1REEW8O4py0wsjeloKoMr6iCY6dP92H6Vw/oTyICIthibxjm/DfN9lVz8IqtqKYLUXfoKVMVQVVJOElGjrnnUt9T9wbgp8AyYKaGlqingHZU/uG2NTZSVqwHQTWkx9hxjkpWDaCg6Ckj5qebgBVbT3V3NNXMSiWSDdGV3hrtzla7J+duwPOToIg42ChPQOQjspnSlp1V+Gjdged7+8UN5CRAV7a5EdFNwCjEaBR27b3W890TE7g24NAP/mMDXRWrGoFPQI9ls/MWO2dWFAar/xcOIImbbpA3zgAAAABJRU5ErkJggg==);
+        }
+    </style>
+    <div>
+        <a href="https://bokeh.org" target="_blank" class="bk-notebook-logo"></a>
+        <span id="bcde832d-b053-423a-b38a-5199cd790d50">Loading BokehJS ...</span>
+    </div>
+</div><script type="application/javascript">'use strict';
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  const force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+const JS_MIME_TYPE = 'application/javascript';
+  const HTML_MIME_TYPE = 'text/html';
+  const EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  const CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    const script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    function drop(id) {
+      const view = Bokeh.index.get_by_id(id)
+      if (view != null) {
+        view.model.document.clear()
+        Bokeh.index.delete(view)
+      }
+    }
+
+    const cell = handle.cell;
+
+    const id = cell.output_area._bokeh_element_id;
+    const server_id = cell.output_area._bokeh_server_id;
+
+    // Clean up Bokeh references
+    if (id != null) {
+      drop(id)
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      const cmd_clean = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd_clean, {
+        iopub: {
+          output: function(msg) {
+            const id = msg.content.text.trim()
+            drop(id)
+          }
+        }
+      });
+      // Destroy server and session
+      const cmd_destroy = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd_destroy);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    const output_area = handle.output_area;
+    const output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!Object.prototype.hasOwnProperty.call(output.data, EXEC_MIME_TYPE))) {
+      return
+    }
+
+    const toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      const bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      const script_attrs = bk_div.children[0].attributes;
+      for (let i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+        toinsert[toinsert.length - 1].firstChild.textContent = bk_div.children[0].textContent
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      const toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      const props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    const events = require('base/js/events');
+    const OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  const NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded(error = null) {
+    const el = document.getElementById("bcde832d-b053-423a-b38a-5199cd790d50");
+    if (el != null) {
+      const html = (() => {
+        if (typeof root.Bokeh === "undefined") {
+          if (error == null) {
+            return "BokehJS is loading ...";
+          } else {
+            return "BokehJS failed to load.";
+          }
+        } else {
+          const prefix = `BokehJS ${root.Bokeh.version}`;
+          if (error == null) {
+            return `${prefix} successfully loaded.`;
+          } else {
+            return `${prefix} <b>encountered errors</b> while loading and may not function as expected.`;
+          }
+        }
+      })();
+      el.innerHTML = html;
+
+      if (error != null) {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "auto";
+        wrapper.style.height = "5em";
+        wrapper.style.resize = "vertical";
+        const content = document.createElement("div");
+        content.style.fontFamily = "monospace";
+        content.style.whiteSpace = "pre-wrap";
+        content.style.backgroundColor = "rgb(255, 221, 221)";
+        content.textContent = error.stack ?? error.toString();
+        wrapper.append(content);
+        el.append(wrapper);
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(() => display_loaded(error), 100);
+    }
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error(url) {
+      console.error("failed to load " + url);
+    }
+
+    for (let i = 0; i < css_urls.length; i++) {
+      const url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    for (let i = 0; i < js_urls.length; i++) {
+      const url = js_urls[i];
+      const element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.4.2.min.js"];
+  const css_urls = [];
+
+  const inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {
+    }
+  ];
+
+  function run_inline_js() {
+    if (root.Bokeh !== undefined || force === true) {
+      try {
+            for (let i = 0; i < inline_js.length; i++) {
+      inline_js[i].call(root, root.Bokeh);
+    }
+
+      } catch (error) {display_loaded(error);throw error;
+      }if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      const cell = $(document.getElementById("bcde832d-b053-423a-b38a-5199cd790d50")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));</script><div class="output text_html">
+  <div id="e59e12a8-41df-44de-b9fe-de8480eb168f" data-root-id="p1001" style="display: contents;"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+  const docs_json = {"46ee7810-706c-4217-bc51-eb6ecd6d0a3b":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1001","attributes":{"width":300,"height":300,"x_range":{"type":"object","name":"DataRange1d","id":"p1002"},"y_range":{"type":"object","name":"DataRange1d","id":"p1003"},"x_scale":{"type":"object","name":"LinearScale","id":"p1011"},"y_scale":{"type":"object","name":"LinearScale","id":"p1012"},"title":{"type":"object","name":"Title","id":"p1004","attributes":{"text":"Simple Plot Example"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1040","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1034","attributes":{"selected":{"type":"object","name":"Selection","id":"p1035","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1036"},"data":{"type":"map","entries":[["x",[-4,-3,-2,-1,0,1,2,3,4]],["y",[16,9,4,1,0,1,4,9,16]]]}}},"view":{"type":"object","name":"CDSView","id":"p1041","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1042"}}},"glyph":{"type":"object","name":"Scatter","id":"p1037","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":7},"line_color":{"type":"value","value":"#1f77b4"},"fill_color":{"type":"value","value":"#1f77b4"},"marker":{"type":"value","value":"square"}}},"nonselection_glyph":{"type":"object","name":"Scatter","id":"p1038","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":7},"line_color":{"type":"value","value":"#1f77b4"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"#1f77b4"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1},"marker":{"type":"value","value":"square"}}},"muted_glyph":{"type":"object","name":"Scatter","id":"p1039","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":7},"line_color":{"type":"value","value":"#1f77b4"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"#1f77b4"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2},"marker":{"type":"value","value":"square"}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1010","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1023"},{"type":"object","name":"WheelZoomTool","id":"p1024","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1025","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1026","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1031"},{"type":"object","name":"ResetTool","id":"p1032"},{"type":"object","name":"HelpTool","id":"p1033"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1018","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1019","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1020"},"axis_label":"y","major_label_policy":{"type":"object","name":"AllLabels","id":"p1021"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1013","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1014","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1015"},"axis_label":"x","major_label_policy":{"type":"object","name":"AllLabels","id":"p1016"}}}],"center":[{"type":"object","name":"Grid","id":"p1017","attributes":{"axis":{"id":"p1013"}}},{"type":"object","name":"Grid","id":"p1022","attributes":{"dimension":1,"axis":{"id":"p1018"}}}]}}]}};
+  const render_items = [{"docid":"46ee7810-706c-4217-bc51-eb6ecd6d0a3b","roots":{"p1001":"e59e12a8-41df-44de-b9fe-de8480eb168f"},"root_ids":["p1001"]}];
+  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    let attempts = 0;
+    const timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+<p>Let’s focus on one line of code from the code cell above:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x_coords</span><span class="p">,</span> <span class="n">y_coords</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We passed three arguments to that function. The first argument was a list of x-coordinates, the second argument was a list of y-coordinates, and the third argument was a number indicating the size of the squares. When we called that function, Bokeh plotted a square at each (x,y) coordinate and set the square’s size to 7.</p>
+<section id="positional-arguments">
+<h3>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading">#</a></h3>
+<p>If you do not tell it otherwise, <code class="docutils literal notranslate"><span class="pre">square</span></code> assumes that the first argument is the x-coordinates, the second argument is the y-coordinates, and the third argument is a marker size. When we call functions in this manner, we rely on <em>positional arguments</em>. The position of the argument in the function call has meaning. You can only know the correct order of arguments if you look up the documentation for the function. We will show you more about documentation soon. For now, look at this “function signature” from the Bokeh documentation:</p>
+<blockquote>
+<div><p><strong>Signature</strong>: square(x, y, size=4, angle=0.0, **kwargs)<br />
+<strong>Args</strong>:<br />
+x : The x-axis coordinates for the center of the markers.<br />
+y : The y-axis coordinates for the center of the markers.<br />
+size : The size values for the markers in screen space units.</p>
+</div></blockquote>
+<p>This “signature” tells us that the first argument is the x-coordinates, the second is the y-coordinates, the third is the size, and so on. It tells us more, but let’s ignore that for a moment.</p>
+<p>If you want, you can use positional arguments almost every time you call a function, but we do not recommend it. You will see that some functions accept dozens of arguments, many of them optional, making it difficult to remember which argument is which. Therefore, we recommend you use a feature of Python called keyword arguments_. This feature allows you to tell the function which arguments you are giving it by passing in their names. Let’s do that by running the above code again. This time, notice that the call to <code class="docutils literal notranslate"><span class="pre">square</span></code> is different.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_coords</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_coords</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="c421f96f-6a69-4e84-8f83-e19aeefdb3cb" data-root-id="p1001" style="display: contents;"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+  const docs_json = {"6c113f40-cc07-483a-bfc6-80fd8feb3d94":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1001","attributes":{"width":300,"height":300,"x_range":{"type":"object","name":"DataRange1d","id":"p1002"},"y_range":{"type":"object","name":"DataRange1d","id":"p1003"},"x_scale":{"type":"object","name":"LinearScale","id":"p1011"},"y_scale":{"type":"object","name":"LinearScale","id":"p1012"},"title":{"type":"object","name":"Title","id":"p1004","attributes":{"text":"Simple Plot Example"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1040","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1034","attributes":{"selected":{"type":"object","name":"Selection","id":"p1035","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1036"},"data":{"type":"map","entries":[["x",[-4,-3,-2,-1,0,1,2,3,4]],["y",[16,9,4,1,0,1,4,9,16]]]}}},"view":{"type":"object","name":"CDSView","id":"p1041","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1042"}}},"glyph":{"type":"object","name":"Scatter","id":"p1037","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":7},"line_color":{"type":"value","value":"#1f77b4"},"fill_color":{"type":"value","value":"#1f77b4"},"marker":{"type":"value","value":"square"}}},"nonselection_glyph":{"type":"object","name":"Scatter","id":"p1038","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":7},"line_color":{"type":"value","value":"#1f77b4"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"#1f77b4"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1},"marker":{"type":"value","value":"square"}}},"muted_glyph":{"type":"object","name":"Scatter","id":"p1039","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":7},"line_color":{"type":"value","value":"#1f77b4"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"#1f77b4"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2},"marker":{"type":"value","value":"square"}}}}},{"type":"object","name":"GlyphRenderer","id":"p1049","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1043","attributes":{"selected":{"type":"object","name":"Selection","id":"p1044","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1045"},"data":{"type":"map","entries":[["x",[-4,-3,-2,-1,0,1,2,3,4]],["y",[16,9,4,1,0,1,4,9,16]]]}}},"view":{"type":"object","name":"CDSView","id":"p1050","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1051"}}},"glyph":{"type":"object","name":"Scatter","id":"p1046","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":6},"line_color":{"type":"value","value":"#1f77b4"},"fill_color":{"type":"value","value":"#1f77b4"},"marker":{"type":"value","value":"square"}}},"nonselection_glyph":{"type":"object","name":"Scatter","id":"p1047","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":6},"line_color":{"type":"value","value":"#1f77b4"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"#1f77b4"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1},"marker":{"type":"value","value":"square"}}},"muted_glyph":{"type":"object","name":"Scatter","id":"p1048","attributes":{"x":{"type":"field","field":"x"},"y":{"type":"field","field":"y"},"size":{"type":"value","value":6},"line_color":{"type":"value","value":"#1f77b4"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"#1f77b4"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2},"marker":{"type":"value","value":"square"}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1010","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1023"},{"type":"object","name":"WheelZoomTool","id":"p1024","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1025","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1026","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1031"},{"type":"object","name":"ResetTool","id":"p1032"},{"type":"object","name":"HelpTool","id":"p1033"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1018","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1019","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1020"},"axis_label":"y","major_label_policy":{"type":"object","name":"AllLabels","id":"p1021"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1013","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1014","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1015"},"axis_label":"x","major_label_policy":{"type":"object","name":"AllLabels","id":"p1016"}}}],"center":[{"type":"object","name":"Grid","id":"p1017","attributes":{"axis":{"id":"p1013"}}},{"type":"object","name":"Grid","id":"p1022","attributes":{"dimension":1,"axis":{"id":"p1018"}}}]}}]}};
+  const render_items = [{"docid":"6c113f40-cc07-483a-bfc6-80fd8feb3d94","roots":{"p1001":"c421f96f-6a69-4e84-8f83-e19aeefdb3cb"},"root_ids":["p1001"]}];
+  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    let attempts = 0;
+    const timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+</section>
+<section id="keyword-arguments">
+<h3>Keyword Arguments<a class="headerlink" href="#keyword-arguments" title="Link to this heading">#</a></h3>
+<p>Let’s examine the new call to <code class="docutils literal notranslate"><span class="pre">square</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_coords</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_coords</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This time, we explicitly told Python that the value of the <code class="docutils literal notranslate"><span class="pre">x</span></code> argument is x_coords, the value of <code class="docutils literal notranslate"><span class="pre">y</span></code> is y_coords, and the value of <code class="docutils literal notranslate"><span class="pre">size</span></code> is 6. A function called this way relies on <em>keyword arguments</em>; we tell Python the names of the arguments we want to pass.</p>
+<p>Keyword arguments have some advantages:</p>
+<ul class="simple">
+<li><p>Your code is more readable. You can clearly see what the arguments are.</p></li>
+<li><p>You do not have to pass the arguments in order! You could have typed <code class="docutils literal notranslate"><span class="pre">p.square(size=6,</span> <span class="pre">y=y_coords,</span> <span class="pre">x=x_coords)</span></code> and you would have gotten the same result!</p></li>
+<li><p>You are less likely to make an error by putting the arguments in the wrong order.</p></li>
+</ul>
+<p>To drive this point home, let’s revisit a line of code from a previous cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Simple Line Example&quot;</span><span class="p">,</span> <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This line of code relied on keyword arguments. Notice how easy it is to read! You can understand what the arguments mean without referring to the documentation. Also, it is common to write code and then revisit it months (or years) later. If you use named arguments, it will be much easier to remember how your code works.</p>
+</section>
+<section id="optional-arguments-and-default-values">
+<h3>Optional Arguments and Default Values<a class="headerlink" href="#optional-arguments-and-default-values" title="Link to this heading">#</a></h3>
+<p>The last thing you need to know about calling functions is that many functions have <em>optional arguments</em>. You do not have to specify values for these arguments. If you omit these optional arguments, default values are used.</p>
+<p>Let’s take a look at the documentation for the <code class="docutils literal notranslate"><span class="pre">square</span></code> function from above. For brevity, we only show you a portion of the documentation. In the next section, we will teach you more about reading function documentation.</p>
+<p><font color="indianred"><b>Signature</b></font>: p.square(x, y, size=4, angle=0.0, **kwargs)</p>
+<p>Notice the function signature says <code class="docutils literal notranslate"><span class="pre">size=4,</span> <span class="pre">angle=0.0</span></code>. When you see that, it means that the size argument is optional and if you do not specify it, it will automatically receive the value 4. The same logic applies to the angle argument.</p>
+</section>
+</section>
+<section id="reading-function-documentation">
+<h2>Reading function documentation<a class="headerlink" href="#reading-function-documentation" title="Link to this heading">#</a></h2>
+<section id="determining-which-functions-to-look-up">
+<h3>Determining which functions to look up<a class="headerlink" href="#determining-which-functions-to-look-up" title="Link to this heading">#</a></h3>
+<p>Many former students of ACCY 570 and ACCY 575 went through the following steps every time they wanted to perform an analytics task in Python::</p>
+<ol class="arabic simple">
+<li><p>Wonder whether there are functions that do what you want.</p></li>
+<li><p>Do Google searches.</p></li>
+<li><p>Read web pages, often at <a class="reference external" href="https://stackoverflow.com/">StackOverflow</a>, a site where people ask and answer questions about coding.</p></li>
+<li><p>Copy and paste code into your notebook.</p></li>
+<li><p>Get weird results or errors.</p></li>
+<li><p>Say bad words.</p></li>
+</ol>
+<p>We advocate a different approach that will be less frustrating in the long run. The first thing you should do is to <em>plan</em> your code. You should make an outline of the steps that you want Python (or Excel or whatever) to take. That should be step one. Once you have developed an outline, then you can determine whether there are already functions to do what you want. And guess what? We’re here to make your life easier so we will often tell you which functions to use. You can then look up the official documentation for those functions. If, after you read the documentation, you are still confused, then either ask the teaching staff for help, or do a specific Google search for the function you want to use.</p>
+<p>In the remainder of this section, we will teach you about the official Python documentation. Later in the course, we will show you the documentation for other analytics-related modules, like Pandas.</p>
+</section>
+<section id="official-python-documentation">
+<h3>Official Python Documentation<a class="headerlink" href="#official-python-documentation" title="Link to this heading">#</a></h3>
+<section id="overview">
+<h4>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h4>
+<p>The official documentation for the Python programming language, and its standard libraries, is located at <a class="reference external" href="https://docs.python.org/3/">https://docs.python.org/3/</a>. <em>Please make sure you are reading the documentation for Python version 3.7!!</em></p>
+<p>Before we discuss the specifics of this documentation, we want to warn you that the official documentation, well, sucks. It’s absolutely awful. It is written <em>by</em> professional programmers <em>for</em> other professional programmers. Very few, if any, examples are provided. In our opinion, this is one of the major shortcomings of working with Python. The good news is that, with what you have already learned in this unit, it will be easier to understand the documentation. Also, <em>please ask us for help</em>.</p>
+<p>Go to the official documentation website, <a class="reference external" href="https://docs.python.org/3/">https://docs.python.org/3/</a>. If possible, arrange your windows so you can see that webpage while reading this notebook. The heading should be <strong>Python 3.7.4rc1 documentation</strong>. It’s okay if it’s slightly different, as long as it’s Python 3.7. There is only one section that you need at this time, <a class="reference external" href="https://docs.python.org/3/library/index.html">Library reference</a>. If you wish, you can use the <a class="reference external" href="https://docs.python.org/3/tutorial/index.html">Tutorial section</a> to learn more about specific topics covered in this notebook. Also, the <a class="reference external" href="https://docs.python.org/3/reference/index.html">Language reference</a>, sections 7 and 8, provides the official rules for things like <code class="docutils literal notranslate"><span class="pre">if</span></code> and <code class="docutils literal notranslate"><span class="pre">while</span></code> statements, but you probably will not find it very readable.</p>
+</section>
+<section id="library-reference">
+<h4>Library Reference<a class="headerlink" href="#library-reference" title="Link to this heading">#</a></h4>
+<p>Go to the official <a class="reference external" href="https://docs.python.org/3/library/index.html">Library Reference</a>. This page provides a bulleted outline. Let’s examine the sections that may be useful to you.</p>
+<section id="built-in-functions">
+<h5>Built-in Functions<a class="headerlink" href="#built-in-functions" title="Link to this heading">#</a></h5>
+<p>Click on the link <a class="reference external" href="https://docs.python.org/3/library/functions.html">Built-in Functions</a>. Here, you will see a list of all functions that are available to you in Python without the need for an <code class="docutils literal notranslate"><span class="pre">import</span></code> statement. Let’s examine a few in detail. Click on <a class="reference external" href="https://docs.python.org/3/library/functions.html#abs">abs</a>. When you do, you will see something that looks like this:</p>
+<blockquote>
+<div><p><strong>abs</strong>(x)<br />
+Return the absolute value of a number. The argument may be an integer or a floating point number. If the argument is a complex number, its magnitude is returned.</p>
+</div></blockquote>
+<p>From this, we learn that <code class="docutils literal notranslate"><span class="pre">abs</span></code> is a function that takes one argument, x, and returns the absolute value of x. We learn that x must be an int or a float (ignore the complex number stuff).</p>
+<p>Let’s look at one more built-in function, <a class="reference external" href="https://docs.python.org/3/library/functions.html#max">max</a>. Its documentation says:</p>
+<blockquote>
+<div><p><strong>max</strong>(iterable, *[, <em>key</em>, <em>default</em>]))<br />
+<strong>max</strong>(arg1, arg2, *args[, key])<br />
+Return the largest item in an iterable or the largest of two or more arguments…</p>
+</div></blockquote>
+<p>The documentation for <code class="docutils literal notranslate"><span class="pre">max</span></code> provides two function signatures. The first function signature is for “iterables”, which are things like lists. You will learn about lists later in this unit. The second function signature is for individual arguments. The documentation begins by saying that <code class="docutils literal notranslate"><span class="pre">max</span></code> returns “the largest item in an iterable or the largest of two or more arguments.” So if we pass <code class="docutils literal notranslate"><span class="pre">max</span></code> a list, it will return the largest item in the list. If we pass <code class="docutils literal notranslate"><span class="pre">max</span></code> some numbers, it will return the largest of those numbers. Simple enough, right?</p>
+<p>The documentation then says:</p>
+<blockquote>
+<div><p>If one positional argument is provided, it should be an iterable. The largest item in the iterable is returned.</p>
+</div></blockquote>
+<p>So that stuff on positional arguments comes in handy! If one positional argument is provided, it should be an iterable (like a list). What that tells you is that <code class="docutils literal notranslate"><span class="pre">max([1,2,3,4])</span></code> is meaningful, but <code class="docutils literal notranslate"><span class="pre">max(5)</span></code> is not. Why? Because the author of the function could not imagine why you would want to compute the maximum of a single number. It’s not meaningful.</p>
+<p>The signatures also tell you that <code class="docutils literal notranslate"><span class="pre">max</span></code> allows optional arguments. These are enclosed in square brackets [ ]. Let’s ignore those for now.</p>
+<p>Finally, notice that the second function signature, <strong>max</strong>(arg1, arg2, *args[, key]), tells us that you can pass one or more optional arguments to <code class="docutils literal notranslate"><span class="pre">max</span></code>. So <code class="docutils literal notranslate"><span class="pre">max(1,2,-7,9)</span></code> is valid.</p>
+<p><strong>Takeaways:</strong> We do not want you to become experts on the <code class="docutils literal notranslate"><span class="pre">max</span></code> function. :) What we want to show you is that the documentation can be helpful if you know what you are looking for. Typically, you want to know what the function does. Usually the documentation tells you that right away. Here, you are told that max “returns the largest item in an iterable or the largest of two or more arguments.” You want to know which arguments are valid. You want to know if you can pass optional arguments. Once you have learned that, stop reading and do not worry about the other details!</p>
+</section>
+<section id="other-useful-pages">
+<h5>Other useful pages<a class="headerlink" href="#other-useful-pages" title="Link to this heading">#</a></h5>
+<p>On the <a class="reference external" href="https://docs.python.org/3/library/constants.html">library reference page</a>, there are some other useful libraries (e.g. math, random, statistics). There is documentation on the built-in string functions (we will teach you about those later in this unit). There are libraries for working with files on your hard drive, zipping files, working with dates and times, and so on.</p>
+<p>We do not recommend that you invest in these at this time. For now, focus on the functions we teach you. You can always explore these in the future if your work demands it.</p>
+</section>
+</section>
+<section id="getting-help-inside-a-jupyter-notebook">
+<h4>Getting help inside a Jupyter notebook<a class="headerlink" href="#getting-help-inside-a-jupyter-notebook" title="Link to this heading">#</a></h4>
+<p>You can get help on a function within your Jupyter notebook! In a code cell, just type a question mark followed by the function and press CTRL+ENTER. Here’s an example:</p>
+<pre><div style="background-color: #f5f5f5">&nbsp;&nbsp;&nbsp;? <font color="#1f820b">abs</font></div></pre><pre><font color="firebrick"><b>Signature:</b></font>  abs(x, /)
+<font color="firebrick"><b>Docstring:</b></font> Return the absolute value of the argument.
+<font color="firebrick"><b>Type:</b></font>      builtin_function_or_method</pre></section>
+<section id="summary">
+<h4>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>When you need help on a <em>built-in</em> Python function or library, go to <a class="reference external" href="https://docs.python.org/3/">https://docs.python.org/3/</a>. Go to the Library Reference section and find what you need.</p></li>
+<li><p>We will teach you about other useful documentation later in the course.</p></li>
+<li><p>Before you write any code, make an outline or plan for your code.</p></li>
+<li><p>For now, do <em>not</em> begin with Google searches when you need help.</p></li>
+<li><p>The most useful things in a function’s documentation are:</p>
+<ul>
+<li><p>Function signature</p></li>
+<li><p>Description of the function - what it does</p></li>
+<li><p>Return value and its type</p></li>
+<li><p>Description of required arguments</p></li>
+<li><p>Description of optional arguments</p></li>
+</ul>
+</li>
+<li><p>You can get help within your Jupyter notebook, e.g. <code class="docutils literal notranslate"><span class="pre">?print</span></code></p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1-7%20Collections.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Collections: Lists, Dictionaries, and Tuples</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1-9%20Working%20with%20Strings.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working with Strings</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-functions">Overview of Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-as-black-boxes">Functions as Black Boxes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-your-own-functions">Writing your own functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-function">A Simple Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax-for-defining-functions">Syntax for Defining Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-for-naming-functions">Rules for Naming Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arguments-are-local-variables">Arguments are Local Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-user-defined-functions">SUMMARY OF USER-DEFINED FUNCTIONS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-functions-that-other-people-wrote">Using Functions that Other People Wrote</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modules-and-import-statements">Modules and Import Statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-1-import-the-functions-directly">Option 1: Import the functions directly</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-2-define-an-alias-for-the-module">Option 2: Define an alias for the module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calling-functions">Calling Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keyword-arguments">Keyword Arguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-arguments-and-default-values">Optional Arguments and Default Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-function-documentation">Reading function documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-which-functions-to-look-up">Determining which functions to look up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#official-python-documentation">Official Python Documentation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#library-reference">Library Reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#built-in-functions">Built-in Functions</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#other-useful-pages">Other useful pages</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help-inside-a-jupyter-notebook">Getting help inside a Jupyter notebook</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Vic Anand and Kim Mendoza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

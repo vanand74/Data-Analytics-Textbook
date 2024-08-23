@@ -1,0 +1,5 @@
+Take a look at this and see if it gives you anything: https://medium.com/the-power-of-ai/create-beautiful-reports-and-books-with-jupyter-book-3d99c04f70a8
+
+Jupyter notebook documentation: https://jupyterbook.org/en/stable/intro.html
+
+config.yml file for the Jupyter notebook documentation (this is a good example): https://github.com/jupyter-book/jupyter-book/blob/master/docs/_config.yml
