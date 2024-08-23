@@ -1,0 +1,1394 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Histograms &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 2/2-05 Histograms';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Box Plots" href="2-06%20Box%20plots.html" />
+    <link rel="prev" title="Bar Charts" href="2-04%20Bar%20charts.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <script>document.write(`<img src="../_static/Book logo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: Introduction to Python and Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20Intro%20to%20Programming.html">Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-2%20Control%20Flow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-3%20Variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-4%20Data%20Types.html">Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-5%20Operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-6%20The%20Print%20Function.html">The Print Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-7%20Collections.html">Collections: Lists, Dictionaries, and Tuples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-8%20Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-9%20Working%20with%20Strings.html">Working with Strings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Data Visualization</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="2-01%20Intro%20to%20Visualization.html">Introduction to Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-02%20Intro%20to%20Python%27s%20Bokeh%20library.html">Creating Visualizations with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-03%20Intro%20to%20Tableau.html">Creating Visualizations with Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-04%20Bar%20charts.html">Bar Charts</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Histograms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-06%20Box%20plots.html">Box Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-07%20Scatter%20plots.html">Scatter Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-08%20Line%20charts.html">Line Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-09%20Pie%20charts.html">Pie Charts (yum!)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-10%20Heat%20maps.html">Heat Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-11%20Location-based%20maps.html">Location-based Maps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: Working with Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-01%20Overview%20of%20Working%20with%20Data.html">Overview of Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-02%20Working%20with%20files%20and%20folders%20on%20your%20computer.html">Working with Files and Folders on Your Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-03%20CSV%20files.html">CSV Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-04%20Overview%20of%20Pandas.html">Overview of Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-05%20Viewing%20a%20DataFrame.html">Viewing a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-06%20Anatomy%20of%20a%20DataFrame.html">Anatomy of a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-07%20Loading%20Data%20Into%20Pandas.html">Loading Data Into Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-08%20Selecting%20and%20Filtering%20Data.html">Selecting and Filtering Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-09%20Creating%20New%20Columns.html">Creating New Columns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-10%20Sorting%20Data.html">Sorting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-11%20Modifying%20Data.html">Modifying Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 4: Analyzing Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-01%20Overview%20of%20Data%20Anaysis.html">Overview of Analyzing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-02%20Descriptive%20Statistics.html">Descriptive Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-03%20Pivot%20Tables%20in%20Pandas.html">Pivot Tables in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-04%20Regression.html">Regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 2/2-05 Histograms.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 2/2-05 Histograms.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Histograms</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-histogram">What is a Histogram?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustration-1-example-histogram-in-bokeh">Illustration 1: Example Histogram (in Bokeh)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustration-2-example-histogram-in-tableau">Illustration 2: Example Histogram (in Tableau)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-a-histogram">When to Use a Histogram</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-in-bokeh">Histograms in Bokeh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-histograms">Review of Histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-histogram">How to Create a Histogram</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code-for-creating-a-histogram">Pseudo-Code for Creating a Histogram</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-histogram-dice-rolls">Sample Histogram: Dice Rolls</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-our-data">Generating our data</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-number-of-bins">Choose number of bins</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-bin-width">Choose bin width</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-edges">Compute edges</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-list-counts-to-store-the-count-in-each-bin">Create a list <code class="docutils literal notranslate"><span class="pre">counts</span></code> to store the count in each bin</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#count-the-number-of-outcomes-in-each-bin">Count the number of outcomes in each bin</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-histogram-using-bokeh">Create the histogram using Bokeh</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-all-the-code-together">Putting all the code together</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-easier-way-to-bin-your-data">An easier way to bin your data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-histogram-in-tableau">Creating a Histogram in Tableau</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="histograms">
+<h1>Histograms<a class="headerlink" href="#histograms" title="Link to this heading">#</a></h1>
+<section id="what-is-a-histogram">
+<h2>What is a Histogram?<a class="headerlink" href="#what-is-a-histogram" title="Link to this heading">#</a></h2>
+<p>Histograms and bar charts may appear similar but are actually quite different. These two graph types show  different information and are used to answer different questions. Bar charts show differences across categories, typically for a small number of categories. For example, above we showed you a bar chart with the revenues of 10 different companies and one bar per company. What if you wanted a graph that shows the revenue of <em>every</em> publicly traded company in the U.S.? You could make a graph with thousands of bars but that would be very difficult to draw and even more difficult to view. To eliminate this problem, a histogram groups the data into “bins”. In each bin, the histogram counts the number of companies whose revenue is in the bin. Thus, instead of the categories used in a bar chart, a histogram places the numerical data into bins based on whether each number falls within a particular range.</p>
+<p>Bins can be any size, and choosing the right bin size can take some trial and error. For example, we might have a bin for companies with revenues of $0 - $5 million, another bin for $5 to $10 million, and so on.  Alternatively, each bin could have a width of $10 million, so the bins would be $0 - $10 million, another bin for $10 to $20 million, and so on. Typically, the bins have equal widths. After the bin size is chosen, the data are then placed into the bins and the histogram counts the number of times a data point falls into the bin.</p>
+<p>Histograms can handle discrete and continuous data. Discrete data is data that can take on a fixed number of values (e.g. integers or counts), such as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">13,</span> <span class="pre">15,</span> <span class="pre">17,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">1,</span> <span class="pre">13,</span> <span class="pre">10,</span> <span class="pre">2,</span> <span class="pre">11,</span> <span class="pre">6,</span> <span class="pre">19,</span> <span class="pre">12,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">1,</span> <span class="pre">18,</span> <span class="pre">12,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">15,</span> <span class="pre">1,</span> <span class="pre">10,</span> <span class="pre">10,</span> <span class="pre">16,</span> <span class="pre">15,</span> <span class="pre">2,</span> <span class="pre">13,</span> <span class="pre">3,</span> <span class="pre">11,</span> <span class="pre">6,</span> <span class="pre">11,</span> <span class="pre">8,</span> <span class="pre">12,</span> <span class="pre">9,</span> <span class="pre">15,</span> <span class="pre">2,</span> <span class="pre">4,</span> <span class="pre">16,</span> <span class="pre">5,</span> <span class="pre">9,</span> <span class="pre">9,</span> <span class="pre">12,</span> <span class="pre">13,</span> <span class="pre">7,</span> <span class="pre">4,</span> <span class="pre">17,</span> <span class="pre">4,</span> <span class="pre">18,</span> <span class="pre">6,</span> <span class="pre">17,</span> <span class="pre">2,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">8,</span> <span class="pre">15,</span> <span class="pre">11,</span> <span class="pre">6,</span> <span class="pre">3,</span> <span class="pre">2]</span></code></p></li>
+</ul>
+<p>Continouous data is numerical data that can be any value (i.e., these values include decimals). Here’s an example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[1.572,</span> <span class="pre">2,</span> <span class="pre">10.516,</span> <span class="pre">11.6,</span> <span class="pre">3.156,</span> <span class="pre">15.702,</span> <span class="pre">3.02,</span> <span class="pre">6.231,</span> <span class="pre">19.3,</span> <span class="pre">8.34,</span> <span class="pre">14.37,</span> <span class="pre">11.157,</span> <span class="pre">9,</span> <span class="pre">4.702,</span> <span class="pre">10.352,</span> <span class="pre">6.32,</span> <span class="pre">14.98,</span> <span class="pre">7.89,</span> <span class="pre">3.25,</span> <span class="pre">16.93,</span> <span class="pre">17.231,</span> <span class="pre">4.2,</span> <span class="pre">4.73,</span> <span class="pre">13,</span> <span class="pre">12.1,</span> <span class="pre">4.11,</span> <span class="pre">2.864,</span> <span class="pre">5,</span> <span class="pre">14,</span> <span class="pre">8,</span> <span class="pre">7.421,</span> <span class="pre">18.2,</span> <span class="pre">7.314,</span> <span class="pre">10.51,</span> <span class="pre">11.1,</span> <span class="pre">6.4,</span> <span class="pre">4.89,</span> <span class="pre">9.1,</span> <span class="pre">13.26,</span> <span class="pre">10.572,</span> <span class="pre">3.6,</span> <span class="pre">6.31,</span> <span class="pre">5.36]</span></code></p></li>
+</ul>
+<p>Let’s see an example of a histogram using the discrete data from above with a bin size of 2. A histogram uses bars to display how many of these numbers fall in each bin. The first bar of the histogram would show how many of these numbers fall in the first bin [0-2) (i.e., are 0 or 1), the second bar of the histogram would show how many of these numbers fall in the second bin [2-4) (i.e., are 2 or 3), the third bar would show how many of these numbers fall into the third bin [4-6) (i.e., are 4 or 5), and so on. See the histogram for the discrete data in Illustration 1.</p>
+<section id="illustration-1-example-histogram-in-bokeh">
+<h3>Illustration 1: Example Histogram (in Bokeh)<a class="headerlink" href="#illustration-1-example-histogram-in-bokeh" title="Link to this heading">#</a></h3>
+<p><img alt="" src="../_images/Hist1_new.png" /><br />
+Illustration 1 presents the histogram of the discrete data listed above using 10 bins (bin size of 2). This histogram was created using the Python package Bokeh. Each bar represents the number of times a data point from the discrete data falls into the respective bin. For example, there are five instances of the numbers 0 or 1 and nine instances of the numbers 2 or 3.</p>
+<p>To see this, we sorted the data in the list:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">3,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">4,</span> <span class="pre">4,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">8,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">9,</span> <span class="pre">9,</span> <span class="pre">10,</span> <span class="pre">10,</span> <span class="pre">10,</span> <span class="pre">11,</span> <span class="pre">11,</span> <span class="pre">11,</span> <span class="pre">11,</span> <span class="pre">12,</span> <span class="pre">12,</span> <span class="pre">12,</span> <span class="pre">12,</span> <span class="pre">13,</span> <span class="pre">13,</span> <span class="pre">13,</span> <span class="pre">13,</span> <span class="pre">15,</span> <span class="pre">15,</span> <span class="pre">15,</span> <span class="pre">15,</span> <span class="pre">15,</span> <span class="pre">16,</span> <span class="pre">16,</span> <span class="pre">17,</span> <span class="pre">17,</span> <span class="pre">17,</span> <span class="pre">18,</span> <span class="pre">18,</span> <span class="pre">19]</span></code></p></li>
+</ul>
+<p>In sum, histograms look very similar to bar charts, but each bar in a histogram represents a bin (number range) instead of a category and the height of the bar is a count of the number of data points that fall into the bin range.</p>
+</section>
+<section id="illustration-2-example-histogram-in-tableau">
+<h3>Illustration 2: Example Histogram (in Tableau)<a class="headerlink" href="#illustration-2-example-histogram-in-tableau" title="Link to this heading">#</a></h3>
+<p><img alt="" src="../_images/HistTableau.png" /></p>
+<p>Illustration 2 presents a histogram of the 75th percentile SAT Math scores for each university in the United States. This histogram was created using the visualization software Tableau. You will note that most schools 75th percentile SAT math scores fall bewteen 530 and 640. As the scores get lower or higher there are fewer schools represented, which makes sense as fewer schools are likely to accept very low scores and fewer schools are likely to have the majority of their admitted students with extremely high scores.<sup>3</sup></p>
+</section>
+<section id="when-to-use-a-histogram">
+<h3>When to Use a Histogram<a class="headerlink" href="#when-to-use-a-histogram" title="Link to this heading">#</a></h3>
+<p>Histograms are useful when trying to understand the composition or distribution of your data. For example, you may want to know around which numbers your data are concentrated. In a histogram you might see one hump, which tells you most of your data falls around one area, or you might see multiple humps in the histogram, which tells you that your data is concentrated around several numbers. Histograms also provide information on whether your data is centered or skewed in one direction.</p>
+</section>
+</section>
+<section id="histograms-in-bokeh">
+<h2>Histograms in Bokeh<a class="headerlink" href="#histograms-in-bokeh" title="Link to this heading">#</a></h2>
+<section id="review-of-histograms">
+<h3>Review of Histograms<a class="headerlink" href="#review-of-histograms" title="Link to this heading">#</a></h3>
+<p>Remember that a histogram shows the distribution of a single variable. It takes all data values for that variable and groups them into bins. The histogram then shows one bar per bin. The x-location of the bar is the range of the bin, and the height of the bar is the number of data values that fall into that bin.</p>
+<p>As an example, consider the following histogram. It shows the income before extraordinary items of all publicly traded companies in 2018.</p>
+<p><img alt="alt text" src="../_images/IB2018.png" /></p>
+<p>Let’s look at the histogram and its shape. We can learn a lot from the shape. In the histogram above, we see that the most common values of income are near zero! And in 2018, more companies had slightly negative income than slightly positive income. We also see a long “tail” on the right. That means that a very small number of companies reported very high incomes.</p>
+<p>Each bar of the histogram represents one bin. In this case, each bin spans $40 million dollars. You can tell that by looking at the width of each bar relative to the x-axis. For example, let’s look at the bar that is just to the right of 0. The width of that bar is 40, indicating that the bin spans the values $0 to $40 million. The height of that bar is approximately 1,400. That means that approximately 1,400 companies had income between $0 and $40 million. Now take a look at the bar just to the right of 1,000. Its height is approximately 20. That means that only 20 companies had an income between $1,000 and $1,040.</p>
+</section>
+<section id="how-to-create-a-histogram">
+<h3>How to Create a Histogram<a class="headerlink" href="#how-to-create-a-histogram" title="Link to this heading">#</a></h3>
+<section id="pseudo-code-for-creating-a-histogram">
+<h4>Pseudo-Code for Creating a Histogram<a class="headerlink" href="#pseudo-code-for-creating-a-histogram" title="Link to this heading">#</a></h4>
+<p>It’s time for you to learn how to create a histogram. Let’s begin with the pseudo-code. Say you have a list of data values stored in the variable <code class="docutils literal notranslate"><span class="pre">mydata</span></code>. Starting with that list, here are the steps for creating a histogram:</p>
+<ol class="arabic simple">
+<li><p>Decide how many bins you want. Store this value in the variable <em>numbins</em>.</p>
+<ul class="simple">
+<li><p>Sometimes, there is an obvious choice for the number of bins.</p></li>
+<li><p>More often, you need to experiment with the number of bins.</p></li>
+</ul>
+</li>
+<li><p>Create the variable <em>binwidth</em> to store the width of each bin.</p>
+<ul class="simple">
+<li><p>For continuous data, first compute the minimum and maximum value in <em>mydata</em>. Store these in the variables <em>minval</em> and <em>maxval</em>. Then compute bin width as ((<em>maxval</em> - <em>minval</em>) / <em>numbins</em>).</p></li>
+<li><p>For discrete data, the choice of <em>binwidth</em> is a style choice.</p></li>
+</ul>
+</li>
+<li><p>Create a new list called <em>edges</em>. It will have (numbins + 1) elements. This list contains the “edges” of each bin.</p>
+<ul class="simple">
+<li><p>The first element will be <em>minval</em>.</p></li>
+<li><p>The next element will be (<em>minval</em> + <em>binwidth</em>).</p></li>
+<li><p>The next element will be (<em>minval</em> + 2*<em>binwidth</em>).</p></li>
+<li><p>…</p></li>
+<li><p>The last element will be <em>maxval</em>.</p></li>
+</ul>
+</li>
+<li><p>Create a new list called <em>counts</em>. Its length should be <em>numbins</em> and initially all elements should be zero.</p></li>
+<li><p>For each value <em>x</em> in <em>mydata</em>;</p>
+<ul class="simple">
+<li><p>Determine the bin to which <em>x</em> belongs.</p></li>
+<li><p>Add 1 to the value in <em>counts</em> corresponding to this bin.</p></li>
+</ul>
+</li>
+<li><p>Create a plot in Bokeh.</p>
+<ul class="simple">
+<li><p>Draw one bar per bin.</p></li>
+<li><p>The x-location of the bar spans two edges.</p></li>
+<li><p>The height of the bar is the number of observations in the corresponding bin.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="sample-histogram-dice-rolls">
+<h4>Sample Histogram: Dice Rolls<a class="headerlink" href="#sample-histogram-dice-rolls" title="Link to this heading">#</a></h4>
+<p>In this example, we are going to simulate the act of rolling a single 6-sided die. Just to be clear, when we say a 6-sided die, we mean something like this:</p>
+<p><img alt="6-sided die" src="../_images/Dice.jpg" /></p>
+<section id="generating-our-data">
+<h5>Generating our data<a class="headerlink" href="#generating-our-data" title="Link to this heading">#</a></h5>
+<p>First, let’s generate some data. The possible outcomes of a single die roll are 1, 2, 3, 4, 5, and 6. We can simulate this with a random number generator.</p>
+<p>Run the following code. It will create a list called <code class="docutils literal notranslate"><span class="pre">mydata</span></code> that contains the outcomes of 20 rolls of a single die.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">NUM_ROLLS</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">mydata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">NUM_ROLLS</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">mydata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 1, 2, 4, 1, 1, 1, 6, 6, 4, 3, 4, 2, 2, 3, 6, 1, 5, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="choose-number-of-bins">
+<h5>Choose number of bins<a class="headerlink" href="#choose-number-of-bins" title="Link to this heading">#</a></h5>
+<p>Since there are six possible outcomes, it makes sense to have exactly six bins. Therefore, run the following code cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbins</span> <span class="o">=</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="choose-bin-width">
+<h5>Choose bin width<a class="headerlink" href="#choose-bin-width" title="Link to this heading">#</a></h5>
+<p>We have discrete data. The outcomes are 1 - 6, so let’s set the bin width to 1. Run the following code cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binwidth</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compute-edges">
+<h5>Compute edges<a class="headerlink" href="#compute-edges" title="Link to this heading">#</a></h5>
+<p>The edges are the boundaries between bins. Since we have discrete data, let’s center the bins on each outcome. That means that the bin for an outcome of 1 will span the range [0.5,1.5]. The bin for the outcome of 2 will span the range [1.5,2.5]. And so on.</p>
+<p>Run the following code cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we have 7 edges. If you have <em>n</em> bins, you will always need <em>n+1</em> edges.</p>
+</section>
+<section id="create-a-list-counts-to-store-the-count-in-each-bin">
+<h5>Create a list <code class="docutils literal notranslate"><span class="pre">counts</span></code> to store the count in each bin<a class="headerlink" href="#create-a-list-counts-to-store-the-count-in-each-bin" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">numbins</span>
+<span class="n">counts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 0, 0, 0, 0, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the list <code class="docutils literal notranslate"><span class="pre">counts</span></code>, the first element corresponds to the number of 1’s in the data. The second element corresponds to the number of 2’s in the data. And so on.</p>
+</section>
+<section id="count-the-number-of-outcomes-in-each-bin">
+<h5>Count the number of outcomes in each bin<a class="headerlink" href="#count-the-number-of-outcomes-in-each-bin" title="Link to this heading">#</a></h5>
+<p>We need to iterate over the list <code class="docutils literal notranslate"><span class="pre">mydata</span></code>. Every time we see a 1, we need to update the count of the number of 1’s. Every time we see a 2, we need to update the number of 2’s. Etc.</p>
+<p>Run the following code, which updates the list <code class="docutils literal notranslate"><span class="pre">counts</span></code> based on the values in <code class="docutils literal notranslate"><span class="pre">mydata</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">mydata</span><span class="p">:</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    
+<span class="n">counts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5, 3, 3, 3, 2, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The list <code class="docutils literal notranslate"><span class="pre">counts</span></code> now tells us that there are five 1’s in the data, three 2’s, three 3’s, and so on.</p>
+</section>
+<section id="create-the-histogram-using-bokeh">
+<h5>Create the histogram using Bokeh<a class="headerlink" href="#create-the-histogram-using-bokeh" title="Link to this heading">#</a></h5>
+<p>Run the following code cell to create a histogram in Bokeh and then we’ll discuss it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_notebook</span>
+<span class="n">output_notebook</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">    <style>
+        .bk-notebook-logo {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAOkSURBVDiNjZRtaJVlGMd/1/08zzln5zjP1LWcU9N0NkN8m2CYjpgQYQXqSs0I84OLIC0hkEKoPtiH3gmKoiJDU7QpLgoLjLIQCpEsNJ1vqUOdO7ppbuec5+V+rj4ctwzd8IIbbi6u+8f1539dt3A78eXC7QizUF7gyV1fD1Yqg4JWz84yffhm0qkFqBogB9rM8tZdtwVsPUhWhGcFJngGeWrPzHm5oaMmkfEg1usvLFyc8jLRqDOMru7AyC8saQr7GG7f5fvDeH7Ej8CM66nIF+8yngt6HWaKh7k49Soy9nXurCi1o3qUbS3zWfrYeQDTB/Qj6kX6Ybhw4B+bOYoLKCC9H3Nu/leUTZ1JdRWkkn2ldcCamzrcf47KKXdAJllSlxAOkRgyHsGC/zRday5Qld9DyoM4/q/rUoy/CXh3jzOu3bHUVZeU+DEn8FInkPBFlu3+nW3Nw0mk6vCDiWg8CeJaxEwuHS3+z5RgY+YBR6V1Z1nxSOfoaPa4LASWxxdNp+VWTk7+4vzaou8v8PN+xo+KY2xsw6une2frhw05CTYOmQvsEhjhWjn0bmXPjpE1+kplmmkP3suftwTubK9Vq22qKmrBhpY4jvd5afdRA3wGjFAgcnTK2s4hY0/GPNIb0nErGMCRxWOOX64Z8RAC4oCXdklmEvcL8o0BfkNK4lUg9HTl+oPlQxdNo3Mg4Nv175e/1LDGzZen30MEjRUtmXSfiTVu1kK8W4txyV6BMKlbgk3lMwYCiusNy9fVfvvwMxv8Ynl6vxoByANLTWplvuj/nF9m2+PDtt1eiHPBr1oIfhCChQMBw6Aw0UulqTKZdfVvfG7VcfIqLG9bcldL/+pdWTLxLUy8Qq38heUIjh4XlzZxzQm19lLFlr8vdQ97rjZVOLf8nclzckbcD4wxXMidpX30sFd37Fv/GtwwhzhxGVAprjbg0gCAEeIgwCZyTV2Z1REEW8O4py0wsjeloKoMr6iCY6dP92H6Vw/oTyICIthibxjm/DfN9lVz8IqtqKYLUXfoKVMVQVVJOElGjrnnUt9T9wbgp8AyYKaGlqingHZU/uG2NTZSVqwHQTWkx9hxjkpWDaCg6Ckj5qebgBVbT3V3NNXMSiWSDdGV3hrtzla7J+duwPOToIg42ChPQOQjspnSlp1V+Gjdged7+8UN5CRAV7a5EdFNwCjEaBR27b3W890TE7g24NAP/mMDXRWrGoFPQI9ls/MWO2dWFAar/xcOIImbbpA3zgAAAABJRU5ErkJggg==);
+        }
+    </style>
+    <div>
+        <a href="https://bokeh.org" target="_blank" class="bk-notebook-logo"></a>
+        <span id="f28aed72-669c-494a-85f1-ce43d00a45d5">Loading BokehJS ...</span>
+    </div>
+</div><script type="application/javascript">'use strict';
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  const force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+const JS_MIME_TYPE = 'application/javascript';
+  const HTML_MIME_TYPE = 'text/html';
+  const EXEC_MIME_TYPE = 'application/vnd.bokehjs_exec.v0+json';
+  const CLASS_NAME = 'output_bokeh rendered_html';
+
+  /**
+   * Render data to the DOM node
+   */
+  function render(props, node) {
+    const script = document.createElement("script");
+    node.appendChild(script);
+  }
+
+  /**
+   * Handle when an output is cleared or removed
+   */
+  function handleClearOutput(event, handle) {
+    function drop(id) {
+      const view = Bokeh.index.get_by_id(id)
+      if (view != null) {
+        view.model.document.clear()
+        Bokeh.index.delete(view)
+      }
+    }
+
+    const cell = handle.cell;
+
+    const id = cell.output_area._bokeh_element_id;
+    const server_id = cell.output_area._bokeh_server_id;
+
+    // Clean up Bokeh references
+    if (id != null) {
+      drop(id)
+    }
+
+    if (server_id !== undefined) {
+      // Clean up Bokeh references
+      const cmd_clean = "from bokeh.io.state import curstate; print(curstate().uuid_to_server['" + server_id + "'].get_sessions()[0].document.roots[0]._id)";
+      cell.notebook.kernel.execute(cmd_clean, {
+        iopub: {
+          output: function(msg) {
+            const id = msg.content.text.trim()
+            drop(id)
+          }
+        }
+      });
+      // Destroy server and session
+      const cmd_destroy = "import bokeh.io.notebook as ion; ion.destroy_server('" + server_id + "')";
+      cell.notebook.kernel.execute(cmd_destroy);
+    }
+  }
+
+  /**
+   * Handle when a new output is added
+   */
+  function handleAddOutput(event, handle) {
+    const output_area = handle.output_area;
+    const output = handle.output;
+
+    // limit handleAddOutput to display_data with EXEC_MIME_TYPE content only
+    if ((output.output_type != "display_data") || (!Object.prototype.hasOwnProperty.call(output.data, EXEC_MIME_TYPE))) {
+      return
+    }
+
+    const toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+
+    if (output.metadata[EXEC_MIME_TYPE]["id"] !== undefined) {
+      toinsert[toinsert.length - 1].firstChild.textContent = output.data[JS_MIME_TYPE];
+      // store reference to embed id on output_area
+      output_area._bokeh_element_id = output.metadata[EXEC_MIME_TYPE]["id"];
+    }
+    if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+      const bk_div = document.createElement("div");
+      bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+      const script_attrs = bk_div.children[0].attributes;
+      for (let i = 0; i < script_attrs.length; i++) {
+        toinsert[toinsert.length - 1].firstChild.setAttribute(script_attrs[i].name, script_attrs[i].value);
+        toinsert[toinsert.length - 1].firstChild.textContent = bk_div.children[0].textContent
+      }
+      // store reference to server id on output_area
+      output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+    }
+  }
+
+  function register_renderer(events, OutputArea) {
+
+    function append_mime(data, metadata, element) {
+      // create a DOM node to render to
+      const toinsert = this.create_output_subarea(
+        metadata,
+        CLASS_NAME,
+        EXEC_MIME_TYPE
+      );
+      this.keyboard_manager.register_events(toinsert);
+      // Render to node
+      const props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+      render(props, toinsert[toinsert.length - 1]);
+      element.append(toinsert);
+      return toinsert
+    }
+
+    /* Handle when an output is cleared or removed */
+    events.on('clear_output.CodeCell', handleClearOutput);
+    events.on('delete.Cell', handleClearOutput);
+
+    /* Handle when a new output is added */
+    events.on('output_added.OutputArea', handleAddOutput);
+
+    /**
+     * Register the mime type and append_mime function with output_area
+     */
+    OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+      /* Is output safe? */
+      safe: true,
+      /* Index of renderer in `output_area.display_order` */
+      index: 0
+    });
+  }
+
+  // register the mime type if in Jupyter Notebook environment and previously unregistered
+  if (root.Jupyter !== undefined) {
+    const events = require('base/js/events');
+    const OutputArea = require('notebook/js/outputarea').OutputArea;
+
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  }
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  const NB_LOAD_WARNING = {'data': {'text/html':
+     "<div style='background-color: #fdd'>\n"+
+     "<p>\n"+
+     "BokehJS does not appear to have successfully loaded. If loading BokehJS from CDN, this \n"+
+     "may be due to a slow or bad network connection. Possible fixes:\n"+
+     "</p>\n"+
+     "<ul>\n"+
+     "<li>re-rerun `output_notebook()` to attempt to load from CDN again, or</li>\n"+
+     "<li>use INLINE resources instead, as so:</li>\n"+
+     "</ul>\n"+
+     "<code>\n"+
+     "from bokeh.resources import INLINE\n"+
+     "output_notebook(resources=INLINE)\n"+
+     "</code>\n"+
+     "</div>"}};
+
+  function display_loaded(error = null) {
+    const el = document.getElementById("f28aed72-669c-494a-85f1-ce43d00a45d5");
+    if (el != null) {
+      const html = (() => {
+        if (typeof root.Bokeh === "undefined") {
+          if (error == null) {
+            return "BokehJS is loading ...";
+          } else {
+            return "BokehJS failed to load.";
+          }
+        } else {
+          const prefix = `BokehJS ${root.Bokeh.version}`;
+          if (error == null) {
+            return `${prefix} successfully loaded.`;
+          } else {
+            return `${prefix} <b>encountered errors</b> while loading and may not function as expected.`;
+          }
+        }
+      })();
+      el.innerHTML = html;
+
+      if (error != null) {
+        const wrapper = document.createElement("div");
+        wrapper.style.overflow = "auto";
+        wrapper.style.height = "5em";
+        wrapper.style.resize = "vertical";
+        const content = document.createElement("div");
+        content.style.fontFamily = "monospace";
+        content.style.whiteSpace = "pre-wrap";
+        content.style.backgroundColor = "rgb(255, 221, 221)";
+        content.textContent = error.stack ?? error.toString();
+        wrapper.append(content);
+        el.append(wrapper);
+      }
+    } else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(() => display_loaded(error), 100);
+    }
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error(url) {
+      console.error("failed to load " + url);
+    }
+
+    for (let i = 0; i < css_urls.length; i++) {
+      const url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    for (let i = 0; i < js_urls.length; i++) {
+      const url = js_urls[i];
+      const element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error.bind(null, url);
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.4.2.min.js"];
+  const css_urls = [];
+
+  const inline_js = [    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+function(Bokeh) {
+    }
+  ];
+
+  function run_inline_js() {
+    if (root.Bokeh !== undefined || force === true) {
+      try {
+            for (let i = 0; i < inline_js.length; i++) {
+      inline_js[i].call(root, root.Bokeh);
+    }
+
+      } catch (error) {display_loaded(error);throw error;
+      }if (force === true) {
+        display_loaded();
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    } else if (force !== true) {
+      const cell = $(document.getElementById("f28aed72-669c-494a-85f1-ce43d00a45d5")).parents('.cell').data().cell;
+      cell.output_area.append_execute_result(NB_LOAD_WARNING)
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of simulated dice rolls&#39;</span><span class="p">,</span>
+           <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;Outcome&#39;</span><span class="p">,</span>
+           <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span>
+           <span class="n">width</span> <span class="o">=</span> <span class="mi">400</span><span class="p">,</span>
+           <span class="n">height</span> <span class="o">=</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> 
+       <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+       <span class="n">left</span><span class="o">=</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> 
+       <span class="n">right</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+       <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> 
+       <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> 
+       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="ea0fcc6c-8f66-44d4-9c30-70936cadb514" data-root-id="p1001" style="display: contents;"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+  const docs_json = {"4d32c1dd-1c7c-4a3d-964e-fd1e80450cba":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1001","attributes":{"width":400,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1002"},"y_range":{"type":"object","name":"DataRange1d","id":"p1003"},"x_scale":{"type":"object","name":"LinearScale","id":"p1011"},"y_scale":{"type":"object","name":"LinearScale","id":"p1012"},"title":{"type":"object","name":"Title","id":"p1004","attributes":{"text":"Distribution of simulated dice rolls"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1040","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1034","attributes":{"selected":{"type":"object","name":"Selection","id":"p1035","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1036"},"data":{"type":"map","entries":[["top",[5,3,3,3,2,4]],["left",[0.5,1.5,2.5,3.5,4.5,5.5]],["right",[1.5,2.5,3.5,4.5,5.5,6.5]]]}}},"view":{"type":"object","name":"CDSView","id":"p1041","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1042"}}},"glyph":{"type":"object","name":"Quad","id":"p1037","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.6},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.6},"hatch_alpha":{"type":"value","value":0.6}}},"nonselection_glyph":{"type":"object","name":"Quad","id":"p1038","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Quad","id":"p1039","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1010","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1023"},{"type":"object","name":"WheelZoomTool","id":"p1024","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1025","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1026","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1031"},{"type":"object","name":"ResetTool","id":"p1032"},{"type":"object","name":"HelpTool","id":"p1033"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1018","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1019","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1020"},"axis_label":"Count","major_label_policy":{"type":"object","name":"AllLabels","id":"p1021"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1013","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1014","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1015"},"axis_label":"Outcome","major_label_policy":{"type":"object","name":"AllLabels","id":"p1016"}}}],"center":[{"type":"object","name":"Grid","id":"p1017","attributes":{"axis":{"id":"p1013"}}},{"type":"object","name":"Grid","id":"p1022","attributes":{"dimension":1,"axis":{"id":"p1018"}}}]}}]}};
+  const render_items = [{"docid":"4d32c1dd-1c7c-4a3d-964e-fd1e80450cba","roots":{"p1001":"ea0fcc6c-8f66-44d4-9c30-70936cadb514"},"root_ids":["p1001"]}];
+  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    let attempts = 0;
+    const timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+<p>First, let’s take a look at our histogram. It shows us that we rolled 1 five times. We rolled 2 three times. We rolled 6 four times. Etc.</p>
+<p>Did you expect that? Shouldn’t each roll be equally likely? It turns out that, when you repeat an experiment a small number of times, it is common to find something like this. However, if you repeat the experiment many times, the true probabilities will be revealed. If you could run the experiment an infinite number of times, you would find that each die roll appears the same number of times.</p>
+<p>Okay, now let’s talk about the code. The only line of code that should appear new to you is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> 
+       <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+       <span class="n">left</span><span class="o">=</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> 
+       <span class="n">right</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+       <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> 
+       <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> 
+       <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In Bokeh, the “quad” method draws a quadrilateral (specifically, a rectangle). Notice the arguments. We tell Bokeh the top, bottom, left, and right of the rectangle. The top is the count. The bottom is always 0. And for the left and right, we use the edges. This is why there is always 1 more edge than bins. To draw 1 rectangle, we need 2 edges. To draw 2 rectangles, we need 3 edges. And to draw <em>n</em> rectangles, we need <em>n+1</em> edges.</p>
+</section>
+<section id="putting-all-the-code-together">
+<h5>Putting all the code together<a class="headerlink" href="#putting-all-the-code-together" title="Link to this heading">#</a></h5>
+<p>In this section, I copied and pasted all of the code from above into one cell. That will allow you to see everything in one place. I also changed the number of rolls from 20 to 1,000,000.</p>
+<p>For fun, feel free to experiment with the number of rolls. See what happens as you increase the number of rolls. Choose a large number, like 1,000,000.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This line of code ensures that we always get the same random result.</span>
+<span class="c1"># This makes the experiment &quot;repeatable&quot;. Comment this line out if you</span>
+<span class="c1"># want a different result</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># The number of simulated die rolls</span>
+<span class="n">NUM_ROLLS</span> <span class="o">=</span> <span class="mi">1000000</span>
+
+<span class="c1"># Run the experiment! Simulate NUM_ROLLS rolls of the die.</span>
+<span class="n">mydata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">NUM_ROLLS</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># The number of bins for our histogram.</span>
+<span class="n">numbins</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># The width of each bin in our histogram.</span>
+<span class="n">binwidth</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># The bin edges.</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">)]</span>
+
+<span class="c1"># Create a list to store the counts of our die rolls</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">numbins</span>
+
+<span class="c1"># Iterate over the data and count the number of 1&#39;s, 2&#39;s, etc.</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">mydata</span><span class="p">:</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># Create a figure in Bokeh</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of simulated dice rolls&#39;</span><span class="p">,</span>
+           <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;Outcome&#39;</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span>
+           <span class="n">width</span> <span class="o">=</span> <span class="mi">400</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="c1"># Draw one rectangle for each bin</span>
+<span class="n">p</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+       <span class="n">left</span><span class="o">=</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">right</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+       <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="c09c7da9-41ae-4050-8b21-c053580abe89" data-root-id="p1043" style="display: contents;"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+  const docs_json = {"52b5ea79-a4a3-4cff-91e7-311a2da1635c":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1043","attributes":{"width":400,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1044"},"y_range":{"type":"object","name":"DataRange1d","id":"p1045"},"x_scale":{"type":"object","name":"LinearScale","id":"p1053"},"y_scale":{"type":"object","name":"LinearScale","id":"p1054"},"title":{"type":"object","name":"Title","id":"p1046","attributes":{"text":"Distribution of simulated dice rolls"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1082","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1076","attributes":{"selected":{"type":"object","name":"Selection","id":"p1077","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1078"},"data":{"type":"map","entries":[["top",[166564,166871,166253,167094,166977,166241]],["left",[0.5,1.5,2.5,3.5,4.5,5.5]],["right",[1.5,2.5,3.5,4.5,5.5,6.5]]]}}},"view":{"type":"object","name":"CDSView","id":"p1083","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1084"}}},"glyph":{"type":"object","name":"Quad","id":"p1079","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.6},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.6},"hatch_alpha":{"type":"value","value":0.6}}},"nonselection_glyph":{"type":"object","name":"Quad","id":"p1080","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Quad","id":"p1081","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1052","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1065"},{"type":"object","name":"WheelZoomTool","id":"p1066","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1067","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1068","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1073"},{"type":"object","name":"ResetTool","id":"p1074"},{"type":"object","name":"HelpTool","id":"p1075"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1060","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1061","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1062"},"axis_label":"Count","major_label_policy":{"type":"object","name":"AllLabels","id":"p1063"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1055","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1056","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1057"},"axis_label":"Outcome","major_label_policy":{"type":"object","name":"AllLabels","id":"p1058"}}}],"center":[{"type":"object","name":"Grid","id":"p1059","attributes":{"axis":{"id":"p1055"}}},{"type":"object","name":"Grid","id":"p1064","attributes":{"dimension":1,"axis":{"id":"p1060"}}}]}}]}};
+  const render_items = [{"docid":"52b5ea79-a4a3-4cff-91e7-311a2da1635c","roots":{"p1043":"c09c7da9-41ae-4050-8b21-c053580abe89"},"root_ids":["p1043"]}];
+  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    let attempts = 0;
+    const timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+</section>
+</section>
+</section>
+<section id="an-easier-way-to-bin-your-data">
+<h3>An easier way to bin your data<a class="headerlink" href="#an-easier-way-to-bin-your-data" title="Link to this heading">#</a></h3>
+<p>As with everything in programming, there’s usually a built-in function to accomplish your task. It turns out that there’s a really good histogram function in the library <em>NumPy</em>. It doesn’t generate a plot, but it computes the edges and counts the data for you. Why didn’t we tell you that above? Because we wanted you to understand what’s going on. And because it’s fun to torture you. ;-)</p>
+<p>Let’s run the numpy histogram function on our data in mydata and see what it returns. First, run the cell below. It’s a copy of the code from above that generates 20 die rolls.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">NUM_ROLLS</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">mydata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">NUM_ROLLS</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">mydata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3, 1, 2, 4, 1, 1, 1, 6, 6, 4, 3, 4, 2, 2, 3, 6, 1, 5, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, try out the following function and see what you think:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">])</span>
+<span class="n">hist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([5, 3, 3, 3, 2, 4], dtype=int64),
+ array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>We gave the function <code class="docutils literal notranslate"><span class="pre">numpy.histogram</span></code> our data. We also gave it a list of edges. It return a <em>tuple</em> containing two lists. The first list contains the counts. The second list contains the edges.</p>
+<p>Why did it give us back the edges if we passed it the edges as an argument? Because <code class="docutils literal notranslate"><span class="pre">numpy.histogram</span></code> can also take as an argument the number of bins you want. It will then compute the edges for you. For example, try the following code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">hist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([5, 3, 3, 3, 2, 4], dtype=int64),
+ array([1.        , 1.83333333, 2.66666667, 3.5       , 4.33333333,
+        5.16666667, 6.        ]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code, we told <code class="docutils literal notranslate"><span class="pre">numpy.histogram</span></code> that we want 6 bins. It then computed those and returned them to us. Let’s plot the resulting histogram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">hist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Create a figure in Bokeh</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Distribution of simulated dice rolls&#39;</span><span class="p">,</span>
+           <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;Outcome&#39;</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span>
+           <span class="n">width</span> <span class="o">=</span> <span class="mi">400</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">400</span><span class="p">)</span>
+
+<span class="c1"># Draw one rectangle for each bin</span>
+<span class="n">p</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+       <span class="n">left</span><span class="o">=</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">right</span><span class="o">=</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+       <span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="ca3ad09c-9b5c-4449-92ab-381bb60521ac" data-root-id="p1085" style="display: contents;"></div>
+</div><script type="application/javascript">(function(root) {
+  function embed_document(root) {
+  const docs_json = {"a70f5881-49f0-42d5-9dfa-010cd8fd4048":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1085","attributes":{"width":400,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1086"},"y_range":{"type":"object","name":"DataRange1d","id":"p1087"},"x_scale":{"type":"object","name":"LinearScale","id":"p1095"},"y_scale":{"type":"object","name":"LinearScale","id":"p1096"},"title":{"type":"object","name":"Title","id":"p1088","attributes":{"text":"Distribution of simulated dice rolls"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1124","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1118","attributes":{"selected":{"type":"object","name":"Selection","id":"p1119","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1120"},"data":{"type":"map","entries":[["top",{"type":"ndarray","array":{"type":"bytes","data":"BQAAAAMAAAADAAAAAwAAAAIAAAAEAAAA"},"shape":[6],"dtype":"int32","order":"little"}],["left",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAAA8D9WVVVVVVX9P1ZVVVVVVQVAAAAAAAAADEBWVVVVVVURQKuqqqqqqhRA"},"shape":[6],"dtype":"float64","order":"little"}],["right",{"type":"ndarray","array":{"type":"bytes","data":"VlVVVVVV/T9WVVVVVVUFQAAAAAAAAAxAVlVVVVVVEUCrqqqqqqoUQAAAAAAAABhA"},"shape":[6],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1125","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1126"}}},"glyph":{"type":"object","name":"Quad","id":"p1121","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.6},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.6},"hatch_alpha":{"type":"value","value":0.6}}},"nonselection_glyph":{"type":"object","name":"Quad","id":"p1122","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Quad","id":"p1123","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1094","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1107"},{"type":"object","name":"WheelZoomTool","id":"p1108","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1109","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1110","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1115"},{"type":"object","name":"ResetTool","id":"p1116"},{"type":"object","name":"HelpTool","id":"p1117"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1102","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1103","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1104"},"axis_label":"Count","major_label_policy":{"type":"object","name":"AllLabels","id":"p1105"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1097","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1098","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1099"},"axis_label":"Outcome","major_label_policy":{"type":"object","name":"AllLabels","id":"p1100"}}}],"center":[{"type":"object","name":"Grid","id":"p1101","attributes":{"axis":{"id":"p1097"}}},{"type":"object","name":"Grid","id":"p1106","attributes":{"dimension":1,"axis":{"id":"p1102"}}}]}}]}};
+  const render_items = [{"docid":"a70f5881-49f0-42d5-9dfa-010cd8fd4048","roots":{"p1085":"ca3ad09c-9b5c-4449-92ab-381bb60521ac"},"root_ids":["p1085"]}];
+  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
+  }
+  if (root.Bokeh !== undefined) {
+    embed_document(root);
+  } else {
+    let attempts = 0;
+    const timer = setInterval(function(root) {
+      if (root.Bokeh !== undefined) {
+        clearInterval(timer);
+        embed_document(root);
+      } else {
+        attempts++;
+        if (attempts > 100) {
+          clearInterval(timer);
+          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+        }
+      }
+    }, 10, root)
+  }
+})(window);</script></div>
+</div>
+<p>In the above graph, it’s not easy to figure out which bar corresponds to which die roll. That’s why I originally created the list of edges myself.</p>
+<p><strong>SUMMARY:</strong> The function <code class="docutils literal notranslate"><span class="pre">numpy.histogram</span></code> can compute bins, edges, and counts for you.</p>
+</section>
+</section>
+<section id="creating-a-histogram-in-tableau">
+<h2>Creating a Histogram in Tableau<a class="headerlink" href="#creating-a-histogram-in-tableau" title="Link to this heading">#</a></h2>
+<p>Watch this video to learn about histograms in Tableau:</p>
+<p><a class="reference external" href="https://mediaspace.illinois.edu/media/t/1_oqlcky4c">https://mediaspace.illinois.edu/media/t/1_oqlcky4c</a></p>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p><sup>3</sup> <a class="reference external" href="https://www.kaggle.com/samsonqian/college-admissions">https://www.kaggle.com/samsonqian/college-admissions</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2-04%20Bar%20charts.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bar Charts</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2-06%20Box%20plots.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Box Plots</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-histogram">What is a Histogram?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustration-1-example-histogram-in-bokeh">Illustration 1: Example Histogram (in Bokeh)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#illustration-2-example-histogram-in-tableau">Illustration 2: Example Histogram (in Tableau)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-a-histogram">When to Use a Histogram</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-in-bokeh">Histograms in Bokeh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#review-of-histograms">Review of Histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-a-histogram">How to Create a Histogram</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pseudo-code-for-creating-a-histogram">Pseudo-Code for Creating a Histogram</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-histogram-dice-rolls">Sample Histogram: Dice Rolls</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-our-data">Generating our data</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-number-of-bins">Choose number of bins</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-bin-width">Choose bin width</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-edges">Compute edges</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-list-counts-to-store-the-count-in-each-bin">Create a list <code class="docutils literal notranslate"><span class="pre">counts</span></code> to store the count in each bin</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#count-the-number-of-outcomes-in-each-bin">Count the number of outcomes in each bin</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-histogram-using-bokeh">Create the histogram using Bokeh</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-all-the-code-together">Putting all the code together</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-easier-way-to-bin-your-data">An easier way to bin your data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-histogram-in-tableau">Creating a Histogram in Tableau</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Vic Anand and Kim Mendoza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
