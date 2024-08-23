@@ -1,0 +1,1112 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working with Strings &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 1/1-9 Working with Strings';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to Visualizations" href="../Unit%202/2-01%20Intro%20to%20Visualization.html" />
+    <link rel="prev" title="Functions" href="1-8%20Functions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <script>document.write(`<img src="../_static/Book logo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: Introduction to Python and Programming</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-1%20Intro%20to%20Programming.html">Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2%20Control%20Flow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-3%20Variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-4%20Data%20Types.html">Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-5%20Operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-6%20The%20Print%20Function.html">The Print Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-7%20Collections.html">Collections: Lists, Dictionaries, and Tuples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-8%20Functions.html">Functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with Strings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Data Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-01%20Intro%20to%20Visualization.html">Introduction to Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-02%20Intro%20to%20Python%27s%20Bokeh%20library.html">Creating Visualizations with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-03%20Intro%20to%20Tableau.html">Creating Visualizations with Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-04%20Bar%20charts.html">Bar Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-05%20Histograms.html">Histograms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-06%20Box%20plots.html">Box Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-07%20Scatter%20plots.html">Scatter Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-08%20Line%20charts.html">Line Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-09%20Pie%20charts.html">Pie Charts (yum!)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-10%20Heat%20maps.html">Heat Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-11%20Location-based%20maps.html">Location-based Maps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: Working with Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-01%20Overview%20of%20Working%20with%20Data.html">Overview of Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-02%20Working%20with%20files%20and%20folders%20on%20your%20computer.html">Working with Files and Folders on Your Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-03%20CSV%20files.html">CSV Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-04%20Overview%20of%20Pandas.html">Overview of Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-05%20Viewing%20a%20DataFrame.html">Viewing a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-06%20Anatomy%20of%20a%20DataFrame.html">Anatomy of a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-07%20Loading%20Data%20Into%20Pandas.html">Loading Data Into Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-08%20Selecting%20and%20Filtering%20Data.html">Selecting and Filtering Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-09%20Creating%20New%20Columns.html">Creating New Columns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-10%20Sorting%20Data.html">Sorting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-11%20Modifying%20Data.html">Modifying Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 4: Analyzing Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-01%20Overview%20of%20Data%20Anaysis.html">Overview of Analyzing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-02%20Descriptive%20Statistics.html">Descriptive Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-03%20Pivot%20Tables%20in%20Pandas.html">Pivot Tables in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-04%20Regression.html">Regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 1/1-9 Working with Strings.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 1/1-9 Working with Strings.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Working with Strings</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-working-with-strings">Overview of Working with Strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-as-lists-of-characters">Strings as Lists of Characters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-pieces-of-strings">Extracting Pieces of Strings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-a-single-character-from-a-string">Extracting a single character from a string</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-strings">Slicing strings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operations">String Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-strings">Joining Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeating-strings">Repeating Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-whether-one-string-contains-another-string">Checking whether one string contains another string</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-string-functions-and-methods">Some Useful String Functions and Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-length-of-a-string">Getting the length of a string</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-string-methods">Other String Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-and-upper">lower and upper</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#strip-lstrip-and-rstrip">strip, lstrip, and rstrip</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#startswith-and-endswith">startswith and endswith</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#replace">replace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split">split</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#count-a-substring">Count a Substring</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find">find</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#want-more-string-functions-see-here">Want more string functions? See here</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-strings">
+<h1>Working with Strings<a class="headerlink" href="#working-with-strings" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<div style="border: 1px solid black; padding: 10px; background-color: #EDEDED;">
+    <ul>
+        <li>Explain the similiarities between strings and lists in Python.</li>
+        <li>Write code to retrieve a substring using slicing.</li>
+        <li>Write code to join (concatenate) and repeat strings.</li>
+        <li>Use the <i>len</i> function to retrieve the length of a string.</li>
+        <li>Use the <i>count</i>, <i>startswith</i>, <i>endswith</i>, <i>find</i>, <i>replace</i>, <i>lower</i>, <i>upper</i>, <i>strip</i>, <i>lstrip</i>, <i>rstrip</i>, and <i>split</i> string methods.</li>
+    </ul>
+</div></section>
+<section id="overview-of-working-with-strings">
+<h2>Overview of Working with Strings<a class="headerlink" href="#overview-of-working-with-strings" title="Link to this heading">#</a></h2>
+<p>You’re probably wondering why we are revisiting strings at the end of this unit. The reason is that, in many ways, Python strings behave like lists. You can slice them, join them using the + operator, duplicate them using the * operator – just like lists! We waited until after we had taught you about lists so that you could easily apply cool list features to strings.</p>
+<p>We want you to become proficient with strings. Text data are very common in data analytics tasks and you will often find yourself cleaning textual data. The more comfortable you are working with strings, the easier your life will be.</p>
+</section>
+<section id="strings-as-lists-of-characters">
+<h2>Strings as Lists of Characters<a class="headerlink" href="#strings-as-lists-of-characters" title="Link to this heading">#</a></h2>
+<p>Coneptually, a string is just a list of characters. To see this, consider the following code and its output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Beer is bread in a glass.&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;B&#39;, &#39;e&#39;, &#39;e&#39;, &#39;r&#39;, &#39; &#39;, &#39;i&#39;, &#39;s&#39;, &#39; &#39;, &#39;b&#39;, &#39;r&#39;, &#39;e&#39;, &#39;a&#39;, &#39;d&#39;, &#39; &#39;, &#39;i&#39;, &#39;n&#39;, &#39; &#39;, &#39;a&#39;, &#39; &#39;, &#39;g&#39;, &#39;l&#39;, &#39;a&#39;, &#39;s&#39;, &#39;s&#39;, &#39;.&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above, we used Python’s built-in <code class="docutils literal notranslate"><span class="pre">list</span></code> function to split an ordinary string into a list of single-character strings. Note that <em>you don’t have to do this every time you work with a string</em>. Python automatically does this “under the hood” whenever you slice or manipulate a string.</p>
+<p>In the rest of this section, we will show you more parallels between lists and strings.</p>
+</section>
+<section id="extracting-pieces-of-strings">
+<h2>Extracting Pieces of Strings<a class="headerlink" href="#extracting-pieces-of-strings" title="Link to this heading">#</a></h2>
+<section id="extracting-a-single-character-from-a-string">
+<h3>Extracting a single character from a string<a class="headerlink" href="#extracting-a-single-character-from-a-string" title="Link to this heading">#</a></h3>
+<p>To extract a single character from a string, use square brackets [ ]. Inside square brackets, put a number indicating the index of the character you want. The index 0 corresponds to the first character, 1 to the second character, and so on. If the string has length <span class="math notranslate nohighlight">\(n\)</span>, then the index <span class="math notranslate nohighlight">\(n-1\)</span> corresponds to the last character of the string. You can also use negative indexes: -1 is the index of the last character, -2 is the index of the second-to-last character. And so on.</p>
+<p>Here is an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;HELLO&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">]: </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">]: </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s[0]: H
+s[1]: E
+s[2]: L
+s[3]: L
+s[4]: O
+
+s[-1]: O
+s[-2]: L
+s[-3]: L
+s[-4]: E
+s[-5]: H
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that, in this case, strings behave exactly like lists.</p>
+<p>It is also possible to extract a character from a string without using a variable. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;HELLO&#39;</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;H&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="slicing-strings">
+<h3>Slicing strings<a class="headerlink" href="#slicing-strings" title="Link to this heading">#</a></h3>
+<p>In Excel, you can extract a piece of a string using the SUBSTR function. In Python, you can use slicing. We find that slicing is very easy and intuitive, and hope you will agree.</p>
+<p>Here are some examples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;ACCY 570 is awesome!&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that, when you slice a string, the return value is also a string. Lists behave identically! When you slice a list, the return value is a list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the substring &#39;570&#39;</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;570&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The last two characters of the string</span>
+<span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;e!&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="string-operations">
+<h2>String Operations<a class="headerlink" href="#string-operations" title="Link to this heading">#</a></h2>
+<section id="joining-strings">
+<h3>Joining Strings<a class="headerlink" href="#joining-strings" title="Link to this heading">#</a></h3>
+<p>Use the + operator to join (concatenate) two strings. Note that this works the same with lists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="s1">&#39;Moo&#39;</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="s1">&#39;cow&#39;</span>
+<span class="n">joinedString</span> <span class="o">=</span> <span class="n">s1</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">s2</span>
+
+<span class="n">joinedString</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Moo cow&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="repeating-strings">
+<h3>Repeating Strings<a class="headerlink" href="#repeating-strings" title="Link to this heading">#</a></h3>
+<p>Use the * operator to repeat a string. Note that this works the same with lists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catNoise</span> <span class="o">=</span> <span class="s1">&#39;Meow&#39;</span>
+
+<span class="n">catNoise</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;MeowMeowMeowMeowMeowMeowMeowMeowMeowMeow&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s hard to read. Let’s add a space between the cat noises!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">catNoise</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Meow Meow Meow Meow Meow Meow Meow Meow Meow Meow &#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="checking-whether-one-string-contains-another-string">
+<h3>Checking whether one string contains another string<a class="headerlink" href="#checking-whether-one-string-contains-another-string" title="Link to this heading">#</a></h3>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator to check whether one string contains a substring. The expression <code class="docutils literal notranslate"><span class="pre">substr</span> <span class="pre">in</span> <span class="pre">s</span></code> checkes whether the string <code class="docutils literal notranslate"><span class="pre">substr</span></code> can be found anywhere in the string <code class="docutils literal notranslate"><span class="pre">s</span></code>. If it is found, the result will be <code class="docutils literal notranslate"><span class="pre">True</span></code>. If not, the result will be <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Here are two examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check whether the string contains &#39;accy&#39;</span>
+<span class="c1"># It will be false because the string contains &#39;ACCY&#39;, not &#39;accy&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;ACCY 570 is awesome!&#39;</span>
+<span class="s1">&#39;accy&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check whether the string contains &#39; 57&#39;</span>
+<span class="c1"># It will be True because the string contains &#39; 57&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;ACCY 570 is awesome!&#39;</span>
+<span class="s1">&#39; 57&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="some-useful-string-functions-and-methods">
+<h2>Some Useful String Functions and Methods<a class="headerlink" href="#some-useful-string-functions-and-methods" title="Link to this heading">#</a></h2>
+<p>Python has <em>many</em> useful functions for working with strings. We will only show you a few here. We will revisit some of these functions again when we learn the Pandas module later in the course.</p>
+<section id="getting-the-length-of-a-string">
+<h3>Getting the length of a string<a class="headerlink" href="#getting-the-length-of-a-string" title="Link to this heading">#</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">len</span></code> function to get the length of a string. Just like with lists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;12345678&#39;</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-string-methods">
+<h3>Other String Methods<a class="headerlink" href="#other-string-methods" title="Link to this heading">#</a></h3>
+<p>The following functions are technically “methods”. In Python, strings are “objects”. In programming, an object is a thing that stores values (called properties), and that has certain functions that belong to it (called methods).</p>
+<p>Method calls have a different syntax than function calls. To see this, think about the <code class="docutils literal notranslate"><span class="pre">len</span></code> function. You call that by writing the function name and then putting arguments in parentheses (e.g. <code class="docutils literal notranslate"><span class="pre">len(myvariable)</span></code>). You call a method by typing the object, then a dot, then the method name, then arguments in parentheses (e.g. <code class="docutils literal notranslate"><span class="pre">mystring.method()</span></code>).</p>
+<p>We realize this is complicated, and we have done our best to spare you such complications. For now, all you need to know is that:</p>
+<ol class="arabic simple">
+<li><p>Methods are functions.</p></li>
+<li><p>Method are called differently than ordinary functions.</p></li>
+</ol>
+<p>In the rest of this section, you will see more examples of methods and how they are called.</p>
+<section id="lower-and-upper">
+<h4>lower and upper<a class="headerlink" href="#lower-and-upper" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">lower</span></code> and <code class="docutils literal notranslate"><span class="pre">upper</span></code> convert a string to all lower case or all upper case, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Hello y&#39;all&quot;</span>
+<span class="n">upper_s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="n">lower_s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s is &#39;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s in all lower case is &#39;</span><span class="si">{</span><span class="n">lower_s</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;s in all upper case is &#39;</span><span class="si">{</span><span class="n">upper_s</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s is &#39;Hello y&#39;all&#39;
+s in all lower case is &#39;hello y&#39;all&#39;
+s in all upper case is &#39;HELLO Y&#39;ALL&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="strip-lstrip-and-rstrip">
+<h4>strip, lstrip, and rstrip<a class="headerlink" href="#strip-lstrip-and-rstrip" title="Link to this heading">#</a></h4>
+<p>We know what you may be thinking and shame on you. Let’s remain focused. :)</p>
+<p>Blank spaces are pesky and we often want to remove them from the beginning and end of strings. This is a common problem when cleaning text data. Luckily, the <code class="docutils literal notranslate"><span class="pre">strip</span></code> method does that for you. <code class="docutils literal notranslate"><span class="pre">strip</span></code> <em>removes all “white space” characters from the beginning and end of a string</em>. White space includes space, tab, and newline characters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;  Dirty string with unnecessary spaces at beginning and end.  &#39;</span>
+<span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Dirty string with unnecessary spaces at beginning and end.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that <code class="docutils literal notranslate"><span class="pre">strip</span></code> removed the spaces from the beginning <em>and</em> the end of the string.</p>
+<p><code class="docutils literal notranslate"><span class="pre">lstrip</span></code> stands for left strip and it removes white space from the beginning (left) of the string. <code class="docutils literal notranslate"><span class="pre">rstrip</span></code> does the same on the right.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice this does not remove the white space at the end.</span>
+<span class="n">s</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Dirty string with unnecessary spaces at beginning and end.  &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice this does not remove the white space at the beginning.</span>
+<span class="n">s</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;  Dirty string with unnecessary spaces at beginning and end.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, these methods remove white space, but you can also tell these methods what you want to strip!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Hello.&#39;</span>
+<span class="c1"># Get rid of period at the end</span>
+<span class="n">s</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="startswith-and-endswith">
+<h4>startswith and endswith<a class="headerlink" href="#startswith-and-endswith" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">startswith</span></code> and <code class="docutils literal notranslate"><span class="pre">endswith</span></code> methods tells you whether your string starts or ends with a given substring. These are like the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator, but they only test the beginning and and of your string.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;111 33&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;111&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="replace">
+<h4>replace<a class="headerlink" href="#replace" title="Link to this heading">#</a></h4>
+<p>This works just like find, but allows you to replace a substring with a different substring. By default, it replaces all occurrences of your substring.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;ACCY 570 is great.&#39;</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;570&#39;</span><span class="p">,</span> <span class="s1">&#39;575&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ACCY 575 is great.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="split">
+<h4>split<a class="headerlink" href="#split" title="Link to this heading">#</a></h4>
+<p>This may be one of the most useful functions ever invented. It splits a string and returns a list of substrings. By default, it splits using spaces but you can tell Python how you want it to split the string (the fancy word for the split character is <em>delimiter</em>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Harare is the capital of Zimbabwe.&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Harare&#39;, &#39;is&#39;, &#39;the&#39;, &#39;capital&#39;, &#39;of&#39;, &#39;Zimbabwe.&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Isn’t that cool? It not only splits based on spaces, but it removes the spaces. You are left with a list of words!</p>
+<p>What if you want to get rid of that period at the end?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Harare&#39;, &#39;is&#39;, &#39;the&#39;, &#39;capital&#39;, &#39;of&#39;, &#39;Zimbabwe&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s split into sentences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Harare is the capital of Zimbabwe. Ottawa is the capital of Canada. Andorra la Vella is the capital of Andorra.&#39;</span>
+<span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Harare is the capital of Zimbabwe&#39;,
+ &#39; Ottawa is the capital of Canada&#39;,
+ &#39; Andorra la Vella is the capital of Andorra&#39;,
+ &#39;&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="count-a-substring">
+<h4>Count a Substring<a class="headerlink" href="#count-a-substring" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">count</span></code> method tells you how many times a substring occurs in a string.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;pig dog pig pig cat&#39;</span>
+<span class="n">s</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;pig&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="find">
+<h4>find<a class="headerlink" href="#find" title="Link to this heading">#</a></h4>
+<p>This is super useful. You can search for text within your string. If it exists, Python returns the index of the first occurrence. If it does not exist, Python returns -1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;hello everybody! How is everybody doing?&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This returns 6 because that is the index of the first character of the first occurrence of &#39;every&#39;</span>
+<span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;every&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This returns -1 because &#39;dog&#39; is not a substring of s</span>
+<span class="n">s</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="want-more-string-functions-see-here">
+<h4>Want more string functions? See here<a class="headerlink" href="#want-more-string-functions-see-here" title="Link to this heading">#</a></h4>
+<p>As we said previously, there are <em>many</em> string methods and we only showed you a few. If you want to see more, visit <a class="reference external" href="https://www.tutorialspoint.com/python/python_strings.htm">this website</a> and scroll down to “Built-In String Methods”, or visit the <a class="reference external" href="https://docs.python.org/3.7/library/stdtypes.html?highlight=lstrip#string-methods">official Python documentation</a>, which has everything, and look for the heading “String Methods”.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1-8%20Functions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Functions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Unit%202/2-01%20Intro%20to%20Visualization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to Visualizations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-working-with-strings">Overview of Working with Strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strings-as-lists-of-characters">Strings as Lists of Characters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-pieces-of-strings">Extracting Pieces of Strings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-a-single-character-from-a-string">Extracting a single character from a string</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-strings">Slicing strings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operations">String Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joining-strings">Joining Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repeating-strings">Repeating Strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-whether-one-string-contains-another-string">Checking whether one string contains another string</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-useful-string-functions-and-methods">Some Useful String Functions and Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-length-of-a-string">Getting the length of a string</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-string-methods">Other String Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lower-and-upper">lower and upper</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#strip-lstrip-and-rstrip">strip, lstrip, and rstrip</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#startswith-and-endswith">startswith and endswith</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#replace">replace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split">split</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#count-a-substring">Count a Substring</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#find">find</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#want-more-string-functions-see-here">Want more string functions? See here</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Vic Anand and Kim Mendoza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

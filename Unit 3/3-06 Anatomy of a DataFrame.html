@@ -1,0 +1,1660 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Anatomy of a DataFrame &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 3/3-06 Anatomy of a DataFrame';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Loading Data Into Pandas" href="3-07%20Loading%20Data%20Into%20Pandas.html" />
+    <link rel="prev" title="Viewing a DataFrame" href="3-05%20Viewing%20a%20DataFrame.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <script>document.write(`<img src="../_static/Book logo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: Introduction to Python and Programming</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20Intro%20to%20Programming.html">Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-2%20Control%20Flow.html">Control Flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-3%20Variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-4%20Data%20Types.html">Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-5%20Operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-6%20The%20Print%20Function.html">The Print Function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-7%20Collections.html">Collections: Lists, Dictionaries, and Tuples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-8%20Functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-9%20Working%20with%20Strings.html">Working with Strings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Data Visualization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-01%20Intro%20to%20Visualization.html">Introduction to Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-02%20Intro%20to%20Python%27s%20Bokeh%20library.html">Creating Visualizations with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-03%20Intro%20to%20Tableau.html">Creating Visualizations with Tableau</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-04%20Bar%20charts.html">Bar Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-05%20Histograms.html">Histograms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-06%20Box%20plots.html">Box Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-07%20Scatter%20plots.html">Scatter Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-08%20Line%20charts.html">Line Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-09%20Pie%20charts.html">Pie Charts (yum!)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-10%20Heat%20maps.html">Heat Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-11%20Location-based%20maps.html">Location-based Maps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: Working with Data</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3-01%20Overview%20of%20Working%20with%20Data.html">Overview of Working with Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-02%20Working%20with%20files%20and%20folders%20on%20your%20computer.html">Working with Files and Folders on Your Computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-03%20CSV%20files.html">CSV Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-04%20Overview%20of%20Pandas.html">Overview of Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-05%20Viewing%20a%20DataFrame.html">Viewing a DataFrame</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Anatomy of a DataFrame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-07%20Loading%20Data%20Into%20Pandas.html">Loading Data Into Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-08%20Selecting%20and%20Filtering%20Data.html">Selecting and Filtering Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-09%20Creating%20New%20Columns.html">Creating New Columns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-10%20Sorting%20Data.html">Sorting Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-11%20Modifying%20Data.html">Modifying Data</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 4: Analyzing Data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-01%20Overview%20of%20Data%20Anaysis.html">Overview of Analyzing Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-02%20Descriptive%20Statistics.html">Descriptive Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-03%20Pivot%20Tables%20in%20Pandas.html">Pivot Tables in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%204/4-04%20Regression.html">Regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Data-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 3/3-06 Anatomy of a DataFrame.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 3/3-06 Anatomy of a DataFrame.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Anatomy of a DataFrame</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe-from-a-list-of-lists">Creating a DataFrame from a List of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#row-and-column-indexes">Row and Column Indexes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-index-labels">Default Index Labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallels-to-excel">Parallels to Excel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-column-indexes">Working with Column Indexes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-the-columns-of-a-dataframe">Retrieving the Columns of a DataFrame</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-columns-of-a-dataframe-using-a-list">Setting the Columns of a DataFrame Using a List</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-columns-of-a-dataframe-using-the-rename-method">Setting the Columns of a DataFrame Using the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-row-indexes">Working with Row Indexes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe-from-a-dictionary">Creating a DataFrame from a Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-setting-individual-values-cells-in-a-dataframe">Retrieving and Setting Individual Values (Cells) in a DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-at-method">The <code class="docutils literal notranslate"><span class="pre">at</span></code> Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-a-single-value-with-the-at-method">Retrieving a Single Value with the <code class="docutils literal notranslate"><span class="pre">at</span></code> method</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-a-single-value-with-the-at-method">Setting a Single Value with the <code class="docutils literal notranslate"><span class="pre">at</span></code> method</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iat-method">The <code class="docutils literal notranslate"><span class="pre">iat</span></code> Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-dimensions-of-a-dataframe">Getting the Dimensions of a DataFrame</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="anatomy-of-a-dataframe">
+<h1>Anatomy of a DataFrame<a class="headerlink" href="#anatomy-of-a-dataframe" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<div style="border: 1px solid black; padding: 10px; background-color: #EDEDED;">
+    <ul>
+        <li>Create a DataFrame from a list of lists.</li>
+        <li>Create a DataFrame from a dictionary.</li>
+        <li>Define a row index.</li>
+        <li>Explain the parallels between Pandas' row and column indexes and cell addresses in Excel.</li>
+        <li>Give an example of a situation where it might be useful to use data values as the index.</li>
+        <li>Retrieve and set the value in an individual cell using the at and iat methods.</li>
+        <li>Extract the column names using the column property of DataFrame.</li>
+        <li>Set the column names using the column property of DataFrame.</li>
+        <li>Extract the row index values using the index property of DataFrame.</li>
+        <li>Set the row index using the index property of DataFrame.</li>
+        <li>Get the dimensions of a DataFrame using the shape property of DataFrame.</li>
+    </ul>
+</div></section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In this chapter, we will view some simple DataFrames and learn about their indexes. Just like in Excel, where each cell has an “address”, e.g. A1, B4, Pandas has row and column indexes. However, Pandas provides much more flexibility and power in choosing indexes. That, however, means you need to learn how these indexes work and how to use them to retrieve data.</p>
+</section>
+<section id="creating-a-dataframe-from-a-list-of-lists">
+<h2>Creating a DataFrame from a List of Lists<a class="headerlink" href="#creating-a-dataframe-from-a-list-of-lists" title="Link to this heading">#</a></h2>
+<p>Typically, you will load data from an Excel or CSV file into Pandas. However, it is possible to construct a DataFrame from existing lists or dictionaries. In this chapter, we will construct simple DataFrames so that we can focus on their indexes.</p>
+<p>Let’s begin by importing the necessary libraries. Run the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s create a really simple DataFrame in which we list some companies, their stock ticker symbol, and their closing stock price on October 18, 2019. Run the following cell and then take a look at it to see if you can figure out how it works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;Walmart, Inc.&#39;</span> <span class="p">,</span><span class="s1">&#39;WMT&#39;</span><span class="p">,</span> <span class="mf">119.14</span><span class="p">],</span> 
+                         <span class="p">[</span><span class="s1">&#39;Target Corporation&#39;</span><span class="p">,</span> <span class="s1">&#39;TGT&#39;</span><span class="p">,</span> <span class="mf">112.81</span><span class="p">],</span> 
+                         <span class="p">[</span><span class="s1">&#39;Best Buy Co., Inc.&#39;</span><span class="p">,</span> <span class="s1">&#39;BBY&#39;</span><span class="p">,</span> <span class="mf">70.52</span><span class="p">]])</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In the above cell, we created a DataFrame from a list of lists (sort of like a matrix). Each sublist contains the company name, ticker symbol, and a stock price. Notice that Pandas converted each sublist into a row of the new DataFrame.</p>
+<p>We used the function <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>. This is a special function called a “constructor”. It takes some input data, constructs a DataFrame object, and returns the DataFrame. We stored the return value in the variable <code class="docutils literal notranslate"><span class="pre">dfStocks</span></code>.</p>
+</section>
+<section id="row-and-column-indexes">
+<h2>Row and Column Indexes<a class="headerlink" href="#row-and-column-indexes" title="Link to this heading">#</a></h2>
+<section id="default-index-labels">
+<h3>Default Index Labels<a class="headerlink" href="#default-index-labels" title="Link to this heading">#</a></h3>
+<p>In the code above, we gave some data to the function <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> and told it to construct a DataFrame. We did not give that function any information about the row and column names, so it assigned them automatically. Along each axis, it assigned the value 0 to the first item, then 1, then 2. You can think of these index values as addresses. There is one value located at each address. In our simple DataFrame, the addresses go from (0, 0), which has the value <code class="docutils literal notranslate"><span class="pre">'Walmart,</span> <span class="pre">Inc.'</span></code>, to (2, 2), which has the value <code class="docutils literal notranslate"><span class="pre">'70.52'</span></code>. Later, you will see how to use these indexes to retrieve and set values.</p>
+</section>
+<section id="parallels-to-excel">
+<h3>Parallels to Excel<a class="headerlink" href="#parallels-to-excel" title="Link to this heading">#</a></h3>
+<p>Notice the parallels to Excel. Excel numbers the rows 1, 2, … and it labels the columns A, B, … Each cell in Excel has a unique address, e.g. C8. Most data-oriented software will behave similarly and assign indexes to each cell in a table.</p>
+</section>
+<section id="working-with-column-indexes">
+<h3>Working with Column Indexes<a class="headerlink" href="#working-with-column-indexes" title="Link to this heading">#</a></h3>
+<p>Our sample DataFrame currently has 0, 1, and 2 as column labels. This isn’t very useful, especially since we know that each column has specific information. We know that the first column contains company names, the second column contains tickers, and the third column contains stock prices. Can we assign custom labels so that our data is more meaningfully displayed? Of course we can!</p>
+<p>If you already have a DataFrame and want to change the column names, there are two ways:</p>
+<ol class="arabic simple">
+<li><p>Pass a list to the columns property of DataFrame.</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method of DataFrame.</p></li>
+</ol>
+<p>Let’s discuss each of these in turn. Before we do, let’s retrieve the current columns of our DataFrame.</p>
+<section id="retrieving-the-columns-of-a-dataframe">
+<h4>Retrieving the Columns of a DataFrame<a class="headerlink" href="#retrieving-the-columns-of-a-dataframe" title="Link to this heading">#</a></h4>
+<p>To get or set the current column labels, use the <code class="docutils literal notranslate"><span class="pre">columns</span></code> property of DataFrame, e.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=3, step=1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output of the above code tells us that Pandas assigned a <code class="docutils literal notranslate"><span class="pre">RangeIndex</span></code>. This is like the <code class="docutils literal notranslate"><span class="pre">range</span></code> function you learned about when we learned about <code class="docutils literal notranslate"><span class="pre">for</span></code> loops. The above output tells us that the column labels start at 0 and go to 2 in steps of 1. Just like with the <code class="docutils literal notranslate"><span class="pre">range</span></code> function, the last value is one less than the stop parameter.</p>
+<p>Often, it’s just easier to work with a list. If we want the columns as a list, we can do it one of two ways:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">dfStocks</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-the-columns-of-a-dataframe-using-a-list">
+<h4>Setting the Columns of a DataFrame Using a List<a class="headerlink" href="#setting-the-columns-of-a-dataframe-using-a-list" title="Link to this heading">#</a></h4>
+<p>This is easy. All you need to do is set the columns equal to a list. See below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Company Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Ticker&#39;</span><span class="p">,</span> <span class="s1">&#39;Closing Price&#39;</span><span class="p">]</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company Name</th>
+      <th>Ticker</th>
+      <th>Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>See how easy that was? :) And now our DataFrame has meaningful column names.</p>
+<p>Column names can be numbers, dates, or strings. I typically see strings as column names, but there’s no right or wrong way. It really depends on your data.</p>
+<p>What changed under the hood? Let’s take a look at the <code class="docutils literal notranslate"><span class="pre">columns</span></code> property of our DataFrame once again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Company Name&#39;, &#39;Ticker&#39;, &#39;Closing Price&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So now, instead of a <code class="docutils literal notranslate"><span class="pre">RangeIndex</span></code>, our columns are an <code class="docutils literal notranslate"><span class="pre">Index</span></code> that consists of strings.</p>
+</section>
+<section id="setting-the-columns-of-a-dataframe-using-the-rename-method">
+<h4>Setting the Columns of a DataFrame Using the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method<a class="headerlink" href="#setting-the-columns-of-a-dataframe-using-the-rename-method" title="Link to this heading">#</a></h4>
+<p>You won’t always want to change all column names. And if your DataFrame has hundreds of column names, there should be an easier way to change the name of one or two columns without passing a list containing all the column names. Pandas provides the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method for this purpose. To use <code class="docutils literal notranslate"><span class="pre">rename</span></code> to change specific columns, you will use the <code class="docutils literal notranslate"><span class="pre">columns</span></code> keyword argument. The argument should be a dictionary containing the old and new names.</p>
+<p>Let’s illustrate with an example. Say I want to change the column name <strong>Ticker</strong> to <strong>TICKER</strong>. Say that I also want to change <strong>Closing Price</strong> to <strong>Price</strong>. I would call the rename function as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span> <span class="o">=</span> <span class="n">dfStocks</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Ticker&#39;</span> <span class="p">:</span> <span class="s1">&#39;TICKER&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;Closing Price&#39;</span> <span class="p">:</span> <span class="s1">&#39;Price&#39;</span><span class="p">})</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company Name</th>
+      <th>TICKER</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s take a look at that code. We passed it a dictionary. In the dictionary, each key was an existing column name. Each value was a new column name. The <code class="docutils literal notranslate"><span class="pre">rename</span></code> method looked through the columns for a column named <code class="docutils literal notranslate"><span class="pre">'Ticker'</span></code>. When it found one, it replaced it with <code class="docutils literal notranslate"><span class="pre">'TICKER'</span></code>. It did the same for <code class="docutils literal notranslate"><span class="pre">'Closing</span> <span class="pre">Price'</span></code>.</p>
+<p>Notice also that I had to assign the return value of the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method to dfStocks. That’s because, by default, the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method create a whole new DataFrame! If I just call the rename method and do not assign its return value to anything, the new DataFrame will not be saved anywhere.</p>
+<p>If you want the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method to rename the columns of a DataFrame, and not create a new DataFrame, you can set the optional keyword argument <code class="docutils literal notranslate"><span class="pre">inplace</span></code> to True. See the code below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Company Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Name&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>TICKER</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In summary, the argument <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> tells the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method to modify the existing DataFrame and not create a new one.</p>
+</section>
+</section>
+<section id="working-with-row-indexes">
+<h3>Working with Row Indexes<a class="headerlink" href="#working-with-row-indexes" title="Link to this heading">#</a></h3>
+<p>You can retrieve the existing row indexes with the <code class="docutils literal notranslate"><span class="pre">index</span></code> property of DataFrame. For example, see below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=3, step=1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also set the row indexes by passing a list, just like we did with the columns. It is not as common to set row indexes as it is to set column indexes. Usually, it is done with time series data. We’ll show you a quick example of that, just to show you how it looks, but we won’t focus on custom row indexes in this class.</p>
+<p>Let’s say I have closing stock prices for Altria Group (NYSE: MO). Since I will have one price per day, and I want to look up prices by date, I might want to use the dates as my row indexes. Here’s how that would look. Don’t worry if this code isn’t clear; we’re not going to hold you responsible for it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;10/14/2019&quot;</span><span class="p">,</span><span class="s2">&quot;10/15/2019&quot;</span><span class="p">,</span><span class="s2">&quot;10/16/2019&quot;</span><span class="p">,</span><span class="s2">&quot;10/17/2019&quot;</span><span class="p">,</span><span class="s2">&quot;10/18/2019&quot;</span><span class="p">]</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mf">42.52</span><span class="p">,</span><span class="mf">42.75</span><span class="p">,</span><span class="mf">43.45</span><span class="p">,</span><span class="mf">43.9</span><span class="p">,</span><span class="mf">44.28</span><span class="p">]</span>
+
+<span class="n">dfMO</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">prices</span><span class="p">,</span> 
+                    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Closing Price&#39;</span><span class="p">],</span>
+                    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dates</span><span class="p">))</span>
+<span class="n">dfMO</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-10-14</th>
+      <td>42.52</td>
+    </tr>
+    <tr>
+      <th>2019-10-15</th>
+      <td>42.75</td>
+    </tr>
+    <tr>
+      <th>2019-10-16</th>
+      <td>43.45</td>
+    </tr>
+    <tr>
+      <th>2019-10-17</th>
+      <td>43.90</td>
+    </tr>
+    <tr>
+      <th>2019-10-18</th>
+      <td>44.28</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Look at the resulting DataFrame. The row indexes are dates. Who cares, you ask? Well if we want to plot the price over time, and we want to see the date on the x-axis, it’s very easy if the dates are the index. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span> <span class="o">=</span> <span class="n">dfMO</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/78b7de1b38bb43a6e253fee63c4d90f231ae72de4b7614523873978782a6b322.png" src="../_images/78b7de1b38bb43a6e253fee63c4d90f231ae72de4b7614523873978782a6b322.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="creating-a-dataframe-from-a-dictionary">
+<h2>Creating a DataFrame from a Dictionary<a class="headerlink" href="#creating-a-dataframe-from-a-dictionary" title="Link to this heading">#</a></h2>
+<p>Sometimes, you already have your data in list form. Often, you will have one list per column. When that is the case, it is easy to create a DataFrame from a dictionary. Let’s recreate the sample DataFrame from above using a dictionary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Company Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Walmart, Inc.&#39;</span><span class="p">,</span> <span class="s1">&#39;Target Corporation&#39;</span><span class="p">,</span> <span class="s1">&#39;Best Buy Co., Inc.&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Ticker&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;WMT&#39;</span><span class="p">,</span> <span class="s1">&#39;TGT&#39;</span><span class="p">,</span> <span class="s1">&#39;BBY&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Closing Price&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">119.14</span><span class="p">,</span> <span class="mf">112.81</span><span class="p">,</span> <span class="mf">70.52</span><span class="p">]</span>
+                        <span class="p">})</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company Name</th>
+      <th>Ticker</th>
+      <th>Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The above code constructed a dictionary. Each key was a column name, and each value was a list containing the data for a column. This is a common and simple way to construct a DataFrame. It has the advantage of allowing you to conveniently specify the column names. Notice that, as before, the row indexes were assigned automatically using a zero-based index.</p>
+</section>
+<section id="retrieving-and-setting-individual-values-cells-in-a-dataframe">
+<h2>Retrieving and Setting Individual Values (Cells) in a DataFrame<a class="headerlink" href="#retrieving-and-setting-individual-values-cells-in-a-dataframe" title="Link to this heading">#</a></h2>
+<p>Pandas provides two methods for accessing (“getting”) and setting individual values in a DataFrame. These are the <code class="docutils literal notranslate"><span class="pre">at</span></code> and <code class="docutils literal notranslate"><span class="pre">iat</span></code> methods.</p>
+<section id="the-at-method">
+<h3>The <code class="docutils literal notranslate"><span class="pre">at</span></code> Method<a class="headerlink" href="#the-at-method" title="Link to this heading">#</a></h3>
+<section id="retrieving-a-single-value-with-the-at-method">
+<h4>Retrieving a Single Value with the <code class="docutils literal notranslate"><span class="pre">at</span></code> method<a class="headerlink" href="#retrieving-a-single-value-with-the-at-method" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">at</span></code> method accesses a single value. It requires you to specify the row and column index of the value you want. Here are some examples:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Ticker&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;WMT&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Closing Price&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>112.81
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Company Name&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Best Buy Co., Inc.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">at</span></code> method takes square brackets, not parentheses. That’s because it is using indexing, just like you did with lists. Also notice that the first argument is a row  label, and the second argument is a column label. Also notice that the data type has to be correct. The row indexes are integers, so I have to provide an integer.</p>
+<p>To illustrate this point, let’s recreate our stocks DataFrame, this time without column labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;Walmart, Inc.&#39;</span> <span class="p">,</span><span class="s1">&#39;WMT&#39;</span><span class="p">,</span> <span class="mf">119.14</span><span class="p">],</span> 
+                         <span class="p">[</span><span class="s1">&#39;Target Corporation&#39;</span><span class="p">,</span> <span class="s1">&#39;TGT&#39;</span><span class="p">,</span> <span class="mf">112.81</span><span class="p">],</span> 
+                         <span class="p">[</span><span class="s1">&#39;Best Buy Co., Inc.&#39;</span><span class="p">,</span> <span class="s1">&#39;BBY&#39;</span><span class="p">,</span> <span class="mf">70.52</span><span class="p">]])</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In this DataFrame, the column labels are integers (because they were automatically assigned). Therefore, I need to pass integers to the <code class="docutils literal notranslate"><span class="pre">at</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;TGT&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If I try to pass a column name as a string, I will get an error. For example, in the following code, there’s no column labeled <code class="docutils literal notranslate"><span class="pre">'1'</span></code>, so I will get an error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dfStocks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\core\indexing.py:2575,</span> in <span class="ni">_AtIndexer.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2572</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid call for scalar access (getting)!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2573</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">2575</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\core\indexing.py:2527,</span> in <span class="ni">_ScalarAccessIndexer.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2524</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid call for scalar access (getting)!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2526</span> <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2527</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="n">takeable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_takeable</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\core\frame.py:4214,</span> in <span class="ni">DataFrame._get_value</span><span class="nt">(self, index, col, takeable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4211</span>     <span class="n">series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ixs</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4212</span>     <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">4214</span> <span class="n">series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_item_cache</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4215</span> <span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">_engine</span>
+<span class="g g-Whitespace">   </span><span class="mi">4217</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">MultiIndex</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4218</span>     <span class="c1"># CategoricalIndex: Trying to use the engine fastpath may give incorrect</span>
+<span class="g g-Whitespace">   </span><span class="mi">4219</span>     <span class="c1">#  results if our categories are integers that dont match our codes</span>
+<span class="g g-Whitespace">   </span><span class="mi">4220</span>     <span class="c1"># IntervalIndex: IntervalTree has no get_loc</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\core\frame.py:4638,</span> in <span class="ni">DataFrame._get_item_cache</span><span class="nt">(self, item)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4633</span> <span class="n">res</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4634</span> <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4635</span>     <span class="c1"># All places that call _get_item_cache have unique columns,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4636</span>     <span class="c1">#  pending resolution of GH#33047</span>
+<span class="ne">-&gt; </span><span class="mi">4638</span>     <span class="n">loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4639</span>     <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ixs</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4641</span>     <span class="n">cache</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\core\indexes\range.py:417,</span> in <span class="ni">RangeIndex.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span>         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">417</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_error</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span> <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: &#39;1&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-a-single-value-with-the-at-method">
+<h4>Setting a Single Value with the <code class="docutils literal notranslate"><span class="pre">at</span></code> method<a class="headerlink" href="#setting-a-single-value-with-the-at-method" title="Link to this heading">#</a></h4>
+<p>To set a value, simply use an equals statement to assign the value. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Company Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Walmart, Inc.&#39;</span><span class="p">,</span> <span class="s1">&#39;Target Corporation&#39;</span><span class="p">,</span> <span class="s1">&#39;Best Buy Co., Inc.&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Ticker&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;WMT&#39;</span><span class="p">,</span> <span class="s1">&#39;TGT&#39;</span><span class="p">,</span> <span class="s1">&#39;BBY&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Closing Price&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">119.14</span><span class="p">,</span> <span class="mf">112.81</span><span class="p">,</span> <span class="mf">70.52</span><span class="p">]</span>
+                        <span class="p">})</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company Name</th>
+      <th>Ticker</th>
+      <th>Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Company Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;WAL-MART&#39;</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company Name</th>
+      <th>Ticker</th>
+      <th>Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>WAL-MART</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="the-iat-method">
+<h3>The <code class="docutils literal notranslate"><span class="pre">iat</span></code> Method<a class="headerlink" href="#the-iat-method" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">iat</span></code> method performs “integer-based lookups”. It accesses a single value for a row/column pair <em>by integer position</em>. It ignores any custom indexes you have created and simply counts the rows and columns. For example, if I want to access the first row, third column, I will go to position [0, 2]. That’s because 0 is the integer index of the first row (remember, everything starts at zero), and 2 is the integer index of the third column.</p>
+<p>Here are some examples of getting and setting:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Company Name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Walmart, Inc.&#39;</span><span class="p">,</span> <span class="s1">&#39;Target Corporation&#39;</span><span class="p">,</span> <span class="s1">&#39;Best Buy Co., Inc.&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Ticker&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;WMT&#39;</span><span class="p">,</span> <span class="s1">&#39;TGT&#39;</span><span class="p">,</span> <span class="s1">&#39;BBY&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Closing Price&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">119.14</span><span class="p">,</span> <span class="mf">112.81</span><span class="p">,</span> <span class="mf">70.52</span><span class="p">]</span>
+                        <span class="p">})</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company Name</th>
+      <th>Ticker</th>
+      <th>Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>70.52</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>112.81
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Walmart, Inc.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70.52
+</pre></div>
+</div>
+</div>
+</div>
+<p>To set a value using <code class="docutils literal notranslate"><span class="pre">iat</span></code>, simply assign with an equals sign. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfStocks</span><span class="o">.</span><span class="n">iat</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span>
+<span class="n">dfStocks</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Company Name</th>
+      <th>Ticker</th>
+      <th>Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Walmart, Inc.</td>
+      <td>WMT</td>
+      <td>119.14</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Target Corporation</td>
+      <td>TGT</td>
+      <td>112.81</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Best Buy Co., Inc.</td>
+      <td>BBY</td>
+      <td>-9999.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="getting-the-dimensions-of-a-dataframe">
+<h2>Getting the Dimensions of a DataFrame<a class="headerlink" href="#getting-the-dimensions-of-a-dataframe" title="Link to this heading">#</a></h2>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">shape</span></code> method to get the dimensions (number of rows and number of columns) of your DataFrame. The <code class="docutils literal notranslate"><span class="pre">shape</span></code> method will return a <em>tuple</em>. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Col1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;Col2&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcdef&#39;</span><span class="p">),</span> <span class="s1">&#39;Col3&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">100</span><span class="p">))})</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Col1</th>
+      <th>Col2</th>
+      <th>Col3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>a</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>b</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>c</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>d</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>e</td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>f</td>
+      <td>600</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s get the dimensions of our new DataFrame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(6, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We got the tuple <code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">3)</span></code> indicating that there are 6 rows and 3 columns. Remember that you can retrieve values from a tuple just like you did from a list. See below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;The DataFrame df has </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> rows and </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> columns.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The DataFrame df has 6 rows and 3 columns.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3-05%20Viewing%20a%20DataFrame.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Viewing a DataFrame</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3-07%20Loading%20Data%20Into%20Pandas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Loading Data Into Pandas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe-from-a-list-of-lists">Creating a DataFrame from a List of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#row-and-column-indexes">Row and Column Indexes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-index-labels">Default Index Labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallels-to-excel">Parallels to Excel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-column-indexes">Working with Column Indexes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-the-columns-of-a-dataframe">Retrieving the Columns of a DataFrame</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-columns-of-a-dataframe-using-a-list">Setting the Columns of a DataFrame Using a List</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-columns-of-a-dataframe-using-the-rename-method">Setting the Columns of a DataFrame Using the <code class="docutils literal notranslate"><span class="pre">rename</span></code> method</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-row-indexes">Working with Row Indexes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe-from-a-dictionary">Creating a DataFrame from a Dictionary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-and-setting-individual-values-cells-in-a-dataframe">Retrieving and Setting Individual Values (Cells) in a DataFrame</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-at-method">The <code class="docutils literal notranslate"><span class="pre">at</span></code> Method</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-a-single-value-with-the-at-method">Retrieving a Single Value with the <code class="docutils literal notranslate"><span class="pre">at</span></code> method</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-a-single-value-with-the-at-method">Setting a Single Value with the <code class="docutils literal notranslate"><span class="pre">at</span></code> method</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-iat-method">The <code class="docutils literal notranslate"><span class="pre">iat</span></code> Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-dimensions-of-a-dataframe">Getting the Dimensions of a DataFrame</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Vic Anand and Kim Mendoza
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
