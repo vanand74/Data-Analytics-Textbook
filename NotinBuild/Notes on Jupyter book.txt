@@ -1,5 +1,12 @@
-Take a look at this and see if it gives you anything: https://medium.com/the-power-of-ai/create-beautiful-reports-and-books-with-jupyter-book-3d99c04f70a8
+I found the Jupyter Book documentation most helpful. Everything I needed was in the "Create your first book" section. 
+Jupyter notebook official documentation: https://jupyterbook.org/en/stable/intro.html
 
-Jupyter notebook documentation: https://jupyterbook.org/en/stable/intro.html
+These websites were somewhat useful:
+https://medium.com/the-power-of-ai/create-beautiful-reports-and-books-with-jupyter-book-3d99c04f70a8
+https://chrisholdgraf.com/jupyter-book/intro.html
 
-config.yml file for the Jupyter notebook documentation (this is a good example): https://github.com/jupyter-book/jupyter-book/blob/master/docs/_config.yml
+I had to customize the config.yml file. Through this, I excluded a folder from the book build, specified the location of my repository on GitHub, and told the jupyter-book build process to allow errors. In the official documentation, there's a page on how to customize this file:
+https://jupyterbook.org/en/stable/customize/config.html
+
+Here's a link to a config.yml file at a GitHub repository:
+https://github.com/jupyter-book/jupyter-book/blob/master/docs/_config.yml
