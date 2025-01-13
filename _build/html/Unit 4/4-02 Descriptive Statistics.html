@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Overview of Analyzing Data" href="4-01%20Overview%20of%20Data%20Anaysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +149,17 @@
     
     
     <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
-    <script>document.write(`<img src="../_static/Book logo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+    <img src="../_static/Book logo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -235,9 +224,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -381,24 +375,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -555,93 +541,87 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\compat\_optional.py:135,</span> in <span class="ni">import_optional_dependency</span><span class="nt">(name, extra, errors, min_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">135</span>     <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">File ~\miniconda3\Lib\importlib\__init__.py:90,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">---&gt; </span><span class="mi">90</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Name</th>
-      <th>Job Titles</th>
-      <th>Department</th>
-      <th>Full or Part-Time</th>
-      <th>Salary or Hourly</th>
-      <th>Typical Hours</th>
-      <th>Annual Salary</th>
-      <th>Hourly Rate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>AARON,  JEFFERY M</td>
-      <td>SERGEANT</td>
-      <td>POLICE</td>
-      <td>F</td>
-      <td>Salary</td>
-      <td>NaN</td>
-      <td>101442.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>AARON,  KARINA</td>
-      <td>POLICE OFFICER (ASSIGNED AS DETECTIVE)</td>
-      <td>POLICE</td>
-      <td>F</td>
-      <td>Salary</td>
-      <td>NaN</td>
-      <td>94122.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>AARON,  KIMBERLEI R</td>
-      <td>CHIEF CONTRACT EXPEDITER</td>
-      <td>GENERAL SERVICES</td>
-      <td>F</td>
-      <td>Salary</td>
-      <td>NaN</td>
-      <td>111024.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>ABAD JR,  VICENTE M</td>
-      <td>CIVIL ENGINEER IV</td>
-      <td>WATER MGMNT</td>
-      <td>F</td>
-      <td>Salary</td>
-      <td>NaN</td>
-      <td>114780.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>ABARCA,  EMMANUEL</td>
-      <td>CONCRETE LABORER</td>
-      <td>TRANSPORTN</td>
-      <td>F</td>
-      <td>Hourly</td>
-      <td>40.0</td>
-      <td>NaN</td>
-      <td>43.72</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1387,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1360,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1324,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;openpyxl&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dfSalary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/Chicago_Payroll_Data.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">dfSalary</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\excel\_base.py:495,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span>     <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">--&gt; </span><span class="mi">495</span>     <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>         <span class="n">io</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">499</span>         <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">504</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span>     <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\excel\_base.py:1567,</span> in <span class="ni">ExcelFile.__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">storage_options</span>
+<span class="ne">-&gt; </span><span class="mi">1567</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engines</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span>
+<span class="g g-Whitespace">   </span><span class="mi">1568</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_io</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1569</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1570</span>     <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1571</span> <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\excel\_openpyxl.py:552,</span> in <span class="ni">OpenpyxlReader.__init__</span><span class="nt">(self, filepath_or_buffer, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span> <span class="nd">@doc</span><span class="p">(</span><span class="n">storage_options</span><span class="o">=</span><span class="n">_shared_docs</span><span class="p">[</span><span class="s2">&quot;storage_options&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="n">engine_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span><span class="sd">     Reader using openpyxl engine.</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span><span class="sd">         Arbitrary keyword arguments passed to excel engine.</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">552</span>     <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span>         <span class="n">filepath_or_buffer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">556</span>         <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span>     <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\compat\_optional.py:138,</span> in <span class="ni">import_optional_dependency</span><span class="nt">(name, extra, errors, min_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;raise&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">138</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> <span class="c1"># Handle submodules: if we have submodule, grab parent module from sys.modules</span>
+
+<span class="ne">ImportError</span>: Missing optional dependency &#39;openpyxl&#39;.  Use pip or conda to install openpyxl.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="compustat-data">
@@ -686,87 +666,87 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\compat\_optional.py:135,</span> in <span class="ni">import_optional_dependency</span><span class="nt">(name, extra, errors, min_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">135</span>     <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">File ~\miniconda3\Lib\importlib\__init__.py:90,</span> in <span class="ni">import_module</span><span class="nt">(name, package)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">---&gt; </span><span class="mi">90</span> <span class="k">return</span> <span class="n">_bootstrap</span><span class="o">.</span><span class="n">_gcd_import</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">level</span><span class="p">:],</span> <span class="n">package</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>GVKEY</th>
-      <th>TIC</th>
-      <th>FYEAR</th>
-      <th>SALE</th>
-      <th>IB</th>
-      <th>ACC</th>
-      <th>OANCF</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>12825</td>
-      <td>JJSF</td>
-      <td>2018</td>
-      <td>1138.265</td>
-      <td>103.596</td>
-      <td>-19.771</td>
-      <td>123.367</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>12096</td>
-      <td>DGSE</td>
-      <td>2018</td>
-      <td>54.056</td>
-      <td>0.658</td>
-      <td>0.283</td>
-      <td>0.375</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>12945</td>
-      <td>PLXS</td>
-      <td>2018</td>
-      <td>2873.508</td>
-      <td>13.040</td>
-      <td>-53.791</td>
-      <td>66.831</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>16456</td>
-      <td>HNGR</td>
-      <td>2018</td>
-      <td>1048.760</td>
-      <td>-0.858</td>
-      <td>-79.385</td>
-      <td>78.527</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>12141</td>
-      <td>MSFT</td>
-      <td>2018</td>
-      <td>110360.000</td>
-      <td>16571.000</td>
-      <td>-27313.000</td>
-      <td>43884.000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1387,</span> in <span class="ni">_gcd_import</span><span class="nt">(name, package, level)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1360,</span> in <span class="ni">_find_and_load</span><span class="nt">(name, import_)</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:1324,</span> in <span class="ni">_find_and_load_unlocked</span><span class="nt">(name, import_)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;openpyxl&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dfCompustat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/Compustat.xlsx&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">dfCompustat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\excel\_base.py:495,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span>     <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">--&gt; </span><span class="mi">495</span>     <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>         <span class="n">io</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">499</span>         <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">504</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span>     <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\excel\_base.py:1567,</span> in <span class="ni">ExcelFile.__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span> <span class="o">=</span> <span class="n">engine</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage_options</span> <span class="o">=</span> <span class="n">storage_options</span>
+<span class="ne">-&gt; </span><span class="mi">1567</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engines</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span>
+<span class="g g-Whitespace">   </span><span class="mi">1568</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_io</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1569</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1570</span>     <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1571</span> <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\excel\_openpyxl.py:552,</span> in <span class="ni">OpenpyxlReader.__init__</span><span class="nt">(self, filepath_or_buffer, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span> <span class="nd">@doc</span><span class="p">(</span><span class="n">storage_options</span><span class="o">=</span><span class="n">_shared_docs</span><span class="p">[</span><span class="s2">&quot;storage_options&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>     <span class="bp">self</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="n">engine_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span><span class="sd">     Reader using openpyxl engine.</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span><span class="sd">         Arbitrary keyword arguments passed to excel engine.</span>
+<span class="g g-Whitespace">    </span><span class="mi">551</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">552</span>     <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">&quot;openpyxl&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">553</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span>         <span class="n">filepath_or_buffer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">556</span>         <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span>     <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\compat\_optional.py:138,</span> in <span class="ni">import_optional_dependency</span><span class="nt">(name, extra, errors, min_version)</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;raise&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">138</span>         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span>     <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">141</span> <span class="c1"># Handle submodules: if we have submodule, grab parent module from sys.modules</span>
+
+<span class="ne">ImportError</span>: Missing optional dependency &#39;openpyxl&#39;.  Use pip or conda to install openpyxl.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -794,7 +774,7 @@ document.write(`
     </style>
     <div>
         <a href="https://bokeh.org" target="_blank" class="bk-notebook-logo"></a>
-        <span id="c4c7ca37-849d-48cc-8dad-fccc69e03026">Loading BokehJS ...</span>
+        <span id="f6436fb4-d4c2-4d73-bd38-ade6bb4a145a">Loading BokehJS ...</span>
     </div>
 </div><script type="application/javascript">'use strict';
 (function(root) {
@@ -959,7 +939,7 @@ const JS_MIME_TYPE = 'application/javascript';
      "</div>"}};
 
   function display_loaded(error = null) {
-    const el = document.getElementById("c4c7ca37-849d-48cc-8dad-fccc69e03026");
+    const el = document.getElementById("f6436fb4-d4c2-4d73-bd38-ade6bb4a145a");
     if (el != null) {
       const html = (() => {
         if (typeof root.Bokeh === "undefined") {
@@ -1067,7 +1047,7 @@ const JS_MIME_TYPE = 'application/javascript';
     document.body.appendChild(element);
   }
 
-  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.4.2.min.js"];
+  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.6.2.min.js"];
   const css_urls = [];
 
   const inline_js = [    function(Bokeh) {
@@ -1093,7 +1073,7 @@ function(Bokeh) {
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       root._bokeh_failed_load = true;
     } else if (force !== true) {
-      const cell = $(document.getElementById("c4c7ca37-849d-48cc-8dad-fccc69e03026")).parents('.cell').data().cell;
+      const cell = $(document.getElementById("f6436fb4-d4c2-4d73-bd38-ade6bb4a145a")).parents('.cell').data().cell;
       cell.output_area.append_execute_result(NB_LOAD_WARNING)
     }
   }
@@ -1127,32 +1107,21 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="fa99602a-d7d6-402a-aee0-d6e8ad98abe4" data-root-id="p1001" style="display: contents;"></div>
-</div><script type="application/javascript">(function(root) {
-  function embed_document(root) {
-  const docs_json = {"4c66f66b-850a-4738-ab6b-56f41346bee6":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1001","attributes":{"width":500,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1002"},"y_range":{"type":"object","name":"DataRange1d","id":"p1003"},"x_scale":{"type":"object","name":"LinearScale","id":"p1011"},"y_scale":{"type":"object","name":"LinearScale","id":"p1012"},"title":{"type":"object","name":"Title","id":"p1004","attributes":{"text":"Histogram of City of Chicago Employee Salaries"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1041","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1035","attributes":{"selected":{"type":"object","name":"Selection","id":"p1036","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1037"},"data":{"type":"map","entries":[["top",{"type":"ndarray","array":{"type":"bytes","data":"AwAAAAEAAAAIAAAAOAAAAFEAAADbAAAAYQQAAHkDAAA+AgAATAUAAPIHAADpBwAA1QwAAOUOAAC0DwAAIgkAALYEAAAvAwAAcQIAAOgBAADAAAAAoAAAACsAAAByAAAAEAAAAFkAAAAWAAAAFAAAAAQAAAAOAAAAAQAAAAIAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAEAAAA="},"shape":[44],"dtype":"int32","order":"little"}],["left",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAABowEBddNFFlz3MQF100UWXCdRAjC666GL02UC66KKLLt/fQHTRRRf95OJAjC666GLa5UCjiy66yM/oQLrooosuxetA0UUXXZS67kB00UUX/dfwQAAAAACwUvJAjC666GLN80AXXXTRFUj1QKOLLrrIwvZALrroons9+EC66KKLLrj5QEYXXXThMvtA0UUXXZSt/EBddNFFRyj+QOiiiy76ov9Auuiii9aOAEEAAAAAMEwBQUYXXXSJCQJBjC666OLGAkHRRRddPIQDQRdddNGVQQRBXXTRRe/+BEGjiy66SLwFQemiiy6ieQZBLrroovs2B0F00UUXVfQHQbrooouusQhBAAAAAAhvCUFGF110YSwKQYsuuui66QpB0UUXXRSnC0EXXXTRbWQMQV100UXHIQ1Bo4suuiDfDUHooosuepwOQS666KLTWQ9Buuiii5YLEEFddNFFQ2oQQQ=="},"shape":[44],"dtype":"float64","order":"little"}],["right",{"type":"ndarray","array":{"type":"bytes","data":"XXTRRZc9zEBddNFFlwnUQIwuuuhi9NlAuuiiiy7f30B00UUX/eTiQIwuuuhi2uVAo4suusjP6EC66KKLLsXrQNFFF12Uuu5AdNFFF/3X8EAAAAAAsFLyQIwuuuhizfNAF1100RVI9UCjiy66yML2QC666KJ7PfhAuuiiiy64+UBGF1104TL7QNFFF12UrfxAXXTRRUco/kDooosu+qL/QLrooovWjgBBAAAAADBMAUFGF110iQkCQYwuuujixgJB0UUXXTyEA0EXXXTRlUEEQV100UXv/gRBo4suuki8BUHpoosuonkGQS666KL7NgdBdNFFF1X0B0G66KKLrrEIQQAAAAAIbwlBRhdddGEsCkGLLrrouukKQdFFF10UpwtBF1100W1kDEFddNFFxyENQaOLLrog3w1B6KKLLnqcDkEuuuii01kPQbrooouWCxBBXXTRRUNqEEEAAAAA8MgQQQ=="},"shape":[44],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1042","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1043"}}},"glyph":{"type":"object","name":"Quad","id":"p1038","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.5},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.5},"hatch_alpha":{"type":"value","value":0.5}}},"nonselection_glyph":{"type":"object","name":"Quad","id":"p1039","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Quad","id":"p1040","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1010","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1023"},{"type":"object","name":"WheelZoomTool","id":"p1024","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1025","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1026","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1031"},{"type":"object","name":"ResetTool","id":"p1032"},{"type":"object","name":"HelpTool","id":"p1033"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1018","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1019","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1020"},"axis_label":"Count","major_label_policy":{"type":"object","name":"AllLabels","id":"p1021"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1013","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1014","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1034","attributes":{"format":"$0,0"}},"axis_label":"Salary ($)","major_label_policy":{"type":"object","name":"AllLabels","id":"p1016"}}}],"center":[{"type":"object","name":"Grid","id":"p1017","attributes":{"axis":{"id":"p1013"}}},{"type":"object","name":"Grid","id":"p1022","attributes":{"dimension":1,"axis":{"id":"p1018"}}}]}}]}};
-  const render_items = [{"docid":"4c66f66b-850a-4738-ab6b-56f41346bee6","roots":{"p1001":"fa99602a-d7d6-402a-aee0-d6e8ad98abe4"},"root_ids":["p1001"]}];
-  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
-  }
-  if (root.Bokeh !== undefined) {
-    embed_document(root);
-  } else {
-    let attempts = 0;
-    const timer = setInterval(function(root) {
-      if (root.Bokeh !== undefined) {
-        clearInterval(timer);
-        embed_document(root);
-      } else {
-        attempts++;
-        if (attempts > 100) {
-          clearInterval(timer);
-          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-        }
-      }
-    }, 10, root)
-  }
-})(window);</script></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Notice we drop the missing values. In this dataset, hourly employees</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># have missing values in the Annual Salary column</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">hist</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">dfSalary</span><span class="p">[</span><span class="s1">&#39;Annual Salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">44</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>            <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;Salary ($)&#39;</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Histogram of City of Chicago Employee Salaries&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">formatter</span> <span class="o">=</span> <span class="n">NumeralTickFormatter</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;$0,0&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dfSalary&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Looking at the graph above, we see a “spread” in the salaries. Unsurprisingly, people are paid different amounts. There are many people with similar, and even identical, salaries, but not everybody is paid the same.</p>
 <p>A city executive, or the mayor, or a city council member, might wonder if there is a number that is representative of the distribution shown above. Specifically, if we took everybody’s salary, pooled it, and then divided it up evenly among the employees, how much would each person get? That number is called the <em>mean</em> or <em>average</em> of the distribution. The mean is a measure of “centrality”. It represents the center of the distribution. A middle number, if you will.</p>
@@ -1173,7 +1142,12 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>87845.37224432483
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dfSalary</span><span class="p">[</span><span class="s1">&#39;Annual Salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;dfSalary&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1203,32 +1177,21 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="c199c1d1-628a-40fe-a167-3338027dec53" data-root-id="p1047" style="display: contents;"></div>
-</div><script type="application/javascript">(function(root) {
-  function embed_document(root) {
-  const docs_json = {"1545bff3-9014-4ccf-b7ba-af90fd53e981":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1047","attributes":{"width":500,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1048"},"y_range":{"type":"object","name":"DataRange1d","id":"p1049"},"x_scale":{"type":"object","name":"LinearScale","id":"p1057"},"y_scale":{"type":"object","name":"LinearScale","id":"p1058"},"title":{"type":"object","name":"Title","id":"p1050","attributes":{"text":"Histogram of City of Chicago Employee Salaries"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1087","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1081","attributes":{"selected":{"type":"object","name":"Selection","id":"p1082","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1083"},"data":{"type":"map","entries":[["top",{"type":"ndarray","array":{"type":"bytes","data":"AwAAAAEAAAAIAAAAOAAAAFEAAADbAAAAYQQAAHkDAAA+AgAATAUAAPIHAADpBwAA1QwAAOUOAAC0DwAAIgkAALYEAAAvAwAAcQIAAOgBAADAAAAAoAAAACsAAAByAAAAEAAAAFkAAAAWAAAAFAAAAAQAAAAOAAAAAQAAAAIAAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAEAAAA="},"shape":[44],"dtype":"int32","order":"little"}],["left",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAABowEBddNFFlz3MQF100UWXCdRAjC666GL02UC66KKLLt/fQHTRRRf95OJAjC666GLa5UCjiy66yM/oQLrooosuxetA0UUXXZS67kB00UUX/dfwQAAAAACwUvJAjC666GLN80AXXXTRFUj1QKOLLrrIwvZALrroons9+EC66KKLLrj5QEYXXXThMvtA0UUXXZSt/EBddNFFRyj+QOiiiy76ov9Auuiii9aOAEEAAAAAMEwBQUYXXXSJCQJBjC666OLGAkHRRRddPIQDQRdddNGVQQRBXXTRRe/+BEGjiy66SLwFQemiiy6ieQZBLrroovs2B0F00UUXVfQHQbrooouusQhBAAAAAAhvCUFGF110YSwKQYsuuui66QpB0UUXXRSnC0EXXXTRbWQMQV100UXHIQ1Bo4suuiDfDUHooosuepwOQS666KLTWQ9Buuiii5YLEEFddNFFQ2oQQQ=="},"shape":[44],"dtype":"float64","order":"little"}],["right",{"type":"ndarray","array":{"type":"bytes","data":"XXTRRZc9zEBddNFFlwnUQIwuuuhi9NlAuuiiiy7f30B00UUX/eTiQIwuuuhi2uVAo4suusjP6EC66KKLLsXrQNFFF12Uuu5AdNFFF/3X8EAAAAAAsFLyQIwuuuhizfNAF1100RVI9UCjiy66yML2QC666KJ7PfhAuuiiiy64+UBGF1104TL7QNFFF12UrfxAXXTRRUco/kDooosu+qL/QLrooovWjgBBAAAAADBMAUFGF110iQkCQYwuuujixgJB0UUXXTyEA0EXXXTRlUEEQV100UXv/gRBo4suuki8BUHpoosuonkGQS666KL7NgdBdNFFF1X0B0G66KKLrrEIQQAAAAAIbwlBRhdddGEsCkGLLrrouukKQdFFF10UpwtBF1100W1kDEFddNFFxyENQaOLLrog3w1B6KKLLnqcDkEuuuii01kPQbrooouWCxBBXXTRRUNqEEEAAAAA8MgQQQ=="},"shape":[44],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1088","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1089"}}},"glyph":{"type":"object","name":"Quad","id":"p1084","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.5},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.5},"hatch_alpha":{"type":"value","value":0.5}}},"nonselection_glyph":{"type":"object","name":"Quad","id":"p1085","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Quad","id":"p1086","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1056","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1069"},{"type":"object","name":"WheelZoomTool","id":"p1070","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1071","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1072","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1077"},{"type":"object","name":"ResetTool","id":"p1078"},{"type":"object","name":"HelpTool","id":"p1079"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1064","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1065","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1066"},"axis_label":"Count","major_label_policy":{"type":"object","name":"AllLabels","id":"p1067"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1059","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1060","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1080","attributes":{"format":"$0,0"}},"axis_label":"Salary ($)","major_label_policy":{"type":"object","name":"AllLabels","id":"p1062"}}}],"center":[{"type":"object","name":"Grid","id":"p1063","attributes":{"axis":{"id":"p1059"}}},{"type":"object","name":"Grid","id":"p1068","attributes":{"dimension":1,"axis":{"id":"p1064"}}},{"type":"object","name":"Span","id":"p1090","attributes":{"location":87845.37224432483,"dimension":"height","line_color":"red","line_width":2,"line_dash":[6]}}]}}]}};
-  const render_items = [{"docid":"1545bff3-9014-4ccf-b7ba-af90fd53e981","roots":{"p1047":"c199c1d1-628a-40fe-a167-3338027dec53"},"root_ids":["p1047"]}];
-  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
-  }
-  if (root.Bokeh !== undefined) {
-    embed_document(root);
-  } else {
-    let attempts = 0;
-    const timer = setInterval(function(root) {
-      if (root.Bokeh !== undefined) {
-        clearInterval(timer);
-        embed_document(root);
-      } else {
-        attempts++;
-        if (attempts > 100) {
-          clearInterval(timer);
-          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-        }
-      }
-    }, 10, root)
-  }
-})(window);</script></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Notice we drop the missing values. In this dataset, hourly employees</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># have missing values in the Annual Salary column</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">hist</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">dfSalary</span><span class="p">[</span><span class="s1">&#39;Annual Salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">44</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>            <span class="n">x_axis_label</span><span class="o">=</span><span class="s1">&#39;Salary ($)&#39;</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Histogram of City of Chicago Employee Salaries&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">formatter</span> <span class="o">=</span> <span class="n">NumeralTickFormatter</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;$0,0&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dfSalary&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -1263,32 +1226,18 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="e172555c-1b6e-4f55-93f7-d244fdec85c3" data-root-id="p1094" style="display: contents;"></div>
-</div><script type="application/javascript">(function(root) {
-  function embed_document(root) {
-  const docs_json = {"5a836e1e-d0a0-4761-bb96-62ca74651fe9":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1094","attributes":{"width":500,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1095"},"y_range":{"type":"object","name":"DataRange1d","id":"p1096"},"x_scale":{"type":"object","name":"LinearScale","id":"p1104"},"y_scale":{"type":"object","name":"LinearScale","id":"p1105"},"title":{"type":"object","name":"Title","id":"p1097","attributes":{"text":"Histogram of IB"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1134","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1128","attributes":{"selected":{"type":"object","name":"Selection","id":"p1129","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1130"},"data":{"type":"map","entries":[["top",{"type":"ndarray","array":{"type":"bytes","data":"AQAAAAEAAAADAAAAAwAAAAMAAAAEAAAAAgAAAA0AAAARAAAAHQAAAE8AAADoAAAAdAQAAFYBAACpAAAAZwAAAEgAAAA7AAAALgAAACAAAAAbAAAAEwAAABQAAAAMAAAADAAAABIAAAAKAAAACwAAAAUAAAAHAAAACQAAAAMAAAAHAAAACwAAAAEAAAAEAAAABgAAAAUAAAABAAAABQAAAAQAAAACAAAABQAAAAQAAAACAAAABgAAAAMAAAAEAAAAAAAAAAQAAAABAAAAAAAAAAIAAAADAAAAAgAAAAMAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAABAAAAAwAAAAIAAAAAAAAAAQAAAAEAAAABAAAAAgAAAAAAAAAAAAAAAAAAAAEAAAABAAAA"},"shape":[75],"dtype":"int32","order":"little"}],["left",{"type":"ndarray","array":{"type":"bytes","data":"fT81XrqAjsDl5cPGzwuMwE2MUi/llonAtjLhl/ohh8Ae2W8AEK2EwIZ//mglOILA3Esao3WGf8CsmDd0oJx6wHzlVEXLsnXATDJyFvbIcMA4/h7PQb5nwLAvs+Iu1VvA8MVQTrRbQMCQ08Qo9fJGQIg27U/PIF9ApAG8BRJkaUACtMAx3ptxQDJno2CzhXZAYhqGj4hve0DJZjTfriyAQGHApXaZoYJA+RkXDoQWhUCRc4ilbouHQCnN+TxZAIpAvyZr1EN1jEBXgNxrLuqOQPjspoGMr5BAxJlfzQHqkUCQRhgZdySTQFzz0GTsXpRAKKCJsGGZlUD0TEL81tOWQMD5+kdMDphAjKazk8FImUBYU2zfNoOaQCQAJSusvZtA8KzddiH4nEC8WZbCljKeQIgGTw4MbZ9AqtkDrcBToEAQMOBS+/CgQHaGvPg1jqFA3NyYnnArokBCM3VEq8iiQKiJUerlZaNADuAtkCADpEB0Ngo2W6CkQNqM5tuVPaVAP+PCgdDapUClOZ8nC3imQAuQe81FFadAceZXc4Cyp0DXPDQZu0+oQD2TEL/17KhAo+nsZDCKqUAJQMkKayeqQG+WpbClxKpA1eyBVuBhq0A7Q178Gv+rQKGZOqJVnKxAB/AWSJA5rUBtRvPtytatQNOcz5MFdK5AOfOrOUARr0CfSYjfeq6vQAJQssLaJbBANXugFXh0sEBopo5oFcOwQJvRfLuyEbFAzvxqDlBgsUABKFlh7a6xQDRTR7SK/bFAZ341ByhMskCaqSNaxZqyQM3UEa1i6bJA"},"shape":[75],"dtype":"float64","order":"little"}],["right",{"type":"ndarray","array":{"type":"bytes","data":"5eXDxs8LjMBNjFIv5ZaJwLYy4Zf6IYfAHtlvABCthMCGf/5oJTiCwNxLGqN1hn/ArJg3dKCcesB85VRFy7J1wEwychb2yHDAOP4ez0G+Z8CwL7PiLtVbwPDFUE60W0DAkNPEKPXyRkCINu1PzyBfQKQBvAUSZGlAArTAMd6bcUAyZ6Ngs4V2QGIaho+Ib3tAyWY0364sgEBhwKV2maGCQPkZFw6EFoVAkXOIpW6Lh0Apzfk8WQCKQL8ma9RDdYxAV4Dcay7qjkD47KaBjK+QQMSZX80B6pFAkEYYGXckk0Bc89Bk7F6UQCigibBhmZVA9ExC/NbTlkDA+fpHTA6YQIyms5PBSJlAWFNs3zaDmkAkACUrrL2bQPCs3XYh+JxAvFmWwpYynkCIBk8ODG2fQKrZA63AU6BAEDDgUvvwoEB2hrz4NY6hQNzcmJ5wK6JAQjN1RKvIokCoiVHq5WWjQA7gLZAgA6RAdDYKNlugpEDajObblT2lQD/jwoHQ2qVApTmfJwt4pkALkHvNRRWnQHHmV3OAsqdA1zw0GbtPqEA9kxC/9eyoQKPp7GQwiqlACUDJCmsnqkBvlqWwpcSqQNXsgVbgYatAO0Ne/Br/q0ChmTqiVZysQAfwFkiQOa1AbUbz7crWrUDTnM+TBXSuQDnzqzlAEa9An0mI33qur0ACULLC2iWwQDV7oBV4dLBAaKaOaBXDsECb0Xy7shGxQM78ag5QYLFAAShZYe2usUA0U0e0iv2xQGd+NQcoTLJAmqkjWsWaskDN1BGtYumyQAAAAAAAOLNA"},"shape":[75],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1135","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1136"}}},"glyph":{"type":"object","name":"Quad","id":"p1131","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.5},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.5},"hatch_alpha":{"type":"value","value":0.5}}},"nonselection_glyph":{"type":"object","name":"Quad","id":"p1132","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Quad","id":"p1133","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1103","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1116"},{"type":"object","name":"WheelZoomTool","id":"p1117","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1118","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1119","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1124"},{"type":"object","name":"ResetTool","id":"p1125"},{"type":"object","name":"HelpTool","id":"p1126"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1111","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1112","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1113"},"axis_label":"Count","major_label_policy":{"type":"object","name":"AllLabels","id":"p1114"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1106","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1107","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1127","attributes":{"format":"$0,0"}},"axis_label":"Income before extraordinary items ($ mil.)","major_label_policy":{"type":"object","name":"AllLabels","id":"p1109"}}}],"center":[{"type":"object","name":"Grid","id":"p1110","attributes":{"axis":{"id":"p1106"}}},{"type":"object","name":"Grid","id":"p1115","attributes":{"dimension":1,"axis":{"id":"p1111"}}},{"type":"object","name":"Span","id":"p1137","attributes":{"location":203.05486953184956,"dimension":"height","line_color":"red","line_width":2,"line_dash":[6]}}]}}]}};
-  const render_items = [{"docid":"5a836e1e-d0a0-4761-bb96-62ca74651fe9","roots":{"p1094":"e172555c-1b6e-4f55-93f7-d244fdec85c3"},"root_ids":["p1094"]}];
-  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
-  }
-  if (root.Bokeh !== undefined) {
-    embed_document(root);
-  } else {
-    let attempts = 0;
-    const timer = setInterval(function(root) {
-      if (root.Bokeh !== undefined) {
-        clearInterval(timer);
-        embed_document(root);
-      } else {
-        attempts++;
-        if (attempts > 100) {
-          clearInterval(timer);
-          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-        }
-      }
-    }, 10, root)
-  }
-})(window);</script></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ib</span> <span class="o">=</span> <span class="n">dfCompustat</span><span class="p">[(</span><span class="n">dfCompustat</span><span class="p">[</span><span class="s1">&#39;IB&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dfCompustat</span><span class="p">[</span><span class="s1">&#39;IB&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)][</span><span class="s1">&#39;IB&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Notice we drop the missing values. In this dataset, hourly employees</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># have missing values in the Annual Salary column</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">hist</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">ib</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dfCompustat&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Look at the histogram above. Does the mean line appear to be in the center of the distribution? Not really. Because the distribution has a long “tail” to the right, the mean line is farther to the right than we would like. If we report the mean of this data, it might be misleading to some. The mean might be considered artificially high since a majority of companies earn less than this amount.</p>
 <p>In situations like this, where the distribution has a long tail, people often report the median. The median is literally the middle number. To compute the median, you take all the numbers, sort them, and then choose the middle number (we’re omitting a few details, but that’s the basic idea).</p>
@@ -1303,7 +1252,12 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21.896
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ib</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;ib&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1316,7 +1270,12 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>203.05486953184956
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ib</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;ib&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1354,32 +1313,18 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="c70d3b01-4b9e-4e4a-bcf7-a0d9a9088775" data-root-id="p1141" style="display: contents;"></div>
-</div><script type="application/javascript">(function(root) {
-  function embed_document(root) {
-  const docs_json = {"7995a7a2-6556-43fa-b6d6-959cf655be3d":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Figure","id":"p1141","attributes":{"width":500,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1142"},"y_range":{"type":"object","name":"DataRange1d","id":"p1143"},"x_scale":{"type":"object","name":"LinearScale","id":"p1151"},"y_scale":{"type":"object","name":"LinearScale","id":"p1152"},"title":{"type":"object","name":"Title","id":"p1144","attributes":{"text":"Histogram of IB"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1181","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1175","attributes":{"selected":{"type":"object","name":"Selection","id":"p1176","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1177"},"data":{"type":"map","entries":[["top",{"type":"ndarray","array":{"type":"bytes","data":"AQAAAAEAAAADAAAAAwAAAAMAAAAEAAAAAgAAAA0AAAARAAAAHQAAAE8AAADoAAAAdAQAAFYBAACpAAAAZwAAAEgAAAA7AAAALgAAACAAAAAbAAAAEwAAABQAAAAMAAAADAAAABIAAAAKAAAACwAAAAUAAAAHAAAACQAAAAMAAAAHAAAACwAAAAEAAAAEAAAABgAAAAUAAAABAAAABQAAAAQAAAACAAAABQAAAAQAAAACAAAABgAAAAMAAAAEAAAAAAAAAAQAAAABAAAAAAAAAAIAAAADAAAAAgAAAAMAAAAAAAAAAgAAAAAAAAABAAAAAgAAAAAAAAABAAAAAwAAAAIAAAAAAAAAAQAAAAEAAAABAAAAAgAAAAAAAAAAAAAAAAAAAAEAAAABAAAA"},"shape":[75],"dtype":"int32","order":"little"}],["left",{"type":"ndarray","array":{"type":"bytes","data":"fT81XrqAjsDl5cPGzwuMwE2MUi/llonAtjLhl/ohh8Ae2W8AEK2EwIZ//mglOILA3Esao3WGf8CsmDd0oJx6wHzlVEXLsnXATDJyFvbIcMA4/h7PQb5nwLAvs+Iu1VvA8MVQTrRbQMCQ08Qo9fJGQIg27U/PIF9ApAG8BRJkaUACtMAx3ptxQDJno2CzhXZAYhqGj4hve0DJZjTfriyAQGHApXaZoYJA+RkXDoQWhUCRc4ilbouHQCnN+TxZAIpAvyZr1EN1jEBXgNxrLuqOQPjspoGMr5BAxJlfzQHqkUCQRhgZdySTQFzz0GTsXpRAKKCJsGGZlUD0TEL81tOWQMD5+kdMDphAjKazk8FImUBYU2zfNoOaQCQAJSusvZtA8KzddiH4nEC8WZbCljKeQIgGTw4MbZ9AqtkDrcBToEAQMOBS+/CgQHaGvPg1jqFA3NyYnnArokBCM3VEq8iiQKiJUerlZaNADuAtkCADpEB0Ngo2W6CkQNqM5tuVPaVAP+PCgdDapUClOZ8nC3imQAuQe81FFadAceZXc4Cyp0DXPDQZu0+oQD2TEL/17KhAo+nsZDCKqUAJQMkKayeqQG+WpbClxKpA1eyBVuBhq0A7Q178Gv+rQKGZOqJVnKxAB/AWSJA5rUBtRvPtytatQNOcz5MFdK5AOfOrOUARr0CfSYjfeq6vQAJQssLaJbBANXugFXh0sEBopo5oFcOwQJvRfLuyEbFAzvxqDlBgsUABKFlh7a6xQDRTR7SK/bFAZ341ByhMskCaqSNaxZqyQM3UEa1i6bJA"},"shape":[75],"dtype":"float64","order":"little"}],["right",{"type":"ndarray","array":{"type":"bytes","data":"5eXDxs8LjMBNjFIv5ZaJwLYy4Zf6IYfAHtlvABCthMCGf/5oJTiCwNxLGqN1hn/ArJg3dKCcesB85VRFy7J1wEwychb2yHDAOP4ez0G+Z8CwL7PiLtVbwPDFUE60W0DAkNPEKPXyRkCINu1PzyBfQKQBvAUSZGlAArTAMd6bcUAyZ6Ngs4V2QGIaho+Ib3tAyWY0364sgEBhwKV2maGCQPkZFw6EFoVAkXOIpW6Lh0Apzfk8WQCKQL8ma9RDdYxAV4Dcay7qjkD47KaBjK+QQMSZX80B6pFAkEYYGXckk0Bc89Bk7F6UQCigibBhmZVA9ExC/NbTlkDA+fpHTA6YQIyms5PBSJlAWFNs3zaDmkAkACUrrL2bQPCs3XYh+JxAvFmWwpYynkCIBk8ODG2fQKrZA63AU6BAEDDgUvvwoEB2hrz4NY6hQNzcmJ5wK6JAQjN1RKvIokCoiVHq5WWjQA7gLZAgA6RAdDYKNlugpEDajObblT2lQD/jwoHQ2qVApTmfJwt4pkALkHvNRRWnQHHmV3OAsqdA1zw0GbtPqEA9kxC/9eyoQKPp7GQwiqlACUDJCmsnqkBvlqWwpcSqQNXsgVbgYatAO0Ne/Br/q0ChmTqiVZysQAfwFkiQOa1AbUbz7crWrUDTnM+TBXSuQDnzqzlAEa9An0mI33qur0ACULLC2iWwQDV7oBV4dLBAaKaOaBXDsECb0Xy7shGxQM78ag5QYLFAAShZYe2usUA0U0e0iv2xQGd+NQcoTLJAmqkjWsWaskDN1BGtYumyQAAAAAAAOLNA"},"shape":[75],"dtype":"float64","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1182","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1183"}}},"glyph":{"type":"object","name":"Quad","id":"p1178","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.5},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.5},"hatch_alpha":{"type":"value","value":0.5}}},"nonselection_glyph":{"type":"object","name":"Quad","id":"p1179","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.1},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"Quad","id":"p1180","attributes":{"left":{"type":"field","field":"left"},"right":{"type":"field","field":"right"},"bottom":{"type":"value","value":0},"top":{"type":"field","field":"top"},"line_color":{"type":"value","value":"white"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"value","value":"navy"},"fill_alpha":{"type":"value","value":0.2},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1150","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1163"},{"type":"object","name":"WheelZoomTool","id":"p1164","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1165","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1166","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1171"},{"type":"object","name":"ResetTool","id":"p1172"},{"type":"object","name":"HelpTool","id":"p1173"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1158","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1159","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1160"},"axis_label":"Count","major_label_policy":{"type":"object","name":"AllLabels","id":"p1161"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1153","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1154","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"NumeralTickFormatter","id":"p1174","attributes":{"format":"$0,0"}},"axis_label":"Income before extraordinary items ($ mil.)","major_label_policy":{"type":"object","name":"AllLabels","id":"p1156"}}}],"center":[{"type":"object","name":"Grid","id":"p1157","attributes":{"axis":{"id":"p1153"}}},{"type":"object","name":"Grid","id":"p1162","attributes":{"dimension":1,"axis":{"id":"p1158"}}},{"type":"object","name":"Span","id":"p1184","attributes":{"location":203.05486953184956,"dimension":"height","line_color":"red","line_width":2,"line_dash":[6]}},{"type":"object","name":"Span","id":"p1185","attributes":{"location":21.896,"dimension":"height","line_width":2,"line_dash":[6]}}]}}]}};
-  const render_items = [{"docid":"7995a7a2-6556-43fa-b6d6-959cf655be3d","roots":{"p1141":"c70d3b01-4b9e-4e4a-bcf7-a0d9a9088775"},"root_ids":["p1141"]}];
-  void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
-  }
-  if (root.Bokeh !== undefined) {
-    embed_document(root);
-  } else {
-    let attempts = 0;
-    const timer = setInterval(function(root) {
-      if (root.Bokeh !== undefined) {
-        clearInterval(timer);
-        embed_document(root);
-      } else {
-        attempts++;
-        if (attempts > 100) {
-          clearInterval(timer);
-          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
-        }
-      }
-    }, 10, root)
-  }
-})(window);</script></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ib</span> <span class="o">=</span> <span class="n">dfCompustat</span><span class="p">[(</span><span class="n">dfCompustat</span><span class="p">[</span><span class="s1">&#39;IB&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dfCompustat</span><span class="p">[</span><span class="s1">&#39;IB&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)][</span><span class="s1">&#39;IB&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Notice we drop the missing values. In this dataset, hourly employees</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># have missing values in the Annual Salary column</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">hist</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">ib</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;dfCompustat&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Look at that graph! The median is much closer to what we would think of as the center of the distribution.</p>
 </section>
@@ -1405,7 +1350,12 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20827.714107106418
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dfSalary</span><span class="p">[</span><span class="s1">&#39;Annual Salary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;dfSalary&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1426,62 +1376,15 @@ function(Bokeh) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dfCompustat</span><span class="p">[[</span><span class="s1">&#39;SALE&#39;</span><span class="p">,</span><span class="s1">&#39;IB&#39;</span><span class="p">,</span><span class="s1">&#39;ACC&#39;</span><span class="p">,</span><span class="s1">&#39;OANCF&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>SALE</th>
-      <th>IB</th>
-      <th>ACC</th>
-      <th>OANCF</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>SALE</th>
-      <td>1.000000</td>
-      <td>0.681791</td>
-      <td>-0.658824</td>
-      <td>0.793711</td>
-    </tr>
-    <tr>
-      <th>IB</th>
-      <td>0.681791</td>
-      <td>1.000000</td>
-      <td>-0.431227</td>
-      <td>0.876442</td>
-    </tr>
-    <tr>
-      <th>ACC</th>
-      <td>-0.658824</td>
-      <td>-0.431227</td>
-      <td>1.000000</td>
-      <td>-0.812050</td>
-    </tr>
-    <tr>
-      <th>OANCF</th>
-      <td>0.793711</td>
-      <td>0.876442</td>
-      <td>-0.812050</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">NameError</span>: name &#39;dfCompustat&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>First, look at the table above (tables like these are called a <em>correlation matrix</em>; each number in the table is the correlation between two variables). You will see that the diagonal terms are 1.000000. That will <em>always</em> be the case because, by definition, a variable is perfectly correlated with itself. Also notice that the table is symmetric. The correlation between <em>IB</em> and <em>SALE</em> (second row, first column) must exactly equal the correlation between <em>SALE</em> and <em>IB</em> (first row, second column).</p>
 <p>Now let’s look at the correlation. Revenue (SALE) and income (IB) are positively correlated (0.68). That is unsurprising. As revenue increases, we would expect income to increase. Similarly, income (IB) and operating cash flows (OANCF) are highly correlated (0.876). Again, this is unsurprising.</p>
@@ -1544,7 +1447,8 @@ function(Bokeh) {
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1623,8 +1527,8 @@ By Vic Anand and Kim Mendoza
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

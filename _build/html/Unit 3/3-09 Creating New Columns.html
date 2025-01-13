@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Selecting and Filtering Data" href="3-08%20Selecting%20and%20Filtering%20Data.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,21 +147,17 @@
     
     
     <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
-    <script>document.write(`<img src="../_static/Book logo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+    <img src="../_static/Book logo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -233,9 +222,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -379,24 +373,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -666,7 +652,7 @@ document.write(`
     </style>
     <div>
         <a href="https://bokeh.org" target="_blank" class="bk-notebook-logo"></a>
-        <span id="be4d738b-69b2-4e50-aa33-d9a0ed5bb4c7">Loading BokehJS ...</span>
+        <span id="a6255500-ba04-43de-8eaf-a3e680280969">Loading BokehJS ...</span>
     </div>
 </div><script type="application/javascript">'use strict';
 (function(root) {
@@ -831,7 +817,7 @@ const JS_MIME_TYPE = 'application/javascript';
      "</div>"}};
 
   function display_loaded(error = null) {
-    const el = document.getElementById("be4d738b-69b2-4e50-aa33-d9a0ed5bb4c7");
+    const el = document.getElementById("a6255500-ba04-43de-8eaf-a3e680280969");
     if (el != null) {
       const html = (() => {
         if (typeof root.Bokeh === "undefined") {
@@ -939,7 +925,7 @@ const JS_MIME_TYPE = 'application/javascript';
     document.body.appendChild(element);
   }
 
-  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.4.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.4.2.min.js"];
+  const js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.6.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.6.2.min.js"];
   const css_urls = [];
 
   const inline_js = [    function(Bokeh) {
@@ -965,7 +951,7 @@ function(Bokeh) {
       console.log("Bokeh: BokehJS failed to load within specified timeout.");
       root._bokeh_failed_load = true;
     } else if (force !== true) {
-      const cell = $(document.getElementById("be4d738b-69b2-4e50-aa33-d9a0ed5bb4c7")).parents('.cell').data().cell;
+      const cell = $(document.getElementById("a6255500-ba04-43de-8eaf-a3e680280969")).parents('.cell').data().cell;
       cell.output_area.append_execute_result(NB_LOAD_WARNING)
     }
   }
@@ -1001,11 +987,11 @@ function(Bokeh) {
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="a149dd1e-dae2-40ef-be61-42c24718ea3c" data-root-id="p1088" style="display: contents;"></div>
+  <div id="c3e01cdd-6f3d-428d-ac81-b6938b538da1" data-root-id="p1092" style="display: contents;"></div>
 </div><script type="application/javascript">(function(root) {
   function embed_document(root) {
-  const docs_json = {"e5fc34d0-8a07-4214-b055-d6eba507fd0a":{"version":"3.4.2","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"p1088","attributes":{"children":[{"type":"object","name":"Figure","id":"p1004","attributes":{"width":400,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1005"},"y_range":{"type":"object","name":"DataRange1d","id":"p1006"},"x_scale":{"type":"object","name":"LinearScale","id":"p1014"},"y_scale":{"type":"object","name":"LinearScale","id":"p1015"},"title":{"type":"object","name":"Title","id":"p1007","attributes":{"text":"Net Income"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1043","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1001","attributes":{"selected":{"type":"object","name":"Selection","id":"p1002","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1003"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAAUAAAAFQAAABYAAAAXAAAAGAAAABkAAAAaAAAAGwAAABwAAAAdAAAAHgAAAB8AAAAgAAAAIQAAAA=="},"shape":[34],"dtype":"int32","order":"little"}],["Fiscal Year",{"type":"ndarray","array":{"type":"bytes","data":"wgcAAMMHAADEBwAAxQcAAMYHAADHBwAAyAcAAMkHAADKBwAAywcAAMwHAADNBwAAzgcAAM8HAADQBwAA0QcAANIHAADTBwAA1AcAANUHAADWBwAA1wcAANgHAADZBwAA2gcAANsHAADcBwAA3QcAAN4HAADfBwAA4AcAAOEHAADiBwAA4wcAAA=="},"shape":[34],"dtype":"int32","order":"little"}],["Assets - Total",{"type":"ndarray","array":{"type":"bytes","data":"z/dT46VXZUDy0k1iEPxxQPyp8dJN0H5AEFg5tMiEhkA3iUFgZUWRQNv5fmq8sJlAkxgEVs6fpEAAAAAAALqtQAAAAAAA87RAAAAAAAAqvEAAAAAAgLbDQAAAAACAGcxAAAAAAEDV1UAAAAAAgCTiQAAAAADAdulAAAAAACDv7EAAAAAA4IPwQAAAAAAwbfNAAAAAAFCO9kAAAAAA8EnxQAAAAADQ/fBAAAAAAGDY7kAAAAAAkMXxQAAAAAAABPNAAAAAABAG9UAAAAAAAIr6QAAAAABwm/1AAAAAAPhiAUEAAAAAAAsFQQAAAAD4ggVBAAAAAPCkB0EAAAAA8G0NQQAAAAAAmQ9BAAAAAHB9EUE="},"shape":[34],"dtype":"float64","order":"little"}],["Common Equity",{"type":"ndarray","array":{"type":"bytes","data":"tMh2vp9qYUCPwvUoXONtQIcW2c73d3dACtejcD2OgUAv3SQGgbSMQOf7qfFSG5VAI9v5fuohoUAAAAAAAFSpQAAAAAAAYrFAAAAAAADVtEAAAAAAAPy6QAAAAACAIsNAAAAAAICPzkAAAAAAgNDaQAAAAAAAM+RAAAAAACAX50AAAAAAgHrpQAAAAACAy+1AAAAAAJBE8kAAAAAAYH7nQAAAAAAAleNAAAAAAEBe3kAAAAAAwLfhQAAAAADAUONAAAAAAOCL5kAAAAAAYN/rQAAAAACwM/BAAAAAAABG80AAAAAAgOv1QAAAAAAwjfNAAAAAANCT8UAAAAAAoKzxQAAAAADgMfRAAAAAAKD7+EA="},"shape":[34],"dtype":"float64","order":"little"}],["Net Income",{"type":"ndarray","array":{"type":"bytes","data":"jZduEoOgQ0DVeOkmMfhRQCcxCKwc+l5A8KfGSzdRZUDl0CLb+XJxQNnO91Pj63xAFK5H4XoghkAAAAAAAMiNQAAAAAAA6JFAAAAAAAC0lkAAAAAAACahQAAAAAAA/KpAAAAAAACKsUAAAAAAAGm+QAAAAACAZsJAAAAAAACyvEAAAAAAAJW+QAAAAACAhMNAAAAAAADov0AAAAAAAO/HQAAAAACAm8hAAAAAAIB4y0AAAAAAQETRQAAAAACAdMxAAAAAAABS0kAAAAAAgJvWQAAAAACAlNBAAAAAAMBZ1UAAAAAAgI7VQAAAAACA0MdAAAAAAIBn0EAAAAAAALXUQAAAAADALtBAAAAAAAAp40A="},"shape":[34],"dtype":"float64","order":"little"}],["Adjusted Price Close - Fiscal",{"type":"ndarray","array":{"type":"bytes","data":"rRbYYyKlsT//Bu3Vx0PNP/vKg/QUOdM/3lhQGJRpzj8DWyVYHM7lP2nEzD6PUe0/TaPJxRiY9j+jA5Kwb2f8P/p9/+bFqQBAvt2SHLArDUClSSno9mITQK0zvi8uZSRAjX3JxoN9MUC3Xz5ZMRw9QElNu5hm0jlAH4E//PyPN0B9yjFZ3KcxQPyKNVzkmjBAVyWRfZCZMkAnwoanVzIyQDFcHQBxSzFA6dK/JJUtNkBrY+yElwA1QDHsMCb9lTJAYcQ+ARRXMkAyVpv/Vzk1QCAnTBjNpjlAxm00gLfYPUBE+BdBY4xCQGDNAYI5KERA3lomw/ECSEBaoN0hxZNQQDZWYp6VLVhA9Z81P36wYEA="},"shape":[34],"dtype":"float64","order":"little"}],["Address",{"type":"ndarray","array":["One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way"],"shape":[34],"dtype":"object","order":"little"}],["ZIP Code",{"type":"ndarray","array":{"type":"bytes","data":"BH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAA=="},"shape":[34],"dtype":"int32","order":"little"}],["City",{"type":"ndarray","array":["  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond "],"shape":[34],"dtype":"object","order":"little"}],["State",{"type":"ndarray","array":["wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa"],"shape":[34],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1044","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1045"}}},"glyph":{"type":"object","name":"Line","id":"p1040","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Net Income"},"line_color":"#1f77b4"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1041","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Net Income"},"line_color":"#1f77b4","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1042","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Net Income"},"line_color":"#1f77b4","line_alpha":0.2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1013","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1026"},{"type":"object","name":"WheelZoomTool","id":"p1027","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1028","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1029","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1034"},{"type":"object","name":"ResetTool","id":"p1035"},{"type":"object","name":"HelpTool","id":"p1036"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1021","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1022","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1023"},"axis_label":"$ millions","major_label_policy":{"type":"object","name":"AllLabels","id":"p1024"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1016","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1017","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1018"},"axis_label":"Fiscal Year","major_label_policy":{"type":"object","name":"AllLabels","id":"p1019"}}}],"center":[{"type":"object","name":"Grid","id":"p1020","attributes":{"axis":{"id":"p1016"}}},{"type":"object","name":"Grid","id":"p1025","attributes":{"dimension":1,"axis":{"id":"p1021"}}}]}},{"type":"object","name":"Figure","id":"p1046","attributes":{"width":400,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1047"},"y_range":{"type":"object","name":"DataRange1d","id":"p1048"},"x_scale":{"type":"object","name":"LinearScale","id":"p1056"},"y_scale":{"type":"object","name":"LinearScale","id":"p1057"},"title":{"type":"object","name":"Title","id":"p1049","attributes":{"text":"Stock Price (Adj.)"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1085","attributes":{"data_source":{"id":"p1001"},"view":{"type":"object","name":"CDSView","id":"p1086","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1087"}}},"glyph":{"type":"object","name":"Line","id":"p1082","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Adjusted Price Close - Fiscal"},"line_color":"#1f77b4"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1083","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Adjusted Price Close - Fiscal"},"line_color":"#1f77b4","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1084","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Adjusted Price Close - Fiscal"},"line_color":"#1f77b4","line_alpha":0.2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1055","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1068"},{"type":"object","name":"WheelZoomTool","id":"p1069","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1070","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1071","attributes":{"syncable":false,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5}}}},{"type":"object","name":"SaveTool","id":"p1076"},{"type":"object","name":"ResetTool","id":"p1077"},{"type":"object","name":"HelpTool","id":"p1078"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1063","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1064","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1065"},"axis_label":"Stock Price, adjusted for splits","major_label_policy":{"type":"object","name":"AllLabels","id":"p1066"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1058","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1059","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1060"},"axis_label":"Fiscal Year","major_label_policy":{"type":"object","name":"AllLabels","id":"p1061"}}}],"center":[{"type":"object","name":"Grid","id":"p1062","attributes":{"axis":{"id":"p1058"}}},{"type":"object","name":"Grid","id":"p1067","attributes":{"dimension":1,"axis":{"id":"p1063"}}}]}}]}}]}};
-  const render_items = [{"docid":"e5fc34d0-8a07-4214-b055-d6eba507fd0a","roots":{"p1088":"a149dd1e-dae2-40ef-be61-42c24718ea3c"},"root_ids":["p1088"]}];
+  const docs_json = {"0253ca4d-5f3d-4271-9bee-b92feb496990":{"version":"3.6.2","title":"Bokeh Application","roots":[{"type":"object","name":"Row","id":"p1092","attributes":{"children":[{"type":"object","name":"Figure","id":"p1004","attributes":{"width":400,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1005"},"y_range":{"type":"object","name":"DataRange1d","id":"p1006"},"x_scale":{"type":"object","name":"LinearScale","id":"p1014"},"y_scale":{"type":"object","name":"LinearScale","id":"p1015"},"title":{"type":"object","name":"Title","id":"p1007","attributes":{"text":"Net Income"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1045","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1001","attributes":{"selected":{"type":"object","name":"Selection","id":"p1002","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1003"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"AAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAAUAAAAFQAAABYAAAAXAAAAGAAAABkAAAAaAAAAGwAAABwAAAAdAAAAHgAAAB8AAAAgAAAAIQAAAA=="},"shape":[34],"dtype":"int32","order":"little"}],["Fiscal Year",{"type":"ndarray","array":{"type":"bytes","data":"wgcAAMMHAADEBwAAxQcAAMYHAADHBwAAyAcAAMkHAADKBwAAywcAAMwHAADNBwAAzgcAAM8HAADQBwAA0QcAANIHAADTBwAA1AcAANUHAADWBwAA1wcAANgHAADZBwAA2gcAANsHAADcBwAA3QcAAN4HAADfBwAA4AcAAOEHAADiBwAA4wcAAA=="},"shape":[34],"dtype":"int32","order":"little"}],["Assets - Total",{"type":"ndarray","array":{"type":"bytes","data":"z/dT46VXZUDy0k1iEPxxQPyp8dJN0H5AEFg5tMiEhkA3iUFgZUWRQNv5fmq8sJlAkxgEVs6fpEAAAAAAALqtQAAAAAAA87RAAAAAAAAqvEAAAAAAgLbDQAAAAACAGcxAAAAAAEDV1UAAAAAAgCTiQAAAAADAdulAAAAAACDv7EAAAAAA4IPwQAAAAAAwbfNAAAAAAFCO9kAAAAAA8EnxQAAAAADQ/fBAAAAAAGDY7kAAAAAAkMXxQAAAAAAABPNAAAAAABAG9UAAAAAAAIr6QAAAAABwm/1AAAAAAPhiAUEAAAAAAAsFQQAAAAD4ggVBAAAAAPCkB0EAAAAA8G0NQQAAAAAAmQ9BAAAAAHB9EUE="},"shape":[34],"dtype":"float64","order":"little"}],["Common Equity",{"type":"ndarray","array":{"type":"bytes","data":"tMh2vp9qYUCPwvUoXONtQIcW2c73d3dACtejcD2OgUAv3SQGgbSMQOf7qfFSG5VAI9v5fuohoUAAAAAAAFSpQAAAAAAAYrFAAAAAAADVtEAAAAAAAPy6QAAAAACAIsNAAAAAAICPzkAAAAAAgNDaQAAAAAAAM+RAAAAAACAX50AAAAAAgHrpQAAAAACAy+1AAAAAAJBE8kAAAAAAYH7nQAAAAAAAleNAAAAAAEBe3kAAAAAAwLfhQAAAAADAUONAAAAAAOCL5kAAAAAAYN/rQAAAAACwM/BAAAAAAABG80AAAAAAgOv1QAAAAAAwjfNAAAAAANCT8UAAAAAAoKzxQAAAAADgMfRAAAAAAKD7+EA="},"shape":[34],"dtype":"float64","order":"little"}],["Net Income",{"type":"ndarray","array":{"type":"bytes","data":"jZduEoOgQ0DVeOkmMfhRQCcxCKwc+l5A8KfGSzdRZUDl0CLb+XJxQNnO91Pj63xAFK5H4XoghkAAAAAAAMiNQAAAAAAA6JFAAAAAAAC0lkAAAAAAACahQAAAAAAA/KpAAAAAAACKsUAAAAAAAGm+QAAAAACAZsJAAAAAAACyvEAAAAAAAJW+QAAAAACAhMNAAAAAAADov0AAAAAAAO/HQAAAAACAm8hAAAAAAIB4y0AAAAAAQETRQAAAAACAdMxAAAAAAABS0kAAAAAAgJvWQAAAAACAlNBAAAAAAMBZ1UAAAAAAgI7VQAAAAACA0MdAAAAAAIBn0EAAAAAAALXUQAAAAADALtBAAAAAAAAp40A="},"shape":[34],"dtype":"float64","order":"little"}],["Adjusted Price Close - Fiscal",{"type":"ndarray","array":{"type":"bytes","data":"rRbYYyKlsT//Bu3Vx0PNP/vKg/QUOdM/3lhQGJRpzj8DWyVYHM7lP2nEzD6PUe0/TaPJxRiY9j+jA5Kwb2f8P/p9/+bFqQBAvt2SHLArDUClSSno9mITQK0zvi8uZSRAjX3JxoN9MUC3Xz5ZMRw9QElNu5hm0jlAH4E//PyPN0B9yjFZ3KcxQPyKNVzkmjBAVyWRfZCZMkAnwoanVzIyQDFcHQBxSzFA6dK/JJUtNkBrY+yElwA1QDHsMCb9lTJAYcQ+ARRXMkAyVpv/Vzk1QCAnTBjNpjlAxm00gLfYPUBE+BdBY4xCQGDNAYI5KERA3lomw/ECSEBaoN0hxZNQQDZWYp6VLVhA9Z81P36wYEA="},"shape":[34],"dtype":"float64","order":"little"}],["Address",{"type":"ndarray","array":["One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way","One Microsoft Way"],"shape":[34],"dtype":"object","order":"little"}],["ZIP Code",{"type":"ndarray","array":{"type":"bytes","data":"BH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAAR/AQAEfwEABH8BAA=="},"shape":[34],"dtype":"int32","order":"little"}],["City",{"type":"ndarray","array":["  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond ","  Redmond "],"shape":[34],"dtype":"object","order":"little"}],["State",{"type":"ndarray","array":["wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa","wa"],"shape":[34],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1046","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1047"}}},"glyph":{"type":"object","name":"Line","id":"p1042","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Net Income"},"line_color":"#1f77b4"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1043","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Net Income"},"line_color":"#1f77b4","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1044","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Net Income"},"line_color":"#1f77b4","line_alpha":0.2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1013","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1026"},{"type":"object","name":"WheelZoomTool","id":"p1027","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1028","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1029","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"p1035","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"p1034","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"SaveTool","id":"p1036"},{"type":"object","name":"ResetTool","id":"p1037"},{"type":"object","name":"HelpTool","id":"p1038"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1021","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1022","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1023"},"axis_label":"$ millions","major_label_policy":{"type":"object","name":"AllLabels","id":"p1024"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1016","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1017","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1018"},"axis_label":"Fiscal Year","major_label_policy":{"type":"object","name":"AllLabels","id":"p1019"}}}],"center":[{"type":"object","name":"Grid","id":"p1020","attributes":{"axis":{"id":"p1016"}}},{"type":"object","name":"Grid","id":"p1025","attributes":{"dimension":1,"axis":{"id":"p1021"}}}]}},{"type":"object","name":"Figure","id":"p1048","attributes":{"width":400,"height":400,"x_range":{"type":"object","name":"DataRange1d","id":"p1049"},"y_range":{"type":"object","name":"DataRange1d","id":"p1050"},"x_scale":{"type":"object","name":"LinearScale","id":"p1058"},"y_scale":{"type":"object","name":"LinearScale","id":"p1059"},"title":{"type":"object","name":"Title","id":"p1051","attributes":{"text":"Stock Price (Adj.)"}},"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1089","attributes":{"data_source":{"id":"p1001"},"view":{"type":"object","name":"CDSView","id":"p1090","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1091"}}},"glyph":{"type":"object","name":"Line","id":"p1086","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Adjusted Price Close - Fiscal"},"line_color":"#1f77b4"}},"nonselection_glyph":{"type":"object","name":"Line","id":"p1087","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Adjusted Price Close - Fiscal"},"line_color":"#1f77b4","line_alpha":0.1}},"muted_glyph":{"type":"object","name":"Line","id":"p1088","attributes":{"x":{"type":"field","field":"Fiscal Year"},"y":{"type":"field","field":"Adjusted Price Close - Fiscal"},"line_color":"#1f77b4","line_alpha":0.2}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1057","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1070"},{"type":"object","name":"WheelZoomTool","id":"p1071","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1072","attributes":{"overlay":{"type":"object","name":"BoxAnnotation","id":"p1073","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"p1079","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"p1078","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"SaveTool","id":"p1080"},{"type":"object","name":"ResetTool","id":"p1081"},{"type":"object","name":"HelpTool","id":"p1082"}]}},"left":[{"type":"object","name":"LinearAxis","id":"p1065","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1066","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1067"},"axis_label":"Stock Price, adjusted for splits","major_label_policy":{"type":"object","name":"AllLabels","id":"p1068"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1060","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1061","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1062"},"axis_label":"Fiscal Year","major_label_policy":{"type":"object","name":"AllLabels","id":"p1063"}}}],"center":[{"type":"object","name":"Grid","id":"p1064","attributes":{"axis":{"id":"p1060"}}},{"type":"object","name":"Grid","id":"p1069","attributes":{"dimension":1,"axis":{"id":"p1065"}}}]}}]}}]}};
+  const render_items = [{"docid":"0253ca4d-5f3d-4271-9bee-b92feb496990","roots":{"p1092":"c3e01cdd-6f3d-428d-ac81-b6938b538da1"},"root_ids":["p1092"]}];
   void root.Bokeh.embed.embed_items_notebook(docs_json, render_items);
   }
   if (root.Bokeh !== undefined) {
@@ -2344,7 +2330,8 @@ Redmond, WA 98052
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2422,8 +2409,8 @@ By Vic Anand and Kim Mendoza
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

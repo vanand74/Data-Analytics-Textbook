@@ -10,3 +10,10 @@ https://jupyterbook.org/en/stable/customize/config.html
 
 Here's a link to a config.yml file at a GitHub repository:
 https://github.com/jupyter-book/jupyter-book/blob/master/docs/_config.yml
+
+--------------
+
+To build (or rebuild) your book.
+* Ensure that the jupyter-book library is installed via conda
+* build using jupyter-book build <path-to-book>
+ 
