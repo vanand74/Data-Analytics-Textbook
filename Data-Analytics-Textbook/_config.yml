@@ -8,7 +8,7 @@
 title                       : Data Analytics for Accountants  # The title of the book. Will be placed in the left navbar.
 author                      : Vic Anand and Kim Mendoza  # The author of the book
 copyright                   : "2025"  # Copyright year to be placed in the footer
-logo                        : "Book logo.png"  # A path to the book logo
+logo                        : "Data-Analytics-Textbook/Book logo.png"  # A path to the book logo
 exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", NotInBuild]
 
 # Force re-execution of notebooks on each build.

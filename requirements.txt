@@ -6,3 +6,4 @@ pandas
 jupyter_bokeh
 seaborn
 ghp-import
+openpyxl
