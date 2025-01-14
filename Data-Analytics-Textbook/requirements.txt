@@ -1,0 +1,9 @@
+jupyter-book
+matplotlib
+numpy
+bokeh
+pandas
+jupyter_bokeh
+seaborn
+ghp-import
+openpyxl
