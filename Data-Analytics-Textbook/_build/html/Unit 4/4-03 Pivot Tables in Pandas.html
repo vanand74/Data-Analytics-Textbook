@@ -487,6 +487,8 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfPay</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s1">&#39;data/NYC_Payroll_data.parquet&#39;</span><span class="p">)</span>
+<span class="c1"># Make a fix to the Agency Start Date column</span>
+<span class="n">dfPay</span><span class="p">[</span><span class="s1">&#39;Agency Start Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dfPay</span><span class="p">[</span><span class="s1">&#39;Agency Start Date&#39;</span><span class="p">],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">dfPay</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
