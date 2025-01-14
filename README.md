@@ -6,18 +6,18 @@ This textbook was developed for the master's level course ACCY 570, Data Analyti
 Foundations for Accountancy, at the University of Illinois.
 
 ## To View the book
-[](https://vanand74.github.io/Data-Analytics-Textbook/intro.html)
+You can read the book at [https://vanand74.github.io/Data-Analytics-Textbook/intro.html](https://vanand74.github.io/Data-Analytics-Textbook/intro.html)
 
 ## Authors
-Vic Anand
+Vic Anand  
 University of Illinois at Urbana-Champaign
 
-Kim Mendoza
+Kim Mendoza  
 University of Illinois at Urbana-Champaign
 
 ## Static Code
-This book does not allow execution of live code. However, users can download
-all notebooks and the related data files from GitHub and then execute the code
+This book does not allow code execution. However, users can download
+any notebook and the related data files from GitHub and then execute the code
 on their own computers.
 
 ## Credits

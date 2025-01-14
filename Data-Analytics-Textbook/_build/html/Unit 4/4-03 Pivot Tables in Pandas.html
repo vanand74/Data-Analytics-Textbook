@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -146,8 +146,8 @@
       
     
     
-    <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
-    <img src="../_static/Book logo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
   
   
 </a></div>
@@ -1279,7 +1279,7 @@ STATEN ISLAND: $53,919
 <span class="n">dfFilt</span> <span class="o">=</span> <span class="n">dfPay</span><span class="p">[(</span><span class="n">dfPay</span><span class="p">[</span><span class="s1">&#39;Fiscal Year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2018</span><span class="p">)</span> <span class="o">&amp;</span> 
                <span class="p">(</span><span class="n">dfPay</span><span class="p">[</span><span class="s1">&#39;Pay Basis&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PER ANNUM&#39;</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="c1"># Create a date constant containing the end of the fiscal year</span>
-<span class="n">endOfFY</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;6-30-2018&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m-</span><span class="si">%d</span><span class="s1">-%Y&#39;</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">endOfFY</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;6-30-2018 00:00:00 UTC&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%m-</span><span class="si">%d</span><span class="s1">-%Y %H:%M:%S %Z&#39;</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">dfFilt</span><span class="p">[</span><span class="s1">&#39;Years of Experience&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">endOfFY</span> <span class="o">-</span> <span class="n">dfFilt</span><span class="p">[</span><span class="s1">&#39;Agency Start Date&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="mf">365.0</span>
 </pre></div>

@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -146,8 +146,8 @@
       
     
     
-    <img src="../_static/Book logo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
-    <img src="../_static/Book logo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
   
   
 </a></div>
@@ -495,7 +495,7 @@
 <h3>Using <code class="docutils literal notranslate"><span class="pre">read_excel</span></code> with a Simple Excel Workbook (1 sheet, properly formatted data)<a class="headerlink" href="#using-read-excel-with-a-simple-excel-workbook-1-sheet-properly-formatted-data" title="Link to this heading">#</a></h3>
 <p>Pandas provides a really nice function called <code class="docutils literal notranslate"><span class="pre">read_excel</span></code> for reading data from an Excel file. This function is very powerful and flexible, but for teaching purposes, we’ll start with a really simple example of its use.</p>
 <p>When you downloaded these course notes, you should have also downloaded two subfolders, <em>data</em> and <em>imgs</em>. Inside the <em>data</em> subfolder, there should be an Excel file named <em>Stocks1.xlsx</em>. Open that file in Excel so you can see its contents. For convenience, we include a snapshot of its contents below. Notice that the file contains a single worksheet named <em>Sheet1</em>.</p>
-<p><img alt="alt text" src="../_images/stocks1.png" /></p>
+<p><img alt="alt text" src="../_images/Stocks1.png" /></p>
 <p>To read this Excel sheet into a DataFrame, we will call the function <code class="docutils literal notranslate"><span class="pre">pd.read_excel</span></code>. We will pass a single argument, a path to the file. Notice that, in the code below, I used what’s called a “relative path”. Instead of specifying the full path to the file, I told Python to look in the current folder for a subfolder called <em>data</em>. Within that subfolder, look for a file <em>Stocks1.xlsx</em>. I could have also used the full path, which on my computer is <em>C:\Users\vanand\Box Sync\ACCY 570 Fall 2019\Common\Course notes\Unit 3 - Working with datasets\data\Stocks1.xlsx</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -573,12 +573,12 @@
 <li><p>A string containing the name of the worksheet</p></li>
 <li><p>A zero-based integer index of the worksheet. 0 means the first worksheet, 1 means the second worksheet, and so on.</p></li>
 </ul>
-<p>To see the <em>sheet_name</em> argument in action, let’s work with a second Excel file, <em>stocks2.xlsx</em>. This file should be located in the subfolder <em>data</em> that resides in the same folder as this notebook. Open the Excel file in Excel and take a look. Notice there are two worksheets, <em>10-18 Data</em> and <em>10-21 Data</em>. Let’s load only the second worksheet.</p>
+<p>To see the <em>sheet_name</em> argument in action, let’s work with a second Excel file, <em>Stocks2.xlsx</em>. This file should be located in the subfolder <em>data</em> that resides in the same folder as this notebook. Open the Excel file in Excel and take a look. Notice there are two worksheets, <em>10-18 Data</em> and <em>10-21 Data</em>. Let’s load only the second worksheet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the second worksheet</span>
 <span class="c1"># We could also have used the argument sheet_name=1</span>
-<span class="n">dfSheet2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/stocks2.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;10-21 Data&quot;</span><span class="p">)</span>
+<span class="n">dfSheet2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/Stocks2.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;10-21 Data&quot;</span><span class="p">)</span>
 <span class="n">dfSheet2</span>
 </pre></div>
 </div>
@@ -1843,7 +1843,7 @@ SAP,SAP, $132.71
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\vican\AppData\Local\Temp\ipykernel_27396\290965092.py:1: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\vican\AppData\Local\Temp\ipykernel_24892\290965092.py:1: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
   dfGM = pd.read_csv(&#39;data/GM.csv&#39;, parse_dates=[&#39;Date1&#39;, &#39;Date2&#39;, &#39;Date3&#39;])
 </pre></div>
 </div>
