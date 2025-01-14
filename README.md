@@ -6,7 +6,7 @@ This textbook was developed for the master's level course ACCY 570, Data Analyti
 Foundations for Accountancy, at the University of Illinois.
 
 ## To View the book
-You can read the book at [https://vanand74.github.io/Data-Analytics-Textbook/intro.html](https://vanand74.github.io/Data-Analytics-Textbook/intro.html)
+You can read the book at [https://vanand74.github.io/Data-Analytics-Textbook/](https://vanand74.github.io/Data-Analytics-Textbook/)
 
 ## Authors
 Vic Anand  
