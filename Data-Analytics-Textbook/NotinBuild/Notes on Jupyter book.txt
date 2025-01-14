@@ -14,6 +14,11 @@ https://github.com/jupyter-book/jupyter-book/blob/master/docs/_config.yml
 --------------
 
 To build (or rebuild) your book.
-* Ensure that the jupyter-book library is installed via conda
+* Ensure that the jupyter-book and ghp-pages libraries is installed via conda
+* Ensure that Git and GitHub desktop are installed locally.
 * build using jupyter-book build <path-to-book>
+* View the changes locally to ensure they look right.
+* There is a GitHub Actions workflow set so that the book will automatically build again on GitHub once you have made the commit.
+* View the change again on your GitHub pages deployment.
+* File names are case sensitive! Be very careful about that.
  

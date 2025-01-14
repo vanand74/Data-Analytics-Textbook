@@ -7,3 +7,5 @@ jupyter_bokeh
 seaborn
 ghp-import
 openpyxl
+fastparquet
+statsmodels
